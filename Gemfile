@@ -29,6 +29,8 @@ group :development, :test do
   gem 'ffaker'
   gem 'fabrication'
   gem 'rspec-rails'
+  gem 'guard-rspec', :require => false
+  gem 'guard-migrate', :require => false
 end
 
 group :test do
