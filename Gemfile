@@ -9,3 +9,14 @@ gem 'readwritesettings'
 gem 'haml-rails'
 gem 'gettext_i18n_rails'
 
+group :assets do
+  gem 'sprockets-rails'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+  gem 'therubyracer'
+  gem 'jquery-rails'
+  gem 'bourbon'
+  gem 'normalize-rails'
+end
+
