@@ -25,6 +25,18 @@ module Founden
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # Configure generators
+    config.generators do |g|
+      g.test_framework      :rspec, fixture: true
+      g.fixture_replacement :fabrication
+      g.view_specs          false
+      g.helper              false
+      g.helper_specs        false
+      g.stylesheets         false
+      g.javascripts         false
+    end
+  end
+
   # Our settings management class
   class Config < ReadWriteSettings
     source Rails.root.join('config', 'settings.yml').to_s
