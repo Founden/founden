@@ -20,6 +20,10 @@ group :assets do
   gem 'normalize-rails'
 end
 
+group :development do
+  gem 'quiet_assets'
+  gem 'pry-rails'
+end
 
 group :development, :test do
   gem 'ffaker'
@@ -29,5 +33,6 @@ end
 
 group :test do
   gem 'database_rewinder'
+  gem 'shoulda-matchers'
   gem 'simplecov', :require => false
 end
