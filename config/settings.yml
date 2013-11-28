@@ -1,0 +1,18 @@
+defaults: &defaults
+  app_name: Founden
+  app_id: app.founden.com
+  oauth2_providers:
+    google:
+      client_id: 852245675621.apps.googleusercontent.com
+      secret_key: e3VcSapzZa_tbU3VnW1OxNrB
+  default_email: Founden <no-reply@founden.com>
+  contact_email: Founden <support@founden.com>
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
