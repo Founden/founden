@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131129140608) do
+ActiveRecord::Schema.define(version: 20131129194732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20131129140608) do
   end
 
   add_index "identities", ["uid"], name: "index_identities_on_uid", using: :gin
+
+  create_table "networks", force: true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.hstore   "data"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "networks", ["slug"], name: "index_networks_on_slug", using: :btree
+  add_index "networks", ["user_id"], name: "index_networks_on_user_id", using: :btree
 
   create_table "sessions", force: true do |t|
     t.string   "session_id", null: false

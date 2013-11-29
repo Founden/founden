@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   # Relationships
   has_many :identities, :dependent => :destroy, :foreign_key => :account_id
+  has_many :networks
 
   # Validations
   validates :email, :uniqueness => true, :presence => true
