@@ -17,7 +17,7 @@ group :development do
 end
 
 # See why https://github.com/rails/rails/commit/49c4af43ec
-group :development, :assets do
+group :development, :assets, :test do
   gem 'sprockets-rails'
   gem 'sass-rails'
   gem 'coffee-rails'
@@ -37,7 +37,10 @@ group :development, :test do
 end
 
 group :test do
+  gem 'vcr'
+  gem 'poltergeist'
   gem 'database_rewinder'
   gem 'shoulda-matchers'
   gem 'simplecov', :require => false
+  gem 'capybara-puma'
 end
