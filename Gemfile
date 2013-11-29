@@ -10,6 +10,7 @@ gem 'easy_auth-google', :github => 'stas/easy_auth-google'
 gem 'readwritesettings'
 gem 'haml-rails'
 gem 'gettext_i18n_rails'
+gem 'activerecord-session_store'
 
 group :development do
   gem 'quiet_assets'
