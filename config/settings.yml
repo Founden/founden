@@ -13,6 +13,10 @@ development:
 
 test:
   <<: *defaults
+  oauth2_providers:
+    google:
+      client_id: DUMMY_CLIENT_ID
+      secret_key: DUMMY_SECRET
 
 production:
   <<: *defaults

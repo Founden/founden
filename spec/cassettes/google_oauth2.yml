@@ -1,0 +1,108 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://accounts.google.com/o/oauth2/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=authorization_code&code=DUMMY_CODE&client_id=DUMMY_CLIENT_ID&client_secret=DUMMY_SECRET&redirect_uri=http%3A%2F%2F127.0.0.1%3A3999%2Fsign_in%2Fo_auth%2Fgoogle%2Fcallback
+    headers:
+      content-type:
+      - application/x-www-form-urlencoded
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+      connection:
+      - close
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      cache-control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      pragma:
+      - no-cache
+      expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      date:
+      - Thu, 11 Oct 2012 14:50:31 GMT
+      content-type:
+      - application/json
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      server:
+      - GSE
+      connection:
+      - close
+    body:
+      encoding: US-ASCII
+      string: |-
+        {
+          "access_token" : "DUMMY_TOKEN",
+          "token_type" : "Bearer",
+          "expires_in" : 3377,
+          "id_token" : "DUMMY_TOKEN_ID"
+        }
+    http_version: '1.1'
+  recorded_at: Thu, 11 Oct 2012 14:50:31 GMT
+- request:
+    method: get
+    uri: https://www.googleapis.com/oauth2/v1/userinfo
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.8
+      Authorization:
+      - Bearer DUMMY_TOKEN
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      cache-control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      pragma:
+      - no-cache
+      expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      date:
+      - Fri, 29 Nov 2013 11:31:04 GMT
+      content-type:
+      - application/json; charset=UTF-8
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      server:
+      - GSE
+      alternate-protocol:
+      - 443:quic
+      connection:
+      - close
+    body:
+      encoding: US-ASCII
+      string: |-
+        {
+         "id": "123456789",
+         "email":"test@example.com",
+         "name": "Test User",
+         "given_name": "Test",
+         "family_name": "User",
+         "link": "https://plus.google.com/test-user",
+         "gender": "male",
+         "birthday": "0000-01-01",
+         "locale": "en"
+        }
+    http_version:
+  recorded_at: Fri, 29 Nov 2013 11:31:00 GMT
+recorded_with: VCR 2.8.0
