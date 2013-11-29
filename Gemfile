@@ -11,6 +11,7 @@ gem 'readwritesettings'
 gem 'haml-rails'
 gem 'gettext_i18n_rails'
 gem 'activerecord-session_store'
+gem 'friendly_id'
 
 group :development do
   gem 'quiet_assets'

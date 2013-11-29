@@ -92,6 +92,8 @@ GEM
     ffi (1.9.3)
     ffi2-generators (0.1.1)
     formatador (0.2.4)
+    friendly_id (5.0.1)
+      activerecord (~> 4.0.0)
     gettext_i18n_rails (1.0.3)
       fast_gettext (>= 0.4.8)
     guard (2.2.4)
@@ -464,6 +466,7 @@ DEPENDENCIES
   easy_auth-oauth2!
   fabrication
   ffaker
+  friendly_id
   gettext_i18n_rails
   guard-migrate
   guard-rspec

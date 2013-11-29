@@ -14,5 +14,6 @@ describe User do
     its(:email) { should_not be_empty }
     its(:first_name) { should_not be_empty }
     its(:last_name) { should_not be_empty }
+    its(:slug) { should eq(user.friendly_id) }
   end
 end
