@@ -11,11 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131129194732) do
+ActiveRecord::Schema.define(version: 20131129214122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "conversations", force: true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.hstore   "data"
+    t.integer  "user_id"
+    t.integer  "network_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "conversations", ["network_id"], name: "index_conversations_on_network_id", using: :btree
+  add_index "conversations", ["slug"], name: "index_conversations_on_slug", using: :btree
+  add_index "conversations", ["user_id"], name: "index_conversations_on_user_id", using: :btree
 
   create_table "identities", force: true do |t|
     t.string   "uid",          default: [], array: true

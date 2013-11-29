@@ -1,5 +1,6 @@
-# User network class
-class Network < ActiveRecord::Base
+# Conversation class
+class Conversation < ActiveRecord::Base
+
   # Include support for obfuscated ID
   extend FriendlyId
   include ObfuscatedId
@@ -7,13 +8,12 @@ class Network < ActiveRecord::Base
   # Obfuscates record ID
   friendly_id :obfuscated_id, :use => :slugged
 
-  # store_accessor :data, :attr
+  # store_accessor :data, :key
 
   # Relationships
   belongs_to :user
-  has_many :conversations
+  belongs_to :network
 
   # Validations
   validates_presence_of :title
-  validates_uniqueness_of :title, :scope => :user_id, :case_sensitive => false
 end

@@ -3,6 +3,7 @@ require 'spec_helper'
 describe User do
   it { should have_many(:identities).dependent(:destroy) }
   it { should have_many(:networks).dependent('') }
+  it { should have_many(:conversations).dependent('') }
 
   it { should validate_presence_of(:email) }
   it { should validate_uniqueness_of(:email) }
