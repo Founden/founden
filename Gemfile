@@ -11,7 +11,13 @@ gem 'readwritesettings'
 gem 'haml-rails'
 gem 'gettext_i18n_rails'
 
-group :assets do
+group :development do
+  gem 'quiet_assets'
+  gem 'pry-rails'
+end
+
+# See why https://github.com/rails/rails/commit/49c4af43ec
+group :development, :assets do
   gem 'sprockets-rails'
   gem 'sass-rails'
   gem 'coffee-rails'
@@ -20,11 +26,6 @@ group :assets do
   gem 'jquery-rails'
   gem 'bourbon'
   gem 'normalize-rails'
-end
-
-group :development do
-  gem 'quiet_assets'
-  gem 'pry-rails'
 end
 
 group :development, :test do
