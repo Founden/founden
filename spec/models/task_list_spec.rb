@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe TaskList do
+  it { should validate_presence_of(:tasks) }
 
   context 'instance' do
     subject(:task_list) { Fabricate(:task_list) }

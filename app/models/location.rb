@@ -2,4 +2,7 @@
 class Location < Attachment
   # Store geolocation with hstore
   store_accessor :data, :latitude, :longitude
+
+  # Validations
+  validates_presence_of :latitude, :longitude
 end

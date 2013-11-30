@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Location do
+  it { should validate_presence_of(:longitude) }
+  it { should validate_presence_of(:latitude) }
 
   context 'instance' do
     subject(:location) { Fabricate(:location) }

@@ -3,6 +3,9 @@ class TaskList < Attachment
   # Store tasks with hstore
   store_accessor :data, :tasks
 
+  # Validations
+  validates_presence_of :tasks
+
   # Callbacks
   after_initialize do
     self.tasks ||= []
