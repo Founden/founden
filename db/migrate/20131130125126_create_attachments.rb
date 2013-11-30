@@ -1,0 +1,15 @@
+class CreateAttachments < ActiveRecord::Migration
+  def change
+    create_table :attachments do |t|
+      t.string :title
+      t.string :slug
+      t.hstore :data
+      t.references :user, index: true
+      t.references :network, index: true
+      t.references :conversation, index: true
+      t.references :message, index: true
+
+      t.timestamps
+    end
+  end
+end

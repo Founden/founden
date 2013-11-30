@@ -11,11 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131130110632) do
+ActiveRecord::Schema.define(version: 20131130125126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "attachments", force: true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.hstore   "data"
+    t.integer  "user_id"
+    t.integer  "network_id"
+    t.integer  "conversation_id"
+    t.integer  "message_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "attachments", ["conversation_id"], name: "index_attachments_on_conversation_id", using: :btree
+  add_index "attachments", ["message_id"], name: "index_attachments_on_message_id", using: :btree
+  add_index "attachments", ["network_id"], name: "index_attachments_on_network_id", using: :btree
+  add_index "attachments", ["user_id"], name: "index_attachments_on_user_id", using: :btree
 
   create_table "conversations", force: true do |t|
     t.string   "title"
