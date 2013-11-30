@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131129214122) do
+ActiveRecord::Schema.define(version: 20131130110632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,21 @@ ActiveRecord::Schema.define(version: 20131129214122) do
   end
 
   add_index "identities", ["uid"], name: "index_identities_on_uid", using: :gin
+
+  create_table "messages", force: true do |t|
+    t.text     "content"
+    t.string   "slug"
+    t.hstore   "data"
+    t.integer  "user_id"
+    t.integer  "network_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+  add_index "messages", ["network_id"], name: "index_messages_on_network_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "networks", force: true do |t|
     t.string   "title"
