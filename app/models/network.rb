@@ -12,6 +12,7 @@ class Network < ActiveRecord::Base
   # Relationships
   belongs_to :user
   has_many :conversations
+  has_many :messages
 
   # Validations
   validates_presence_of :title, :user

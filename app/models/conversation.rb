@@ -13,6 +13,7 @@ class Conversation < ActiveRecord::Base
   # Relationships
   belongs_to :user
   belongs_to :network
+  has_many :messages
 
   # Validations
   validates_presence_of :title, :user, :network
