@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20131130125126) do
   add_index "attachments", ["conversation_id"], name: "index_attachments_on_conversation_id", using: :btree
   add_index "attachments", ["message_id"], name: "index_attachments_on_message_id", using: :btree
   add_index "attachments", ["network_id"], name: "index_attachments_on_network_id", using: :btree
+  add_index "attachments", ["slug"], name: "index_attachments_on_slug", using: :btree
   add_index "attachments", ["user_id"], name: "index_attachments_on_user_id", using: :btree
 
   create_table "conversations", force: true do |t|
@@ -73,6 +74,7 @@ ActiveRecord::Schema.define(version: 20131130125126) do
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
   add_index "messages", ["network_id"], name: "index_messages_on_network_id", using: :btree
+  add_index "messages", ["slug"], name: "index_messages_on_slug", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "networks", force: true do |t|
