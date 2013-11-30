@@ -70,7 +70,11 @@ GEM
       puma
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
     cliver (0.2.2)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -149,6 +153,11 @@ GEM
       multi_json (~> 1.0)
       multi_xml (~> 0.5)
       rack (~> 1.2)
+    paperclip (3.5.2)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.0)
     pg_array_parser (0.0.9)
     poltergeist (1.4.1)
@@ -475,6 +484,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   normalize-rails
+  paperclip
   pg
   poltergeist
   pry-rails

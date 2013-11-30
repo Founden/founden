@@ -16,3 +16,4 @@
 /tmp
 .ruby-version
 coverage
+public/system

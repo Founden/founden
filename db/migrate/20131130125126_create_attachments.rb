@@ -3,7 +3,9 @@ class CreateAttachments < ActiveRecord::Migration
     create_table :attachments do |t|
       t.string :title
       t.string :slug
+      t.string :type
       t.hstore :data
+      t.attachment :attachment
       t.references :user, index: true
       t.references :network, index: true
       t.references :conversation, index: true

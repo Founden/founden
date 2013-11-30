@@ -1,3 +1,4 @@
+# Message attachment class
 class Attachment < ActiveRecord::Base
   # Include support for obfuscated ID
   extend FriendlyId

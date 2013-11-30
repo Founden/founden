@@ -20,7 +20,12 @@ ActiveRecord::Schema.define(version: 20131130125126) do
   create_table "attachments", force: true do |t|
     t.string   "title"
     t.string   "slug"
+    t.string   "type"
     t.hstore   "data"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
     t.integer  "user_id"
     t.integer  "network_id"
     t.integer  "conversation_id"
