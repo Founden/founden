@@ -14,6 +14,11 @@ class Network < ActiveRecord::Base
   has_many :conversations
 
   # Validations
-  validates_presence_of :title
+  validates_presence_of :title, :user
   validates_uniqueness_of :title, :scope => :user_id, :case_sensitive => false
+
+  # Callbacks
+  before_validation do
+    self.title = Sanitize.clean(self.title)
+  end
 end

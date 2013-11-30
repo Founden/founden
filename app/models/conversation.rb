@@ -15,5 +15,10 @@ class Conversation < ActiveRecord::Base
   belongs_to :network
 
   # Validations
-  validates_presence_of :title
+  validates_presence_of :title, :user, :network
+
+  # Callbacks
+  before_validation do
+    self.title = Sanitize.clean(self.title)
+  end
 end
