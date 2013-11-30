@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :identities, :dependent => :destroy, :foreign_key => :account_id
   has_many :networks
   has_many :conversations
+  has_many :messages
+  has_many :attachments
 
   # Validations
   validates :email, :uniqueness => true, :presence => true

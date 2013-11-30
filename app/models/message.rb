@@ -13,6 +13,7 @@ class Message < ActiveRecord::Base
   belongs_to :user
   belongs_to :network
   belongs_to :conversation
+  has_many :attachments, :dependent => :destroy
 
   # Validations
   validates_presence_of :content, :user, :network, :conversation

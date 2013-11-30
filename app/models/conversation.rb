@@ -14,6 +14,7 @@ class Conversation < ActiveRecord::Base
   belongs_to :user
   belongs_to :network
   has_many :messages
+  has_many :attachments
 
   # Validations
   validates_presence_of :title, :user, :network
