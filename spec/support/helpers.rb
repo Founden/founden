@@ -1,8 +1,8 @@
 module Founden::RSpecHelpers
-  def try_google_sign_in
+  def try_google_sign_in(code_attr=:code)
     visit oauth2_callback_path(
       :provider => :google,
-      :code => 'DUMMY_CODE'
+      code_attr => 'DUMMY_CODE'
     )
   end
 end

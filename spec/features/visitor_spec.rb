@@ -15,4 +15,11 @@ feature 'Visitor', :js, :slow do
     User.count.should eq(1)
   end
 
+  scenario 'can fail authentication using a google account' do
+    try_google_sign_in(:error)
+
+    current_path.should eq(sign_in_path)
+    User.count.should eq(0)
+  end
+
 end
