@@ -10,5 +10,11 @@ Founden::Application.routes.draw do
     get :dashboard
   end
 
+  namespace :api, :constraints => {:format => :json} do
+   namespace :v1 do
+     resources(:users, :only => [:index, :show])
+   end
+  end
+
   root :to => 'pages#dashboard'
 end
