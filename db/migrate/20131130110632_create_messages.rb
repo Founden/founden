@@ -7,6 +7,7 @@ class CreateMessages < ActiveRecord::Migration
       t.references :user, index: true
       t.references :network, index: true
       t.references :conversation, index: true
+      t.references :summary, index: true
 
       t.timestamps
     end

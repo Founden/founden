@@ -5,10 +5,10 @@ describe Attachment do
   it { should belong_to(:network) }
   it { should belong_to(:conversation) }
   it { should belong_to(:message) }
+  it { should belong_to(:summary) }
 
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:network) }
-  it { should validate_presence_of(:conversation) }
   it { should validate_presence_of(:message) }
 
   context 'instance' do

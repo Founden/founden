@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131130125126) do
+ActiveRecord::Schema.define(version: 20131204142525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20131130125126) do
     t.integer  "network_id"
     t.integer  "conversation_id"
     t.integer  "message_id"
+    t.integer  "summary_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 20131130125126) do
   add_index "attachments", ["message_id"], name: "index_attachments_on_message_id", using: :btree
   add_index "attachments", ["network_id"], name: "index_attachments_on_network_id", using: :btree
   add_index "attachments", ["slug"], name: "index_attachments_on_slug", using: :btree
+  add_index "attachments", ["summary_id"], name: "index_attachments_on_summary_id", using: :btree
   add_index "attachments", ["user_id"], name: "index_attachments_on_user_id", using: :btree
 
   create_table "conversations", force: true do |t|
@@ -73,6 +75,7 @@ ActiveRecord::Schema.define(version: 20131130125126) do
     t.integer  "user_id"
     t.integer  "network_id"
     t.integer  "conversation_id"
+    t.integer  "summary_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -80,6 +83,7 @@ ActiveRecord::Schema.define(version: 20131130125126) do
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
   add_index "messages", ["network_id"], name: "index_messages_on_network_id", using: :btree
   add_index "messages", ["slug"], name: "index_messages_on_slug", using: :btree
+  add_index "messages", ["summary_id"], name: "index_messages_on_summary_id", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "networks", force: true do |t|
@@ -103,6 +107,20 @@ ActiveRecord::Schema.define(version: 20131130125126) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+
+  create_table "summaries", force: true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.hstore   "data"
+    t.integer  "network_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "summaries", ["conversation_id"], name: "index_summaries_on_conversation_id", using: :btree
+  add_index "summaries", ["network_id"], name: "index_summaries_on_network_id", using: :btree
+  add_index "summaries", ["slug"], name: "index_summaries_on_slug", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "slug"

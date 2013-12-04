@@ -1,5 +1,6 @@
-# Message attachment class
-class Attachment < ActiveRecord::Base
+# Summary class
+class Summary < ActiveRecord::Base
+
   # Include support for obfuscated ID
   extend FriendlyId
   include ObfuscatedId
@@ -7,17 +8,15 @@ class Attachment < ActiveRecord::Base
   # Obfuscates record ID
   friendly_id :obfuscated_id, :use => :slugged
 
-  # store_accessor :data, :attr
+  # store_accessor :data, :key
 
-  # Relationship
-  belongs_to :user
+  # Relationships
   belongs_to :network
   belongs_to :conversation
-  belongs_to :message
-  belongs_to :summary
+  has_many :messages
 
   # Validations
-  validates_presence_of :user, :network, :message
+  validates_presence_of :network, :conversation
 
   # Callbacks
   before_validation do

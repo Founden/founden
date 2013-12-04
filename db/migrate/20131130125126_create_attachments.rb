@@ -10,6 +10,7 @@ class CreateAttachments < ActiveRecord::Migration
       t.references :network, index: true
       t.references :conversation, index: true
       t.references :message, index: true
+      t.references :summary, index: true
 
       t.timestamps
     end
