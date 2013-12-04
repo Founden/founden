@@ -7,10 +7,6 @@ describe Attachment do
   it { should belong_to(:message) }
   it { should belong_to(:summary) }
 
-  it { should validate_presence_of(:user) }
-  it { should validate_presence_of(:network) }
-  it { should validate_presence_of(:message) }
-
   context 'instance' do
     subject(:attachment) { Fabricate(:attachment) }
 

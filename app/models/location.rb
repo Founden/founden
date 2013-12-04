@@ -4,5 +4,5 @@ class Location < Attachment
   store_accessor :data, :latitude, :longitude
 
   # Validations
-  validates_presence_of :latitude, :longitude
+  validates_presence_of :user, :network, :message, :latitude, :longitude
 end

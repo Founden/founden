@@ -4,7 +4,7 @@ class Timestamp < Attachment
   store_accessor :data, :timestamp
 
   # Validations
-  validates_presence_of :timestamp
+  validates_presence_of :user, :network, :message, :timestamp
 
   # Callbacks
   before_validation do

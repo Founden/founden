@@ -4,7 +4,7 @@ class TaskList < Attachment
   store_accessor :data, :tasks
 
   # Validations
-  validates_presence_of :tasks
+  validates_presence_of :user, :network, :message, :tasks
 
   # Callbacks
   after_initialize do
