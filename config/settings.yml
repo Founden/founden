@@ -7,6 +7,11 @@ defaults: &defaults
       secret_key: e3VcSapzZa_tbU3VnW1OxNrB
   default_email: Founden <no-reply@founden.com>
   contact_email: Founden <support@founden.com>
+  image:
+    sizes:
+      thumb: 100x100#
+      small: 300x300>
+      medium: 600x600>
 
 development:
   <<: *defaults

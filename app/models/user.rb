@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :conversations
   has_many :messages
   has_many :attachments
+  has_one :avatar, :dependent => :destroy
 
   # Validations
   validates :email, :uniqueness => true, :presence => true
