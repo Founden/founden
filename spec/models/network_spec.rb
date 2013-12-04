@@ -10,6 +10,7 @@ describe Network do
   it { should validate_uniqueness_of(
     :title).scoped_to(:user_id).case_insensitive }
   it { should validate_presence_of(:user) }
+  it { should validate_uniqueness_of(:slug) }
 
   context 'instance' do
     subject(:network) { Fabricate(:network) }

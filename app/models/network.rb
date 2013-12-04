@@ -18,6 +18,7 @@ class Network < ActiveRecord::Base
   # Validations
   validates_presence_of :title, :user
   validates_uniqueness_of :title, :scope => :user_id, :case_sensitive => false
+  validates_uniqueness_of :slug
 
   # Callbacks
   before_validation do

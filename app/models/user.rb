@@ -20,4 +20,5 @@ class User < ActiveRecord::Base
 
   # Validations
   validates :email, :uniqueness => true, :presence => true
+  validates_uniqueness_of :slug
 end
