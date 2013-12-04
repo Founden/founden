@@ -14,6 +14,7 @@ gem 'activerecord-session_store'
 gem 'friendly_id'
 gem 'sanitize'
 gem 'paperclip'
+gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 
 group :development do
   gem 'quiet_assets'

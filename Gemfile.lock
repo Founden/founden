@@ -7,6 +7,13 @@ GIT
       rails (~> 4.0.0)
 
 GIT
+  remote: git://github.com/rails-api/active_model_serializers.git
+  revision: 3a9475a16879d1811a67c71116f74ab0fdf5cf42
+  specs:
+    active_model_serializers (0.9.0.pre)
+      activemodel (>= 3.2)
+
+GIT
   remote: git://github.com/stas/easy_auth-google.git
   revision: 63a98fb266a1d61823ceeeda21b58853351d4547
   specs:
@@ -467,6 +474,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers!
   activerecord-session_store
   bourbon
   capybara-puma
