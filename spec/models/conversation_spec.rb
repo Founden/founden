@@ -9,6 +9,7 @@ describe Conversation do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:network) }
   it { should validate_presence_of(:user) }
+  it { should validate_uniqueness_of(:slug) }
 
   context 'instance' do
     subject(:conversation) { Fabricate(:conversation) }

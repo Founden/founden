@@ -10,6 +10,6 @@ class CreateSummaries < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :summaries, :slug
+    add_index :summaries, :slug, :unique => true
   end
 end

@@ -11,6 +11,7 @@ describe Message do
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:network) }
   it { should validate_presence_of(:conversation) }
+  it { should validate_uniqueness_of(:slug) }
 
   context 'instance' do
     subject(:message) { Fabricate(:message) }

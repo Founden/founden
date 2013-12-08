@@ -6,6 +6,7 @@ describe Attachment do
   it { should belong_to(:conversation) }
   it { should belong_to(:message) }
   it { should belong_to(:summary) }
+  it { should validate_uniqueness_of(:slug) }
 
   context 'instance' do
     subject(:attachment) { Fabricate(:attachment) }

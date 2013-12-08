@@ -15,6 +15,6 @@ class CreateAttachments < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :attachments, :slug
+    add_index :attachments, :slug, :unique => true
   end
 end

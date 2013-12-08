@@ -12,6 +12,7 @@ class Summary < ActiveRecord::Base
 
   # Validations
   validates_presence_of :network, :conversation
+  validates_uniqueness_of :slug
 
   # Callbacks
   before_validation do

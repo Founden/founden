@@ -12,6 +12,9 @@ class Attachment < ActiveRecord::Base
   belongs_to :message
   belongs_to :summary
 
+  # Validations
+  validates_uniqueness_of :slug
+
   # Callbacks
   before_validation do
     self.title = Sanitize.clean(self.title)

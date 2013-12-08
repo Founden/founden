@@ -12,6 +12,6 @@ class CreateMessages < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :messages, :slug
+    add_index :messages, :slug, :unique => true
   end
 end

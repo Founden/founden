@@ -9,6 +9,6 @@ class CreateNetworks < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :networks, :slug
+    add_index :networks, :slug, :unique => true
   end
 end

@@ -13,6 +13,7 @@ class Conversation < ActiveRecord::Base
 
   # Validations
   validates_presence_of :title, :user, :network
+  validates_uniqueness_of :slug
 
   # Callbacks
   before_validation do

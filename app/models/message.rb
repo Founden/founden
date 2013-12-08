@@ -14,6 +14,7 @@ class Message < ActiveRecord::Base
 
   # Validations
   validates_presence_of :content, :user, :network, :conversation
+  validates_uniqueness_of :slug
 
   # Callbacks
   before_validation do

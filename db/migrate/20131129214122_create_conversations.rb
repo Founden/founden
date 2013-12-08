@@ -10,6 +10,6 @@ class CreateConversations < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :conversations, :slug
+    add_index :conversations, :slug, :unique => true
   end
 end
