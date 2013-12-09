@@ -7,7 +7,7 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, :first_name, :last_name
   attributes :avatar_url
 
-  has_many :networks
+  has_many :networks, :embed_key => :slug
 
   # Mask the id with the slug value
   def id
