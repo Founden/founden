@@ -31,9 +31,10 @@ describe Api::V1::NetworksController do
 
     subject(:api_network) { json_to_ostruct(response.body, :network) }
 
-    its('keys.size') { should eq(3) }
+    its('keys.size') { should eq(4) }
     its(:id) { should eq(network.slug) }
     its(:title) { should eq(network.title) }
+    its(:user_id) { should eq(network.user.slug) }
     its('conversation_ids.count') { should eq(network.conversations.count) }
 
     context 'when network id is not available' do

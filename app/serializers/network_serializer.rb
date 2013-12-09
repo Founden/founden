@@ -4,7 +4,8 @@ class NetworkSerializer < ActiveModel::Serializer
 
   attributes :id, :title
 
-  has_many :conversations
+  has_one :user, :embed_key => :slug, :embed_in_root => false
+  has_many :conversations, :embed_key => :slug
 
   # Mask the id with the slug value
   def id
