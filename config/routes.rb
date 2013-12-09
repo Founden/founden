@@ -14,6 +14,7 @@ Founden::Application.routes.draw do
    namespace :v1 do
      resources(:users, :only => [:index, :show])
      resources(:networks, :only => [:index, :show])
+     resources(:conversations, :only => [:index, :show, :create])
    end
   end
 
