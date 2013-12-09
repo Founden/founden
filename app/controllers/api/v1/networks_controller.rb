@@ -2,7 +2,7 @@
 class Api::V1::NetworksController < Api::V1::ApplicationController
   # Lists available networks
   def index
-    render :json => current_account.networks
+    render :json => current_account.networks.where(:slug => params[:ids])
   end
 
   # Lists a network

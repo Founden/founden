@@ -8,7 +8,9 @@ describe Api::V1::NetworksController do
   end
 
   describe '#index' do
-    before { get(:index) }
+    let(:network_ids) { user.networks.map(&:slug) }
+
+    before { get(:index, :ids => network_ids) }
 
     subject(:api_networks) { json_to_ostruct(response.body) }
 
