@@ -7,8 +7,9 @@ GIT
       rails (~> 4.0.0)
 
 GIT
-  remote: git://github.com/rails-api/active_model_serializers.git
-  revision: 3a9475a16879d1811a67c71116f74ab0fdf5cf42
+  remote: git://github.com/stas/active_model_serializers.git
+  revision: 889b955a805961cf1505600071ee9b4154e7f551
+  branch: has_one_association_issue
   specs:
     active_model_serializers (0.9.0.pre)
       activemodel (>= 3.2)
@@ -66,7 +67,7 @@ GEM
       sass (>= 3.2.0)
       thor
     builder (3.1.4)
-    capybara (2.1.0)
+    capybara (2.2.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
@@ -79,7 +80,7 @@ GEM
       timers (~> 1.1.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    cliver (0.2.2)
+    cliver (0.3.1)
     cocaine (0.5.3)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
@@ -115,16 +116,16 @@ GEM
       thor (>= 0.18.1)
     guard-migrate (0.2.1)
       guard (>= 1.3.0)
-    guard-rspec (4.1.1)
+    guard-rspec (4.2.0)
       guard (>= 2.1.1)
-      rspec (~> 2.14)
+      rspec (>= 2.14, < 4.0)
     haml (4.0.4)
       tilt
-    haml-rails (0.5.1)
-      actionpack (~> 4.0.0)
-      activesupport (~> 4.0.0)
+    haml-rails (0.5.2)
+      actionpack (~> 4.0.1)
+      activesupport (~> 4.0.1)
       haml (>= 3.1, < 5.0)
-      railties (~> 4.0.0)
+      railties (~> 4.0.1)
     hike (1.2.3)
     httpauth (0.2.0)
     i18n (0.6.9)
@@ -135,7 +136,7 @@ GEM
     jwt (0.1.8)
       multi_json (>= 1.5)
     libv8 (3.16.14.3)
-    listen (2.3.1)
+    listen (2.4.0)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -167,9 +168,9 @@ GEM
       mime-types
     pg (0.17.0)
     pg_array_parser (0.0.9)
-    poltergeist (1.4.1)
-      capybara (~> 2.1.0)
-      cliver (~> 0.2.1)
+    poltergeist (1.5.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
     polyglot (0.3.3)
@@ -183,7 +184,7 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
-    puma (2.7.0)
+    puma (2.7.1)
       rack (>= 1.1, < 2.0)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
