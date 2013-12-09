@@ -14,4 +14,12 @@ class Api::V1::ApplicationController < AuthenticatedController
       :message => _('Resource unavailable')
     }
   end
+
+  private
+
+  # Handles error response for bad requests
+  def respond_with_bad_request(errors)
+    render :status => :bad_request, :json => {
+      :message => errors.full_messages.join(', ') }
+  end
 end

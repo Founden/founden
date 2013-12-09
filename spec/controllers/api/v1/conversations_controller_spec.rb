@@ -64,6 +64,16 @@ describe Api::V1::ConversationsController do
     its(:network_id) { should eq(attrs[:network_id]) }
     its(:message_ids) { should be_empty }
 
+    context 'when title is missing' do
+    let(:attrs) { Fabricate.attributes_for(
+      :conversation, :network_id => network.slug, :user => user, :title => nil)}
+
+      subject { response }
+
+      its(:status) { should eq(400) }
+      its(:body) { should include("Title can't be blank") }
+    end
+
     context 'when network id is not available' do
       let(:attrs) { Fabricate.attributes_for(:conversation, :network_id => 0) }
 

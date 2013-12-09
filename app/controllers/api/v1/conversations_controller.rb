@@ -22,8 +22,7 @@ class Api::V1::ConversationsController < Api::V1::ApplicationController
     if conversation.save
       render :json => conversation
     else
-      errors = conversation.errors.full_messages
-      render :json => errors, :status => :bad_request
+      respond_with_bad_request(conversation.errors)
     end
   end
 
