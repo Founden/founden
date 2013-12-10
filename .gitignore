@@ -17,3 +17,4 @@
 .ruby-version
 coverage
 public/system
+config/database.yml

@@ -8,12 +8,12 @@ postgresql: &postgresql
 
 production: &production
   <<: *postgresql
-  database: doers
+  database: founden
 
 development:
   <<: *postgresql
-  database: doers
+  database: founden
 
 test:
   <<: *postgresql
-  database: doers_test<%= ENV['TEST_ENV_NUMBER'] %>
+  database: founden_test<%= ENV['TEST_ENV_NUMBER'] %>
