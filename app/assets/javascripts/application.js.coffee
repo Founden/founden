@@ -3,10 +3,10 @@
 #= require_self
 
 ((w, $) ->
-  w.Founden =
+  w.Application =
     setup: ->
       true
 
-  Founden.setup()
+  Application.setup()
 
 ) window, jQuery
