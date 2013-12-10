@@ -32,6 +32,10 @@ group :development, :assets, :test, :production do
   gem 'jquery-rails'
   gem 'bourbon'
   gem 'normalize-rails'
+  gem 'ember-rails'
+  gem 'ember-source', '~> 1.3.0.beta'
+  gem 'ember-data-source', '~> 1.0.0.beta'
+  gem 'hamlbars'
 end
 
 group :development, :test do
