@@ -1,0 +1,8 @@
+after :deploy, 'bugsnag:deploy'
+
+namespace :bugsnag do
+  task :deploy do
+    run 'rake bugsnag:deploy BUGSNAG_REVISION=%s BUGSNAG_RELEASE_STAGE=%s' % [
+      fetch(:current_revision), fetch(:stage) ]
+  end
+end

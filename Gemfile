@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'pg'
-gem 'puma'
 gem 'rubysl', :platform => 'rbx'
 gem 'easy_auth', :github => 'dockyard/easy_auth'
 gem 'easy_auth-oauth2', :github => 'stas/easy_auth-oauth2', :branch => 'update_to_easy_auth_master'
@@ -20,6 +19,11 @@ gem 'active_model_serializers', :github => 'stas/active_model_serializers', :bra
 group :development do
   gem 'quiet_assets'
   gem 'pry-rails'
+end
+
+group :production do
+  gem 'puma'
+  gem 'bugsnag', :require => 'bugsnag/railtie'
 end
 
 # See why https://github.com/rails/rails/commit/49c4af43ec

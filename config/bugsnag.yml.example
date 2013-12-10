@@ -1,0 +1,12 @@
+bugsnag: &bugsnag
+  api_key: 'put_it_here'
+  use_ssl: true
+
+production: &production
+  <<: *bugsnag
+
+development:
+  <<: *bugsnag
+
+test:
+  <<: *bugsnag

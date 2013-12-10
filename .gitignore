@@ -18,3 +18,4 @@
 coverage
 public/system
 config/database.yml
+config/bugsnag.yml
