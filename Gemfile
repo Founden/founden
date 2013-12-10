@@ -36,6 +36,7 @@ group :development, :assets, :test, :production do
   gem 'ember-source', '~> 1.3.0.beta'
   gem 'ember-data-source', '~> 1.0.0.beta'
   gem 'hamlbars'
+  gem 'momentjs-rails'
 end
 
 group :development, :test do
