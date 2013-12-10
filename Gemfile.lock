@@ -525,6 +525,7 @@ DEPENDENCIES
   pg
   poltergeist
   pry-rails
+  puma
   quiet_assets
   rails
   readwritesettings
