@@ -1,0 +1,94 @@
+@font-face {
+  font-family: 'doers-icons';
+  src: font-url('doers-icons.eot');
+  src: font-url('doers-icons.eot?#iefix') format('embedded-opentype'),
+       font-url('doers-icons.ttf') format('truetype'),
+       font-url('doers-icons.svg#doers-icons') format('svg'),
+       font-url('doers-icons.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon {
+	font-family: 'doers-icons';
+  font-size: 16px;
+	speak: none;
+  display: inline-block;
+  vertical-align: middle;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+}
+
+.icon-large {
+  @extend .icon;
+  font-size: 48px;
+}
+
+.icon-small {
+  @extend .icon;
+  font-size: 8px;
+}
+
+.icon-search:before {
+	content: "\e600";
+}
+.icon-ellipsis:before {
+	content: "\e601";
+}
+.icon-plus:before {
+	content: "\e602";
+}
+.icon-reply:before {
+	content: "\e603";
+}
+.icon-conversation:before {
+	content: "\e604";
+}
+.icon-arrow-right:before {
+	content: "\e605";
+}
+.icon-lock:before {
+	content: "\e606";
+}
+.icon-arrow-left:before {
+	content: "\e607";
+}
+.icon-arrow-up:before {
+	content: "\e608";
+}
+.icon-arrow-down:before {
+	content: "\e609";
+}
+.icon-settings:before {
+	content: "\e60a";
+}
+.icon-delete:before {
+	content: "\e60b";
+}
+.icon-edit:before {
+	content: "\e60c";
+}
+.icon-close:before {
+	content: "\e60d";
+}
+.icon-star:before {
+	content: "\e60e";
+}
+.icon-checkmark:before {
+	content: "\e60f";
+}
+.icon-checkbox:before {
+	content: "\e610";
+}
+.icon-calendar:before {
+	content: "\e611";
+}
+.icon-clock:before {
+	content: "\e612";
+}
+.icon-link:before {
+	content: "\e613";
+}

@@ -1,0 +1,15 @@
+{{#if title}}
+.attachments-title
+  {{title}}
+{{/if}}
+%ul.attachment-tasks
+  {{#each task in tasks}}
+  %li{:bind => {:class => 'task.checked'}}
+    %label
+      %span{:bind => {:class => ':icon task.checked:icon-checkmark:icon-checkbox'}}
+      {{input type='checkbox' checkedBinding='task.checked'}}
+      {{task.label}}
+    {{#if controller.allowsTasksRemoval}}
+    %span.icon.icon-delete{:_action => 'removeTask task'}
+    {{/if}}
+  {{/each}}

@@ -1,0 +1,27 @@
+%div{:bind => {:class => ':message isUnread:unread isFocused:focused'}}
+  %img.message-user-image{:bind => {:src => 'user.avatarUrl'}}
+  .message-wrap
+    .message-content
+      {{content}}
+      .message-meta
+        {{user.name}} &middot; {{timeago timeAgo}}
+    {{partial 'conversations/partials/attachments'}}
+    .message-actions
+      %span{:_action => 'addToSummary this', :bind => {:class => ':icon :icon-star isSummary:pinned'}}
+  {{#if replies.firstObject}}
+  .message-replies
+    {{#each reply in message.replies}}
+    {{#with reply}}
+    {{partial 'conversations/partials/message'}}
+    {{/with}}
+    {{/each}}
+  {{/if}}
+  {{#unless parentMessage}}
+  .message-reply-btn{:_action => 'activateReplyOn this'}
+    %span.icon.icon-reply
+    {{#if isFocused}}
+    You are replying to this message. Click again to cancel.
+    {{else}}
+    Reply (use @ to mention or + to attach media).
+    {{/if}}
+  {{/unless}}

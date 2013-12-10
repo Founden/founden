@@ -1,0 +1,27 @@
+body, html {
+  background-color: $beige;
+}
+
+body, input, textarea {
+  font: 400 16px/1.5 $source-sans-pro;
+  color: $black;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: $green;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+ul, ol {
+  list-style: none;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+  margin: 0;
+}

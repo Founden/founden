@@ -1,0 +1,127 @@
+.messages {
+  padding: 20px 0 70px 0;
+  position: relative;
+
+  &:before {
+    content: '';
+    width: 3px;
+    position: absolute;
+    left: 30px;
+    top: 0;
+    height: 100%;
+    background-color: rgba($black, 0.05);
+  }
+
+  > .message {
+    box-shadow: 0 1px rgba($black, 0.1);
+    border-radius: 3px;
+  }
+}
+
+.message {
+  position: relative;
+  background-color: $white;
+  margin: 0 0 10px 70px;
+  width: 640px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: -3px;
+    top: 13px;
+    background-color: $white;
+    width: 6px;
+    height: 6px;
+    @include transform(rotate(45deg));
+  }
+
+  &.focused {
+    box-shadow: 0 0 0 2px rgba($black, 0.1);
+
+    &:before {
+      box-shadow: -2px 2px rgba($black, 0.1);
+    }
+  }
+}
+
+.message-user-image {
+  position: absolute;
+  left: -60px;
+  top: -5px;
+  z-index: 3;
+  border: 5px solid $white;
+  box-shadow: 0 0 0 1px rgba($black, 0.2);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.message-content {
+  font-size: em(14);
+  line-height: 20px;
+  padding: 15px 120px 15px 20px;
+}
+
+.message-actions {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  .icon {
+    cursor: pointer;
+    color: shade($beige, 20%);
+
+    &.pinned {
+      color: $green;
+    }
+  }
+}
+
+.message-meta {
+  font-size: em(12);
+  color: tint($black, 50%);
+  margin: 5px 0 0 0;
+}
+
+.message-reply-btn {
+  background-color: tint($beige, 50%);
+  font-size: em(14);
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 0 0 3px 3px;
+  color: rgba($black, 0.5);
+  @include transition(all 0.2s);
+
+  &:hover {
+    background-color: shade($beige, 5%);
+    color: $black;
+  }
+
+  .icon {
+    color: $green;
+    margin: -2px 10px 0 0;
+  }
+}
+
+.message-replies {
+
+  .message {
+    margin: 0;
+    border-top: 1px solid $beige;
+
+    &:before {
+      display: none;
+    }
+  }
+
+  .message-user-image {
+    left: 20px;
+    top: 20px;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .message-content {
+    padding-left: 70px;
+  }
+}

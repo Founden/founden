@@ -1,0 +1,18 @@
+{{#if title}}
+.attachments-title
+  {{title}}
+{{/if}}
+.attachment-timestamp
+  .attachment-timestamp-date
+    %span.icon-large.icon-calendar
+    %em
+      {{date timestamp format='dddd'}}
+    %strong
+      {{date timestamp format='Do MMMM, YYYY'}}
+  .attachment-timestamp-time
+    %span.icon-large.icon-clock
+    %em
+      {{time timestamp format='hh:mm a, Z'}}
+    %strong
+      {{timeago timestampString}}
+

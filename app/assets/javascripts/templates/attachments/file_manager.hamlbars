@@ -1,0 +1,9 @@
+.attachment-uploader
+  {{file-upload uploads=uploads uploads=uploads}}
+
+.attachments
+  {{#each file in content}}
+  {{#with file}}
+  {{partial 'attachments/file'}}
+  {{/with}}
+  {{/each}}

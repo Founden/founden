@@ -1,0 +1,22 @@
+.attachments-editor
+  %span.icon.icon-close{:_action => 'closeEditor'}
+
+  {{#if view.selectedType.isFile}}
+  {{render 'attachments/file_manager' view.selectedType.attachments }}
+  {{/if}}
+
+  {{#if view.selectedType.isTaskList}}
+  {{render 'attachments/task_list_editor' view.selectedType.attachments }}
+  {{/if}}
+
+  {{#if view.selectedType.isLink}}
+  {{render 'attachments/link_embed' view.selectedType.attachments }}
+  {{/if}}
+
+  {{#if view.selectedType.isLocation}}
+  {{render 'attachments/location_search' view.selectedType.attachments }}
+  {{/if}}
+
+  {{#if view.selectedType.isTimestamp}}
+  {{render 'attachments/timestamp_picker' view.selectedType.attachments }}
+  {{/if}}

@@ -1,0 +1,19 @@
+{{#if isFile}}
+{{partial 'attachments/file'}}
+{{/if}}
+
+{{#if isTaskList}}
+{{render 'attachments/task_list' this}}
+{{/if}}
+
+{{#if isLocation}}
+{{render 'attachments/location' this}}
+{{/if}}
+
+{{#if isTimestamp}}
+{{render 'attachments/timestamp' this}}
+{{/if}}
+
+{{#if isLink}}
+{{render 'attachments/link' this}}
+{{/if}}

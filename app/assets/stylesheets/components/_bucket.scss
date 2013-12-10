@@ -1,0 +1,27 @@
+.bucket {
+  margin: 40px 20px;
+  background-color: rgba($white, 0.25);
+  border-radius: 3px;
+}
+
+.bucket-title {
+  font-size: em(12);
+  font-weight: 400;
+  color: $black;
+  text-transform: uppercase;
+  padding: 15px 20px;
+}
+
+
+.bucket-actions {
+  padding: 10px 20px;
+  font-size: em(12);
+
+  a {
+    color: $black;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

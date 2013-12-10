@@ -1,0 +1,29 @@
+%div{:bind => {:class => ':conversation hasSummary isReplying'}}
+
+  .conversation-header
+    %h1.conversation-title
+      {{content.title}} ({{unreadCount}})
+    .conversation-meta
+      {{timeago content.timeAgo}}
+      from
+      %strong
+        {{content.user.name}}
+    %ul.conversation-people
+      {{#each person in content.people}}
+      %li
+        %img{:bind => {:src => 'person.avatarUrl'}}
+      {{/each}}
+      %li
+        %button.button.btn-secondary{:_action => 'startMention'}
+          @ Add
+
+  {{partial 'conversations/partials/summary'}}
+
+  .messages
+    {{#each message in content.messages}}
+    {{#with message}}
+    {{partial 'conversations/partials/message'}}
+    {{/with}}
+    {{/each}}
+
+  {{message-form user=currentUser messageForm=messageForm isActive=isReplying}}

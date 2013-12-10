@@ -1,0 +1,35 @@
+.wrapper
+
+  .bucket
+    .bucket-title
+      Inbox ({{content.ongoing.length}})
+    %ul.conversations
+      {{#each conversation in inbox}}
+      {{#with conversation}}
+      {{partial 'networks/partials/conversation'}}
+      {{/with}}
+      {{/each}}
+
+    {{#unless inboxLimitReached}}
+    .bucket-actions
+      {{#linkTo 'networks.inbox' content}}
+      view all {{content.inbox.length}} conversations
+      {{/linkTo}}
+    {{/unless}}
+
+  .bucket
+    .bucket-title
+      Ongoing ({{content.ongoing.length}})
+    %ul.conversations
+      {{#each conversation in ongoing}}
+      {{#with conversation}}
+      {{partial 'networks/partials/conversation'}}
+      {{/with}}
+      {{/each}}
+
+    {{#unless ongoingLimitReached}}
+    .bucket-actions
+      {{#linkTo 'networks.ongoing' content}}
+      view all {{content.ongoing.length}} conversations
+      {{/linkTo}}
+    {{/unless}}

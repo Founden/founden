@@ -1,0 +1,45 @@
+.conversation-item {
+  margin: 0 0 1px 0;
+
+  a {
+    @include clearfix;
+    display: block;
+    padding: 8px 20px;
+    background-color: $white;
+    color: $black;
+  }
+
+  &.unread {
+    box-shadow: -4px 0 $green;
+
+    .conversation-item-title {
+      font-weight: 600;
+      color: $black;
+    }
+  }
+}
+
+.conversation-item-title {
+  float: left;
+  font-size: em(16);
+  font-weight: 400;
+  margin: 3px 0;
+  color: shade($white, 40%);
+}
+
+.conversation-item-meta {
+  float: right;
+  font-size: em(12);
+  line-height: 30px;
+  color: shade($white, 40%);
+  text-align: right;
+  width: 260px;
+
+  img {
+    float: right;
+    border-radius: 50%;
+    margin: 0 0 0 10px;
+    width: 30px;
+    height: 30px;
+  }
+}

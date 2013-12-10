@@ -1,0 +1,12 @@
+{{#if view.search}}
+%ul
+  {{#each mention in view.content}}
+
+  {{#view view.mentionView mention=mention}}
+  %img{:bind => {:src => 'mention.avatarUrl', :alt => 'mention.name'}}
+  {{mention.name}}
+  {{/view}}
+
+  {{/each}}
+{{/if}}
+{{view view.searchView placeholder='Type to search somebody...'}}

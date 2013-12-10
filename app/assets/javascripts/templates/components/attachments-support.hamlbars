@@ -1,0 +1,27 @@
+%ul
+  {{#each type in view.content}}
+
+  {{#view view.optionView option=type}}
+  {{#if type.isFile}}
+  Attach files or images
+  {{/if}}
+
+  {{#if type.isTaskList}}
+  Add some tasks
+  {{/if}}
+
+  {{#if type.isLink}}
+  Embed a link: video, slides, tweets
+  {{/if}}
+
+  {{#if type.isLocation}}
+  Embed a location/map
+  {{/if}}
+
+  {{#if type.isTimestamp}}
+  Add a calendar date/time
+  {{/if}}
+  {{/view}}
+
+  {{/each}}
+{{view view.searchView placeholder='Type what you want to attach...'}}

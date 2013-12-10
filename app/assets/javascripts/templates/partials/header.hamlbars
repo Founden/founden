@@ -1,0 +1,12 @@
+.header
+  %a.header-logo{:href => '/'}
+    Founden
+  .header-actions
+    %a.icon.icon-settings{:href => '#'}
+    %a.icon.icon-lock{:href => '#'}
+  .header-account
+    %img{:bind => {:src => 'currentUser.avatarUrl'}}
+    {{currentUser.name}}
+  .header-search
+    {{input placeholder='Search'}}
+    %span.icon.icon-search

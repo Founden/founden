@@ -1,0 +1,11 @@
+.attachment-link
+  %a{:target => '_blank', :bind => {:href => 'url'}}
+    %img.attachment-link-thumb{:bind => {:src => 'previewUrl'}}
+    .attachment-link-title
+      {{title}}
+    {{#if description}}
+    .attachment-link-description
+      {{description}}
+    {{/if}}
+    .attachment-link-url
+      {{url}}

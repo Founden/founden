@@ -1,0 +1,14 @@
+.attachment-field
+  {{view view.inputView value=timestamp.rawValue placeholder='Type in a date: May 2 2014, 10:10...'}}
+
+.attachment-field
+  {{#if view.needsTitle}}
+  {{view view.titleView value=timestamp.title placeholder='What is the name of the event...'}}
+  {{else}}
+  %a{:href => '#', :_action => 'enableTitle target=view'}
+    Add a title (optional)
+  {{/if}}
+
+{{#with timestamp}}
+{{partial 'attachments/timestamp'}}
+{{/with}}

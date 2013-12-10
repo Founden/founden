@@ -1,0 +1,8 @@
+{{#if attachments.firstObject}}
+.attachments
+  {{#each media in attachments}}
+  {{#with media}}
+  {{partial 'conversations/partials/attachment'}}
+  {{/with}}
+  {{/each}}
+{{/if}}

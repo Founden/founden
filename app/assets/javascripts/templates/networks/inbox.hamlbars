@@ -1,0 +1,10 @@
+.wrapper
+  .bucket
+    .bucket-title
+      Inbox
+    %ul.conversations
+      {{#each conversation in content.inbox}}
+      {{#with conversation}}
+      {{partial 'networks/partials/conversation'}}
+      {{/with}}
+      {{/each}}

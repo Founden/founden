@@ -1,0 +1,7 @@
+.caret-actions
+  {{#view view.mentionView}}
+  @
+  {{/view}}
+  {{#view view.attachmentView}}
+  +
+  {{/view}}

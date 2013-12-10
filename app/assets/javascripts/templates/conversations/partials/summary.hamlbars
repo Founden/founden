@@ -1,0 +1,12 @@
+.summary-btn{:_action => 'toggleSummary'}
+  %span{:bind => {:class => ':icon hasSummary:icon-close:icon-star'}}
+
+.summary
+  {{#each message in summaryMessages}}
+  .summary-message
+    .message-content
+      {{message.content}}
+    {{#with message}}
+    {{partial 'conversations/partials/attachments'}}
+    {{/with}}
+  {{/each}}

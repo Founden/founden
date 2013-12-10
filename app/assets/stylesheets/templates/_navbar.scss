@@ -1,0 +1,82 @@
+.navbar {
+  @include box-sizing(border-box);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: $zindex-navbar;
+  width: 280px;
+  height: 100%;
+  padding: 78px 0 0 0;
+  box-shadow: 1px 0 1px rgba($black, 0.1);
+  background-color: $beige;
+}
+
+.navbar-title {
+  position: relative;
+
+  a {
+    display: block;
+    padding: 6px 20px 4px 20px;
+    background-color: rgba($black, 0.05);
+    border-bottom: 1px solid rgba($black, 0.05);
+    @include transition(all 0.2s);
+    color: rgba($black, 0.5);
+    text-transform: uppercase;
+    font-size: em(10);
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    &:hover {
+      background-color: rgba($black, 0.1);
+    }
+  }
+
+  .icon {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    padding: 9px;
+    cursor: pointer;
+    color: rgba($black, 0.5);
+    @include transition(all 0.2s);
+
+    &:hover {
+      color: rgba($black, 0.8);
+    }
+  }
+}
+
+.navbar-list-item {
+
+  a {
+    display: block;
+    position: relative;
+    padding: 12px 20px 10px 50px;
+    border-bottom: 1px solid rgba($black, 0.05);
+    font-size: em(12);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: $black;
+    @include transition(all 0.2s);
+
+    &:hover {
+      background-color: rgba($black, 0.05);
+    }
+
+    &.primary {
+      position: relative;
+      background-color: $green;
+      color: $white;
+
+      &:hover {
+        background-color: shade($green, 5%);
+      }
+
+      .icon {
+        position: absolute;
+        left: 20px;
+      }
+    }
+  }
+}

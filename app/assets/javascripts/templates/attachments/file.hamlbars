@@ -1,0 +1,7 @@
+%a.attachment-file{:target => '_blank', :bind => {:href => 'attachment'}}
+  .attachment-file-icon
+    %img{:bind => {:src => 'previewUrl'}}
+  .attachment-file-title
+    {{title}}
+  .attachment-file-size
+    {{filesize attachmentSize}}

@@ -1,0 +1,6 @@
+{{#if title}}
+.attachments-title
+  {{title}}
+{{/if}}
+.attachment-location
+  %img{:bind => {:src => 'previewUrl'}}

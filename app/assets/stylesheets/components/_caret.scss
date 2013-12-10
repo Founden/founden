@@ -1,0 +1,49 @@
+.caret {
+  position: relative;
+  top: 20px;
+  @include transition(all 0.2s);
+  opacity: 0;
+}
+
+.caret-actions {
+  position: absolute;
+  background-color: $beige;
+  border-radius: 20px;
+  box-shadow: 1px 1px rgba($black, 0.2);
+  top: 25px;
+  left: -20px;
+  @include clearfix;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -3px;
+    background-color: $beige;
+    width: 6px;
+    height: 6px;
+    @include transform(rotate(45deg));
+  }
+
+  span {
+    float: left;
+    padding: 0 5px;
+    border-radius: 20px 0 0 20px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    font-size: em(12);
+    font-weight: 700;
+    line-height: 20px;
+
+    &:hover {
+      background-color: shade($beige, 10%);
+    }
+
+    &:last-of-type {
+      border-radius: 0 20px 20px 0;
+      font-size: em(18);
+    }
+  }
+}

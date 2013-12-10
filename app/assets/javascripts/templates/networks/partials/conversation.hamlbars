@@ -1,0 +1,11 @@
+%li{:bind => {:class => ':conversation-item isUnread:unread'}}
+  {{#linkTo 'conversations.show' this}}
+  %h3.conversation-item-title
+    {{title}}
+  .conversation-item-meta
+    %img{:bind => {:src => 'user.avatarUrl'}}
+    {{timeago timeAgo}}
+    from
+    %strong
+      {{user.name}}
+  {{/linkTo}}

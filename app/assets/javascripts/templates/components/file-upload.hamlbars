@@ -1,0 +1,5 @@
+{{view view.hiddenFileInputView}}
+{{#view view.dropAreaView}}
+.uploader-status
+  Click to upload or drop a file.
+{{/view}}
