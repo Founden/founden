@@ -55,6 +55,8 @@ file '/tmp/database.yml' do |t|
 
   ask :db_config_roles, :app
   ask :db_adapter, 'postgresql'
+  ask :db_host, '127.0.0.1'
+  ask :db_port, 5432
   ask :db_name, fetch(:application)
   ask :db_username, 'postgres'
   ask :db_password, ''
@@ -62,6 +64,8 @@ file '/tmp/database.yml' do |t|
 
   db_config = { fetch(:stage).to_s => {
     'adapter' => fetch(:db_adapter),
+    'host' => fetch(:db_host),
+    'port' => fetch(:db_port).to_i,
     'encoding' => 'unicode',
     'database' => fetch(:db_name),
     'username' => fetch(:db_username),
