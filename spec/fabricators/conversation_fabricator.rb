@@ -1,5 +1,5 @@
 Fabricator(:conversation) do
-  title { sequence(:title) { Faker::Lorem.sentence } }
+  title   { sequence(:title) { Faker::Lorem.sentence } }
   user
-  network
+  network { |attrs| Fabricate(:network, :user => attrs[:user]) }
 end

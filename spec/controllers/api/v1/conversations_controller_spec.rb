@@ -49,9 +49,7 @@ describe Api::V1::ConversationsController do
   end
 
   describe '#create' do
-    let(:network) { Fabricate(:network, :user => user) }
-    let(:attrs) { Fabricate.attributes_for(
-      :conversation, :network_id => network.slug, :user => user) }
+    let(:attrs) { Fabricate.attributes_for(:conversation, :user => user) }
 
     before { post(:create, :conversation => attrs) }
 
@@ -65,8 +63,8 @@ describe Api::V1::ConversationsController do
     its(:message_ids) { should be_empty }
 
     context 'when title is missing' do
-    let(:attrs) { Fabricate.attributes_for(
-      :conversation, :network_id => network.slug, :user => user, :title => nil)}
+    let(:attrs) {
+      Fabricate.attributes_for(:conversation, :user => user, :title => nil) }
 
       subject { response }
 
