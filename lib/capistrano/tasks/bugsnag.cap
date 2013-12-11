@@ -2,7 +2,8 @@ after :deploy, 'bugsnag:deploy'
 
 namespace :bugsnag do
   task :deploy do
-    sh 'bundle exec rake bugsnag:deploy BUGSNAG_REVISION=%s BUGSNAG_RELEASE_STAGE=%s' % [
-      fetch(:current_revision), fetch(:stage) ]
+    ENV['BUGSNAG_REVISION'] = fetch(:current_revision)
+    ENV['BUGSNAG_RELEASE_STAGE'] = fetch(:stage).to_s
+    sh 'bundle exec rake bugsnag:deploy'
   end
 end
