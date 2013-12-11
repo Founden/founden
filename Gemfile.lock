@@ -8,8 +8,8 @@ GIT
 
 GIT
   remote: git://github.com/stas/active_model_serializers.git
-  revision: 889b955a805961cf1505600071ee9b4154e7f551
-  branch: has_one_association_issue
+  revision: 1ee0857192a5d284a62eefa1fcbd40f40aadc2c5
+  branch: fork
   specs:
     active_model_serializers (0.9.0.pre)
       activemodel (>= 3.2)
