@@ -14,6 +14,12 @@ class Api::V1::ApplicationController < AuthenticatedController
       :message => _('Resource unavailable')
     }
   end
+  # Handle strong parameters exceptions
+  rescue_from(ActionController::ParameterMissing) do
+    render :status => :bad_request, :json => {
+      :message => _('We were expecting a different input')
+    }
+  end
 
   private
 

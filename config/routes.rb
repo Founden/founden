@@ -16,6 +16,7 @@ Founden::Application.routes.draw do
      resources(:networks, :only => [:index, :show])
      resources(:conversations, :only => [:index, :show, :create])
      resources(:messages, :only => [:index, :show, :create])
+     resources(:attachments, :only => [:index, :show, :create])
    end
   end
 
