@@ -18,4 +18,14 @@ class User < ActiveRecord::Base
   # Validations
   validates :email, :uniqueness => true, :presence => true
   validates_uniqueness_of :slug
+
+  # Callbacks
+  after_create do
+    self.networks.create(:title => _('%s Network') % self.full_name)
+  end
+
+  # Returns user full name
+  def full_name
+    '%s %s' % [self.first_name, self.last_name]
+  end
 end

@@ -21,5 +21,13 @@ describe User do
     its(:first_name) { should_not be_empty }
     its(:last_name) { should_not be_empty }
     its(:slug) { should eq(user.friendly_id) }
+    its(:full_name) { should eq('%s %s' % [user.first_name, user.last_name]) }
+
+    context '#networks' do
+      subject { user.networks }
+
+      its(:length) { should eq(1) }
+      its('first.title') { should eq(_('%s Network') % user.full_name) }
+    end
   end
 end
