@@ -16,6 +16,9 @@ Founden.FileUploadComponent = Ember.Component.extend
     reader = new FileReader()
     reader.onload = (e) =>
       attachment.result = (e.target || e.srcResult).result
+      if attachment.type == ''
+        attachment.result = attachment.result.replace(
+          'data:;base64,', 'data:application/octet-stream;base64,')
       @get('uploads').pushObject(attachment)
     reader.readAsDataURL(attachment)
 
