@@ -1,8 +1,8 @@
 Founden.Router.map (match) ->
   @resource 'networks', ->
-    @route 'show', {path: '/:id'}
-    @route 'inbox', {path: '/:id/inbox'}
-    @route 'ongoing', {path: '/:id/ongoing'}
-    @route 'compose', {path: '/:id/compose'}
+    @route 'show', {path: '/:network_id'}
+    @route 'inbox', {path: '/:network_id/inbox'}
+    @route 'ongoing', {path: '/:network_id/ongoing'}
+    @route 'compose', {path: '/:network_id/compose'}
   @resource 'conversations', ->
-    @route 'show', {path: '/:id'}
+    @route 'show', {path: '/:conversation_id'}

@@ -1,10 +1,8 @@
 Founden.ConversationsShowRoute = Ember.Route.extend
-  afterModel: (model) ->
-    model.set('isUnread', false)
-
   deactivate: ->
-    @currentModel.get('messages').then (messages) ->
-      messages.setEach('isUnread', false)
+    @currentModel.set('isUnread', false)
+    messages = @currentModel.get('messages')
+    messages.setEach('isUnread', false)
 
   actions:
 
