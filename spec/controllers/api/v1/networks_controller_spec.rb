@@ -8,7 +8,7 @@ describe Api::V1::NetworksController do
   end
 
   describe '#index' do
-    let(:network_ids) { user.networks.map(&:slug) }
+    let(:network_ids) { [] }
 
     before { get(:index, :ids => network_ids) }
 
@@ -17,7 +17,7 @@ describe Api::V1::NetworksController do
     its('networks.count') { should eq(0) }
 
     context 'when current user has networks' do
-      let(:user) { Fabricate(:network).user }
+      let(:network_ids) { user.networks.map(&:slug) }
 
       its('networks.count') { should eq(1) }
     end
