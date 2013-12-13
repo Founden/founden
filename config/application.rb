@@ -39,7 +39,11 @@ module Founden
 
   # Our settings management class
   class Config < ReadWriteSettings
-    source Rails.root.join('config', 'settings.yml').to_s
+    if Rails.root.join('config', 'settings.yml').exist?
+      source Rails.root.join('config', 'settings.yml').to_s
+    else
+      source Rails.root.join('config', 'settings.yml.example').to_s
+    end
     namespace Rails.env
   end
 end
