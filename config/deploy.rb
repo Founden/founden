@@ -3,7 +3,8 @@ set :repo_url, 'git@github.com:stas/founden.git'
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
-set :deploy_to, proc { '/home/deployer/%s' % fetch(:application) }
+set :deploy_to, proc { '/home/%s/%s' % [
+  primary(:app).user, fetch(:application)] }
 set :scm, :git
 
 # set :format, :pretty
@@ -11,8 +12,10 @@ set :log_level, :info
 # set :log_level, :debug
 # set :pty, true
 
-set :linked_files, %w{config/database.yml config/bugsnag.yml config/aws.yml}
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_files, %w{config/database.yml config/bugsnag.yml config/aws.yml} +
+  %w{config/settings.yml}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets} +
+  %w{vendor/bundle public/system}
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :keep_releases, 5

@@ -1,0 +1,4 @@
+remote_file 'config/settings.yml' => '/tmp/settings.yml', :roles => :app
+file '/tmp/settings.yml' do |t|
+  yml_file(t.name)
+end
