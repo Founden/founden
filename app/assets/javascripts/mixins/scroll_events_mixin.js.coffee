@@ -6,6 +6,3 @@ Founden.ScrollEventsMixin = Ember.Mixin.create
       Ember.run.debounce @, 'onScroll', 100
     $(window).on 'scroll', =>
       Ember.run.debounce @, 'onScroll', 100
-
-  didInsertElement: ->
-    @registerOnScroll()

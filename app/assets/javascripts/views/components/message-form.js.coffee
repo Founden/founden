@@ -66,6 +66,8 @@ Founden.MessageFormComponent = Ember.Component.extend Founden.ScrollEventsMixin,
   didInsertElement: ->
     @_super()
     @set('messageForm', @)
+    # Activate `onScroll` event
+    @registerOnScroll()
 
   actions:
     submit: ->
