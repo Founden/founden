@@ -1,6 +1,5 @@
 Founden.Network = DS.Model.extend
-  isHidden: DS.attr('boolean')
+  isHidden: DS.attr('boolean', readOnly: true)
   title: DS.attr('string')
 
-  inbox: DS.hasMany('conversation', async: true)
-  ongoing: DS.hasMany('conversation', async: true)
+  conversations: DS.hasMany('conversation', async: true)

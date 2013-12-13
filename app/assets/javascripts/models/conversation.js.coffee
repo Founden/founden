@@ -1,9 +1,10 @@
 Founden.Conversation = DS.Model.extend Founden.TimeAgoMixin,
   title: DS.attr('string')
-  createdAt: DS.attr('date')
-  isUnread: DS.attr('boolean')
+  createdAt: DS.attr('date', readOnly: true, defaultValue: new Date)
+  isUnread: DS.attr('boolean', readOnly: true)
 
-  user: DS.belongsTo('user')
-  summary: DS.belongsTo('summary', async: true)
-  people: DS.hasMany('user', async: true)
-  messages: DS.hasMany('message', async: true)
+  user: DS.belongsTo('user', readOnly: true)
+  network: DS.belongsTo('network', readOnly: true)
+  summary: DS.belongsTo('summary', readOnly: true)
+  people: DS.hasMany('user')
+  messages: DS.hasMany('message')

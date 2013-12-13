@@ -5,17 +5,17 @@ Founden.Location = Founden.Attachment.extend
   sensor: false
   query: null
 
-  lon: DS.attr('number')
-  lat: DS.attr('number')
+  longitude: DS.attr('number')
+  latitude: DS.attr('number')
 
   params: ( ->
-    center = [@get('lat'), @get('lon')].join(',')
+    center = [@get('latitude'), @get('longitude')].join(',')
     $.param
       center: center
       zoom: @get('zoom')
       size: @get('size')
       sensor: @get('sensor')
-  ).property('lat', 'lon')
+  ).property('latitude', 'longitude')
 
   previewUrl: ( ->
     '//maps.googleapis.com/maps/api/staticmap?%@'.fmt(@get('params'))
@@ -35,5 +35,5 @@ Founden.Location = Founden.Attachment.extend
         format: 'json'
       success: (response) =>
         if response.length > 0
-          @set('lat', response[0].lat)
-          @set('lon', response[0].lon)
+          @set('latitude', response[0].lat)
+          @set('longitude', response[0].lon)
