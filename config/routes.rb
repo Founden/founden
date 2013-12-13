@@ -1,6 +1,6 @@
 Founden::Application.routes.draw do
   # Easy Auth endpoints
-  # Allow only Angel List to avoid exceptions.
+  # Allow only known providers to avoid exceptions.
   constraints(:provider => :google) do
     easy_auth_routes
   end
