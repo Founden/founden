@@ -24,6 +24,7 @@ end
 group :production do
   gem 'puma'
   gem 'bugsnag', :require => 'bugsnag/railtie'
+  gem 'aws-sdk'
 end
 
 # See why https://github.com/rails/rails/commit/49c4af43ec

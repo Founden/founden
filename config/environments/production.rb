@@ -77,4 +77,16 @@ Founden::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Use Amazon S3 settings for Paperclip uploads
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_protocol => Founden::Config.s3_protocol,
+    :s3_credentials => {
+      :preload_aws => AWS::Rails.setup,
+      :bucket => Founden::Config.s3_bucket,
+      :access_key_id => AWS.config.credentials[:access_key_id],
+      :secret_access_key => AWS.config.credentials[:secret_access_key]
+    }
+  }
 end
