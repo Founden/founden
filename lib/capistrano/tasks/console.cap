@@ -1,0 +1,9 @@
+namespace :deploy do
+  desc 'Opens an interactive remote shell'
+  task :console do
+    on roles(:all) do
+      exec 'ssh %s -l %s -p %s' % [
+        host.hostname, host.username, host.port]
+    end
+  end
+end
