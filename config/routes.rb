@@ -9,6 +9,7 @@ Founden::Application.routes.draw do
   resource :pages, :only => [], :path => '/' do
     get :dashboard
     get :waiting
+    patch :waiting
   end
 
   namespace :api, :constraints => {:format => :json} do

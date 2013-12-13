@@ -12,5 +12,9 @@ describe 'Pages' do
       get('/waiting').should route_to('pages#waiting')
     end
 
+    it 'for updating waiting page' do
+      patch('/waiting').should route_to('pages#waiting')
+    end
+
   end
 end
