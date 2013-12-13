@@ -5,11 +5,15 @@ Founden.ConversationsShowController = Ember.Controller.extend
   isReplying: false
 
   unreadCount: ( ->
-    @get('content.messages').filterProperty('isUnread', true).get('length')
+    messages = @get('content.messages')
+    if messages
+      messages.filterProperty('isUnread', true).get('length')
   ).property('content.messages.@each.isUnread')
 
   summaryMessages: ( ->
-    @get('content.messages').filterProperty('isSummary', true)
+    messages = @get('content.messages')
+    if messages
+      messages.filterProperty('isSummary', true)
   ).property('content.messages.@each.isSummary')
 
   focusOnMessage: (message) ->
@@ -24,41 +28,51 @@ Founden.ConversationsShowController = Ember.Controller.extend
       @get('messageForm.textarea').focus()
 
   saveMessage: (content, attachments) ->
+    conversation = @get('content')
+    network = @get('content.network')
     messages = @get('content.messages')
+    user = @get('currentUser')
 
-    attachments ||= []
-    payload = attachments.map (attachment) ->
-      {id: attachment.id, type: attachment.constructor.typeKey}
-
-    # TODO: Fix this shit after we replace `FixtureAdapter`
     message = @store.createRecord 'message',
       content: content
-      createdAt: (new Date()).toString()
+      network: network
+      conversation: conversation
+      user: user
 
-    @store.push 'message',
-      id: message.get('id')
-      attachments: payload
-      user: @get('currentUser.id')
+    message.save().then ->
+      if attachments
+        attachments.forEach (attachment) ->
+          attachment.set('message', message)
+          attachment.set('conversation', conversation)
+          attachment.set('network', network)
+          attachment.set('user', user)
+          attachment.save().then ->
+            message.get('attachments').pushObject(attachment)
 
     messages.pushObject(message)
 
   saveReply: (content, attachments) ->
+    conversation = @get('content')
+    network = @get('content.network')
     parentMessage = @get('replyToMessage')
+    user = @get('currentUser')
 
-    attachments ||= []
-    payload = attachments.map (attachment) ->
-      {id: attachment.id, type: attachment.constructor.typeKey}
-
-    # TODO: Fix this shit after we replace `FixtureAdapter`
     message = @store.createRecord 'message',
       content: content
-      createdAt: (new Date()).toString()
+      network: network
+      conversation: conversation
+      parentMessage: parentMessage
+      user: user
 
-    @store.push 'message',
-      id: message.get('id')
-      attachments: payload
-      user: @get('currentUser.id')
-      parentMessage: parentMessage.get('id')
+    message.save().then ->
+      if attachments
+        attachments.forEach (attachment) ->
+          attachment.set('message', message)
+          attachment.set('conversation', conversation)
+          attachment.set('network', network)
+          attachment.set('user', user)
+          attachment.save().then ->
+            message.get('attachments').pushObject(attachment)
 
     parentMessage.get('replies').pushObject(message)
 
