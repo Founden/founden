@@ -24,4 +24,5 @@ require 'capistrano/rails/migrations'
 require 'capistrano/puma'
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
+Dir.glob('lib/capistrano/*.rb').each { |r| puts r; load r }
 Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }

@@ -1,15 +1,4 @@
 remote_file 'config/bugsnag.yml' => '/tmp/bugsnag.yml', :roles => :app
 file '/tmp/bugsnag.yml' do |t|
-  tmp_bugsnag_file = File.new(t.name, 'w')
-
-  ask :bugsnag_api_key, ''
-  ask :bugsnag_use_ssl, true
-
-  bugsnag_config = { fetch(:stage).to_s => {
-    'api_key' => fetch(:bugsnag_api_key),
-    'use_ssl' => fetch(:bugsnag_use_ssl)
-  } }
-
-  tmp_bugsnag_file.write(bugsnag_config.to_yaml)
-  tmp_bugsnag_file.close
+  yml_file(t.name)
 end
