@@ -20,3 +20,4 @@ public/system
 config/database.yml
 config/bugsnag.yml
 config/settings.yml
+config/aws.yml
