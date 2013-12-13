@@ -1,4 +1,4 @@
-Founden.AttachmentsFileManagerController = Ember.ArrayController.extend
+Founden.AttachmentsUploadsManagerController = Ember.ArrayController.extend
   uploads: []
 
   uploadsDidChange: ( ->
@@ -10,15 +10,15 @@ Founden.AttachmentsFileManagerController = Ember.ArrayController.extend
         if (/image/).test(upload.type)
           upload.preview = upload.result
 
-        file = @store.createRecord 'file',
+        upload = @store.createRecord 'upload',
           title: upload.name
           previewUrl: upload.preview
           attachment: upload.result
           attachmentSize: upload.size
 
-        content.pushObject(file)
+        content.pushObject(upload)
   ).observes('uploads.length')
 
   actions:
-    removeFile: (file) ->
-      @get('content').removeObject(file)
+    removeUpload: (upload) ->
+      @get('content').removeObject(upload)

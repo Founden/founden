@@ -2,7 +2,7 @@
   {{#each type in view.content}}
 
   {{#view view.optionView option=type}}
-  {{#if type.isFile}}
+  {{#if type.isUpload}}
   Attach files or images
   {{/if}}
 

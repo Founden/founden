@@ -7,7 +7,7 @@ Founden.AttachmentsSupportComponent = Ember.Component.extend Founden.TextAreaCar
   textarea: null
   selectedAttachmentType: null
   attachmentTypes: [
-    Founden.AttachmentType.create(name: 'file', isFile: true)
+    Founden.AttachmentType.create(name: 'upload', isUpload: true)
     Founden.AttachmentType.create(name: 'tasklist', isTaskList: true)
     Founden.AttachmentType.create(name: 'link', isLink: true)
     Founden.AttachmentType.create(name: 'location', isLocation: true)

@@ -1,8 +1,8 @@
 .attachments-editor
   %span.icon.icon-close{:_action => 'closeEditor'}
 
-  {{#if view.selectedType.isFile}}
-  {{render 'attachments/file_manager' view.selectedType.attachments }}
+  {{#if view.selectedType.isUpload}}
+  {{render 'attachments/uploads_manager' view.selectedType.attachments }}
   {{/if}}
 
   {{#if view.selectedType.isTaskList}}

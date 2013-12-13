@@ -4,6 +4,6 @@
 .attachments
   {{#each file in content}}
   {{#with file}}
-  {{partial 'attachments/file'}}
+  {{partial 'attachments/upload'}}
   {{/with}}
   {{/each}}
