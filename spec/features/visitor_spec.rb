@@ -10,6 +10,7 @@ feature 'Visitor', :js, :slow do
 
   scenario 'can authenticate using a google account' do
     try_google_sign_in
+    visit root_path
 
     current_path.should eq(root_path)
     User.count.should eq(1)

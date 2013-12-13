@@ -4,6 +4,9 @@ module Founden::RSpecHelpers
       :provider => :google,
       code_attr => 'DUMMY_CODE'
     )
+    if user = User.last
+      user.update_attribute(:promo_code, Founden::Config.promo_codes.sample)
+    end
   end
 
   # Parses a JSON into an OpenStruct data set
