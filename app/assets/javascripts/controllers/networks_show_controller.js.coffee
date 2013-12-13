@@ -3,19 +3,19 @@ Founden.NetworksShowController = Ember.Controller.extend
   ongoingLimit: 4
 
   inbox: ( ->
-    if inbox = @get('content.inbox')
+    if inbox = @get('content.conversations')
       inbox.slice(0, @get('inboxLimit'))
-  ).property('content.inbox.length', 'inboxLimit')
+  ).property('content.conversations.length', 'inboxLimit')
 
   ongoing: ( ->
-    if ongoing = @get('content.ongoing')
+    if ongoing = @get('content.conversations')
       ongoing.slice(0, @get('ongoingLimit'))
-  ).property('content.ongoing.length', 'ongoingLimit')
+  ).property('content.conversations.length', 'ongoingLimit')
 
   inboxLimitReached: ( ->
-    @get('content.inbox.length') < @get('inboxLimit')
-  ).property('inboxLimit', 'content.inbox.length')
+    @get('content.conversations.length') < @get('inboxLimit')
+  ).property('inboxLimit', 'content.conversations.length')
 
   ongoingLimitReached: ( ->
-    @get('content.ongoing.length') < @get('ongoingLimit')
-  ).property('ongoingLimit', 'content.ongoing.length')
+    @get('content.conversations.length') < @get('ongoingLimit')
+  ).property('ongoingLimit', 'content.conversations.length')
