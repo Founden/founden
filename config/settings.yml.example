@@ -12,6 +12,13 @@ defaults: &defaults
       medium: 600x600>
   s3_protocol: 'https'
   s3_bucket: 'assets.founden.com'
+  promo_codes:
+    - FOUNDEN_VLAD
+    - FOUNDEN_STAS
+    - FOUNDEN_CATALINA
+    - FOUNDEN_ALEXANDRU
+    - FOUNDEN_STEFAN
+    - FOUNDEN_ANDREEA
 
 development:
   <<: *defaults
