@@ -12,7 +12,7 @@
 .header-logo {
   float: left;
   @include hide-text;
-  background: image-url('logo.png') no-repeat center center;
+  background: $white no-repeat center center;
   width: 116px;
   height: 28px;
   margin: 25px 30px;
