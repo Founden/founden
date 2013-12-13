@@ -1,6 +1,6 @@
 # TaskList class serializer
 class TaskListSerializer < AttachmentSerializer
-  root :taskList
+  root :task_list
 
   attributes :tasks
 end

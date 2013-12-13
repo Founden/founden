@@ -1,6 +1,6 @@
 # API (v1) Attachments controller class
 class Api::V1::AttachmentsController < Api::V1::ApplicationController
-  ALLOWED_TYPES = %w(avatar link location taskList timestamp upload)
+  ALLOWED_TYPES = %w(avatar link location task_list timestamp upload)
   # Queried attachment_type
   attr_accessor :attachment_type
 

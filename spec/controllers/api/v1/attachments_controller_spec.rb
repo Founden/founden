@@ -82,7 +82,7 @@ describe Api::V1::AttachmentsController do
       let(:attachment) { Fabricate(:task_list, :user => user) }
       let(:attachment_id) { attachment.slug }
 
-      subject(:api_task_list) { json_to_ostruct(response.body, :taskList) }
+      subject(:api_task_list) { json_to_ostruct(response.body, :task_list) }
 
       its('keys.size') { should eq(8) }
       its('tasks.length') { should eq(attachment.tasks.length) }
