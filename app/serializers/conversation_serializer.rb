@@ -2,7 +2,7 @@
 class ConversationSerializer < ActiveModel::Serializer
   root :conversation
 
-  attributes :id, :title
+  attributes :id, :title, :created_at
 
   has_one :user, :embed_key => :slug
   has_one :network, :embed_key => :slug, :embed_in_root => false

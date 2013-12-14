@@ -30,6 +30,7 @@ describe Api::V1::AttachmentsController do
 
     shared_examples_for 'an attachment' do
       its(:id) { should eq(attachment.slug) }
+      its(:created_at) { should eq(attachment.created_at.as_json) }
       its(:type) { should eq(attachment.type.to_s.camelize(:lower)) }
       its(:title) { should eq(attachment.title) }
       its(:user_id) { should eq(attachment.user.slug) }
@@ -44,8 +45,9 @@ describe Api::V1::AttachmentsController do
 
       subject(:api_avatar) { json_to_ostruct(response.body, :avatar) }
 
-      its('keys.size') { should eq(8) }
+      its('keys.size') { should eq(9) }
       its(:id) { should eq(attachment.slug) }
+      its(:created_at) { should eq(attachment.created_at.as_json) }
       its(:type) { should eq(attachment.type.to_s.camelize(:lower)) }
       its(:title) { should be_blank }
       its(:user_id) { should eq(attachment.user.slug) }
@@ -61,7 +63,7 @@ describe Api::V1::AttachmentsController do
 
       subject(:api_link) { json_to_ostruct(response.body, :link) }
 
-      its('keys.size') { should eq(8) }
+      its('keys.size') { should eq(9) }
       its(:url) { should eq(attachment.url) }
       it_behaves_like 'an attachment'
     end
@@ -72,7 +74,7 @@ describe Api::V1::AttachmentsController do
 
       subject(:api_location) { json_to_ostruct(response.body, :location) }
 
-      its('keys.size') { should eq(9) }
+      its('keys.size') { should eq(10) }
       its(:latitude) { should eq(attachment.latitude.to_s) }
       its(:longitude) { should eq(attachment.longitude.to_s) }
       it_behaves_like 'an attachment'
@@ -84,7 +86,7 @@ describe Api::V1::AttachmentsController do
 
       subject(:api_task_list) { json_to_ostruct(response.body, :task_list) }
 
-      its('keys.size') { should eq(8) }
+      its('keys.size') { should eq(9) }
       its('tasks.length') { should eq(attachment.tasks.length) }
       its('tasks.first.keys') { should eq(attachment.tasks.first.keys) }
       its('tasks.first.values') { should eq(attachment.tasks.first.values) }
@@ -97,7 +99,7 @@ describe Api::V1::AttachmentsController do
 
       subject(:api_timestamp) { json_to_ostruct(response.body, :timestamp) }
 
-      its('keys.size') { should eq(8) }
+      its('keys.size') { should eq(9) }
       its(:timestamp) { should eq(attachment.timestamp.to_s) }
       it_behaves_like 'an attachment'
     end
@@ -108,8 +110,10 @@ describe Api::V1::AttachmentsController do
 
       subject(:api_upload) { json_to_ostruct(response.body, :upload) }
 
-      its('keys.size') { should eq(11) }
+      its('keys.size') { should eq(14) }
       its(:attachment) { should eq(attachment.attachment.to_s) }
+      its(:attachment_file_size) { should eq(attachment.attachment_file_size) }
+      its(:attachment_file_name) { should eq(attachment.attachment_file_name) }
       its(:thumb_size_url) { should eq(attachment.attachment.url(:thumb)) }
       its(:small_size_url) { should eq(attachment.attachment.url(:small)) }
       its(:medium_size_url) { should eq(attachment.attachment.url(:medium)) }
@@ -137,8 +141,9 @@ describe Api::V1::AttachmentsController do
     context 'for a timestamp attachment type' do
       let(:attachment_type) { :timestamp }
 
-      its('keys.size') { should eq(8) }
+      its('keys.size') { should eq(9) }
       its(:id) { should_not be_blank }
+      its(:created_at) { should_not be_blank }
       its(:type) { should eq(attachment_type.to_s) }
       its(:title) { should eq(attrs[:title]) }
       its(:timestamp) { should eq(attrs[:timestamp]) }
@@ -151,8 +156,9 @@ describe Api::V1::AttachmentsController do
     context 'for a location attachment type' do
       let(:attachment_type) { :location }
 
-      its('keys.size') { should eq(9) }
+      its('keys.size') { should eq(10) }
       its(:id) { should_not be_blank }
+      its(:created_at) { should_not be_blank }
       its(:type) { should eq(attachment_type.to_s) }
       its(:title) { should eq(attrs[:title]) }
       its(:longitude) { should eq(attrs[:longitude].to_s) }

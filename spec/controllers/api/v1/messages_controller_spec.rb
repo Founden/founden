@@ -31,8 +31,9 @@ describe Api::V1::MessagesController do
 
     subject(:api_message) { json_to_ostruct(response.body, :message) }
 
-    its('keys.size') { should eq(6) }
+    its('keys.size') { should eq(7) }
     its(:id) { should eq(message.slug) }
+    its(:created_at) { should eq(message.created_at.as_json) }
     its(:content) { should eq(message.content) }
     its(:user_id) { should eq(message.user.slug) }
     its(:network_id) { should eq(message.network.slug) }
@@ -43,7 +44,7 @@ describe Api::V1::MessagesController do
       let(:attachment) { Fabricate(:timestamp, :user => user) }
       let(:message) { attachment.message }
 
-      its('keys.size') { should eq(6) }
+      its('keys.size') { should eq(7) }
       its('attachments.length') { should eq(1) }
       its('attachments.first.keys.sort') { should eq(%w(type id).sort) }
       its('attachments.first.values.sort') { should eq(
@@ -67,8 +68,9 @@ describe Api::V1::MessagesController do
 
     subject(:api_message) { json_to_ostruct(response.body, :message) }
 
-    its('keys.size') { should eq(6) }
+    its('keys.size') { should eq(7) }
     its(:id) { should_not be_blank }
+    its(:created_at) { should_not be_blank }
     its(:content) { should eq(attrs[:content]) }
     its(:user_id) { should eq(user.slug) }
     its(:network_id) { should eq(attrs[:network_id]) }

@@ -1,6 +1,6 @@
 # Attachment class serializer
 class AttachmentSerializer < ActiveModel::Serializer
-  attributes :id, :title, :type
+  attributes :id, :title, :type, :created_at
 
   has_one :user, :embed_key => :slug
   has_one :network, :embed_key => :slug, :embed_in_root => false

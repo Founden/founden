@@ -31,8 +31,9 @@ describe Api::V1::ConversationsController do
 
     subject(:api_conversation) { json_to_ostruct(response.body, :conversation) }
 
-    its('keys.size') { should eq(5) }
+    its('keys.size') { should eq(6) }
     its(:id) { should eq(conversation.slug) }
+    its(:created_at) { should eq(conversation.created_at.as_json) }
     its(:title) { should eq(conversation.title) }
     its(:user_id) { should eq(conversation.user.slug) }
     its(:network_id) { should eq(conversation.network.slug) }
@@ -55,8 +56,9 @@ describe Api::V1::ConversationsController do
 
     subject(:api_conversation) { json_to_ostruct(response.body, :conversation) }
 
-    its('keys.size') { should eq(5) }
+    its('keys.size') { should eq(6) }
     its(:id) { should_not be_blank }
+    its(:created_at) { should_not be_blank }
     its(:title) { should eq(attrs[:title]) }
     its(:user_id) { should eq(user.slug) }
     its(:network_id) { should eq(attrs[:network_id]) }

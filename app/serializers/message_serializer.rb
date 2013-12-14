@@ -2,7 +2,7 @@
 class MessageSerializer < ActiveModel::Serializer
   root :message
 
-  attributes :id, :content, :attachments
+  attributes :id, :content, :attachments, :created_at
 
   has_one :user, :embed_key => :slug
   has_one :network, :embed_key => :slug, :embed_in_root => false
