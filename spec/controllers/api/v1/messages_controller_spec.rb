@@ -41,14 +41,14 @@ describe Api::V1::MessagesController do
     its(:attachments) { should be_empty }
 
     context 'when it has attachments' do
-      let(:attachment) { Fabricate(:timestamp, :user => user) }
+      let(:attachment) { Fabricate(:task_list, :user => user) }
       let(:message) { attachment.message }
 
       its('keys.size') { should eq(7) }
       its('attachments.length') { should eq(1) }
       its('attachments.first.keys.sort') { should eq(%w(type id).sort) }
       its('attachments.first.values.sort') { should eq(
-        [attachment.slug, attachment.type.to_s.camelize(:lower)].sort) }
+        [attachment.slug, attachment.type.to_s.underscore].sort) }
     end
 
     context 'when network id is not available' do

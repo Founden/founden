@@ -31,7 +31,7 @@ describe Api::V1::AttachmentsController do
     shared_examples_for 'an attachment' do
       its(:id) { should eq(attachment.slug) }
       its(:created_at) { should eq(attachment.created_at.as_json) }
-      its(:type) { should eq(attachment.type.to_s.camelize(:lower)) }
+      its(:type) { should eq(attachment.type.to_s.underscore) }
       its(:title) { should eq(attachment.title) }
       its(:user_id) { should eq(attachment.user.slug) }
       its(:network_id) { should eq(attachment.network.slug) }
@@ -48,7 +48,7 @@ describe Api::V1::AttachmentsController do
       its('keys.size') { should eq(9) }
       its(:id) { should eq(attachment.slug) }
       its(:created_at) { should eq(attachment.created_at.as_json) }
-      its(:type) { should eq(attachment.type.to_s.camelize(:lower)) }
+      its(:type) { should eq(attachment.type.to_s.underscore) }
       its(:title) { should be_blank }
       its(:user_id) { should eq(attachment.user.slug) }
       its(:attachment) { should eq(attachment.attachment.to_s) }

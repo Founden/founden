@@ -14,6 +14,6 @@ class AttachmentSerializer < ActiveModel::Serializer
 
   # Camelizes the attachment type
   def type
-    object.type.to_s.camelize(:lower)
+    object.type.to_s.underscore
   end
 end

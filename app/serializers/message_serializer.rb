@@ -18,7 +18,7 @@ class MessageSerializer < ActiveModel::Serializer
   # Since `polymorphic` is not available yet, lets use it through attributes
   def attachments
     object.attachments.map do |attachment|
-      { :id => attachment.slug, :type => attachment.type.to_s.camelize(:lower) }
+      { :id => attachment.slug, :type => attachment.type.to_s.underscore }
     end
   end
 end
