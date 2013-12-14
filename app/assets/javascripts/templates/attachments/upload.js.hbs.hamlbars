@@ -4,4 +4,4 @@
   .attachment-file-title
     {{title}}
   .attachment-file-size
-    {{filesize attachmentSize}}
+    {{filesize attachmentFileSize}}

@@ -14,7 +14,7 @@ Founden.AttachmentsUploadsManagerController = Ember.ArrayController.extend
           title: upload.name
           previewUrl: upload.preview
           attachment: upload.result
-          attachmentSize: upload.size
+          attachmentFileSize: upload.size
 
         content.pushObject(upload)
   ).observes('uploads.length')
