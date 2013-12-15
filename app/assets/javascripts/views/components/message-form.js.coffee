@@ -23,10 +23,9 @@ Founden.MessageFormComponent = Ember.Component.extend Founden.ScrollEventsMixin,
       @set('showCaret', false)
   ).observes('mentionsSupport.isVisible', 'attachmentsSupport.isVisible')
 
-  networkMembers: ( ->
-    @get('targetObject.store').find('user').then (users) =>
-      @set('networkMembers', users.rejectBy('name', @get('user.name')))
-  ).property('user')
+  contacts: ( ->
+    @get('network.contacts').removeObject(@get('user'))
+  ).property('network.contacts')
 
   handleMessage: ->
     content = @get('messageContent')

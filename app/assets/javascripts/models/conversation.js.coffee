@@ -6,5 +6,5 @@ Founden.Conversation = DS.Model.extend Founden.TimeAgoMixin,
   user: DS.belongsTo('user', readOnly: true)
   network: DS.belongsTo('network', readOnly: true)
   summary: DS.belongsTo('summary', readOnly: true)
-  people: DS.hasMany('user')
+  participants: DS.hasMany('user', async: true)
   messages: DS.hasMany('message', async: true)

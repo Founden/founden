@@ -8,11 +8,20 @@ describe Api::V1::UsersController do
   end
 
   describe '#index' do
-    before { get(:index) }
+    let(:user_ids) { [] }
+    before { get(:index, :ids => user_ids) }
 
     subject(:api_user) { json_to_ostruct(response.body) }
 
     its('users.count') { should eq(1) }
+
+    context 'when a valid user ID is queried' do
+      let(:some_user) { Fabricate(:user) }
+      let(:user_ids) { [some_user.slug] }
+
+      its('users.count') { should eq(1) }
+      its('users.first.values.first') { should eq(some_user.slug) }
+    end
   end
 
   describe '#show' do

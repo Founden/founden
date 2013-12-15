@@ -3,3 +3,4 @@ Founden.Network = DS.Model.extend
   title: DS.attr('string')
 
   conversations: DS.hasMany('conversation', async: true)
+  contacts: DS.hasMany('user', async: true)

@@ -2,7 +2,9 @@
 class Api::V1::UsersController < Api::V1::ApplicationController
   # Lists available users
   def index
-    render :json => [current_account]
+    users = User.where(:slug => params[:ids])
+    users << current_account if users.empty?
+    render :json => users
   end
 
   # Shows an user

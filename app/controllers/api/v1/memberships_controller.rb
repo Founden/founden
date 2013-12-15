@@ -9,7 +9,6 @@ class Api::V1::MembershipsController < Api::V1::ApplicationController
       :slug => new_membership_params[:conversation_id], :network => network
     ) if new_membership_params[:conversation_id]
 
-
     klass = conversation ? ConversationMembership : NetworkMembership
 
     membership = klass.find_or_initialize_by(

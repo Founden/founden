@@ -88,9 +88,14 @@ Founden.ConversationsShowController = Ember.Controller.extend
       # TODO: Scroll the page down
 
     addMember: (user) ->
-      people = @get('content.people')
-      if people.indexOf(user) < 0
-        people.pushObject(user)
+      participants = @get('content.participants')
+      if participants.indexOf(user) < 0
+        membership = @store.createRecord 'membership',
+          user: user
+          network: @get('content.network')
+          conversation: @get('content')
+        membership.save().then ->
+          participants.pushObject(user)
 
     startMention: ->
       # TODO: DRY this, probably move to mentions-support component
