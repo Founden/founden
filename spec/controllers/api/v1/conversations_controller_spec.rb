@@ -65,8 +65,8 @@ describe Api::V1::ConversationsController do
     its(:message_ids) { should be_empty }
 
     context 'when title is missing' do
-    let(:attrs) {
-      Fabricate.attributes_for(:conversation, :user => user, :title => nil) }
+      let(:attrs) {
+        Fabricate.attributes_for(:conversation, :user => user, :title => nil) }
 
       subject { response }
 
