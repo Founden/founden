@@ -6,6 +6,9 @@ describe Conversation do
   it { should have_many(:messages).dependent('') }
   it { should have_many(:attachments).dependent('') }
 
+  it { should have_many(:conversation_memberships).dependent(:destroy) }
+  it { should have_many(:participants).through(:conversation_memberships) }
+
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:network) }
   it { should validate_presence_of(:user) }
@@ -16,6 +19,7 @@ describe Conversation do
 
     it { should be_valid }
     its(:slug) { should eq(conversation.friendly_id) }
+    its(:participants) { should include(conversation.user) }
 
     context '#title' do
       let(:title) { Faker::HTMLIpsum.fancy_string[0..254] }

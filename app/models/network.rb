@@ -11,6 +11,10 @@ class Network < ActiveRecord::Base
   has_many :messages
   has_many :attachments
 
+  has_one :owner_membership, :dependent => :destroy
+  has_many :network_memberships, :dependent => :destroy
+  has_many :contacts, :through => :network_memberships, :source => :user
+
   # Validations
   validates_presence_of :title, :user
   validates_uniqueness_of :title, :scope => :user_id, :case_sensitive => false
@@ -19,5 +23,8 @@ class Network < ActiveRecord::Base
   # Callbacks
   before_validation do
     self.title = Sanitize.clean(self.title)
+  end
+  after_create do
+    self.create_owner_membership(:creator => self.user, :user => self.user)
   end
 end

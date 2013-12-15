@@ -6,6 +6,10 @@ describe Network do
   it { should have_many(:messages).dependent('') }
   it { should have_many(:attachments).dependent('') }
 
+  it { should have_one(:owner_membership).dependent(:destroy) }
+  it { should have_many(:network_memberships).dependent(:destroy) }
+  it { should have_many(:contacts).through(:network_memberships) }
+
   it { should validate_presence_of(:title) }
   it { should validate_uniqueness_of(
     :title).scoped_to(:user_id).case_insensitive }
@@ -17,6 +21,8 @@ describe Network do
 
     it { should be_valid }
     its(:slug) { should eq(network.friendly_id) }
+    its(:owner_membership) { should_not be_blank }
+    its(:contacts) { should include(network.user) }
 
     context '#title' do
       let(:title) { Faker::HTMLIpsum.fancy_string[0..254] }
@@ -25,5 +31,6 @@ describe Network do
 
       its(:title) { should eq(Sanitize.clean(title)) }
     end
+
   end
 end

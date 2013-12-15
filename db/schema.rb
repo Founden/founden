@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213223153) do
+ActiveRecord::Schema.define(version: 20131215131705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20131213223153) do
   add_index "attachments", ["network_id"], name: "index_attachments_on_network_id", using: :btree
   add_index "attachments", ["slug"], name: "index_attachments_on_slug", unique: true, using: :btree
   add_index "attachments", ["summary_id"], name: "index_attachments_on_summary_id", using: :btree
+  add_index "attachments", ["type"], name: "index_attachments_on_type", using: :btree
   add_index "attachments", ["user_id"], name: "index_attachments_on_user_id", using: :btree
 
   create_table "conversations", force: true do |t|
@@ -67,6 +68,25 @@ ActiveRecord::Schema.define(version: 20131213223153) do
   end
 
   add_index "identities", ["uid"], name: "index_identities_on_uid", using: :gin
+
+  create_table "memberships", force: true do |t|
+    t.integer  "creator_id"
+    t.integer  "user_id"
+    t.integer  "network_id"
+    t.integer  "conversation_id"
+    t.hstore   "data"
+    t.string   "type"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "memberships", ["conversation_id"], name: "index_memberships_on_conversation_id", using: :btree
+  add_index "memberships", ["creator_id"], name: "index_memberships_on_creator_id", using: :btree
+  add_index "memberships", ["network_id"], name: "index_memberships_on_network_id", using: :btree
+  add_index "memberships", ["slug"], name: "index_memberships_on_slug", unique: true, using: :btree
+  add_index "memberships", ["type"], name: "index_memberships_on_type", using: :btree
+  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
 
   create_table "messages", force: true do |t|
     t.text     "content"
