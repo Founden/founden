@@ -14,5 +14,13 @@ describe Invitation do
 
     it { should be_valid }
 
+    context '#save queues an email' do
+      before do
+        UserMailer.should_receive(:deliver).with(
+          :invite, invitation.email, invitation.user)
+      end
+
+      its(:save) { should be_true }
+    end
   end
 end

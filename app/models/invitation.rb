@@ -15,6 +15,6 @@ class Invitation < ActiveRecord::Base
 
   # Callbacks
   after_create do
-    # Call mailer
+    UserMailer.deliver(:invite, self.email, self.user)
   end
 end
