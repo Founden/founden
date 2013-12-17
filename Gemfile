@@ -19,6 +19,7 @@ gem 'active_model_serializers', :github => 'stas/active_model_serializers', :bra
 group :development do
   gem 'quiet_assets'
   gem 'pry-rails'
+  gem 'letter_opener'
 end
 
 group :production do
