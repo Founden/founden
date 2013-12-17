@@ -14,7 +14,12 @@ class Invitation < ActiveRecord::Base
   validates_presence_of :user, :email, :network
 
   # Callbacks
-  after_create do
-    UserMailer.deliver(:invite, self.email, self.user)
+  after_commit :email_invitation, :on => :create
+
+  private
+
+  # Emails the invitation
+  def email_invitation
+    QC.enqueue('UserMailer.deliver', :invite, self.email, self.user.id)
   end
 end

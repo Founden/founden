@@ -10,17 +10,23 @@ describe Invitation do
   it { should validate_presence_of(:network) }
 
   context 'instance' do
-    subject(:invitation) { Fabricate.build(:invitation) }
+    let(:user) { Fabricate(:user) }
+    let(:network) { user.networks.first }
+
+    subject(:invitation) do
+      Fabricate.build(:invitation, :user => user, :network => network)
+    end
 
     it { should be_valid }
 
     context '#save queues an email' do
       before do
-        UserMailer.should_receive(:deliver).with(
-          :invite, invitation.email, invitation.user)
+        QC.should_receive(:enqueue).with(
+          'UserMailer.deliver', :invite, invitation.email, user.id)
+        invitation.save
       end
 
-      its(:save) { should be_true }
+      it { should be_valid }
     end
   end
 end

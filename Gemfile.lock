@@ -244,6 +244,8 @@ GEM
       pry (>= 0.9.10)
     puma (2.7.1)
       rack (>= 1.1, < 2.0)
+    queue_classic (2.2.3)
+      pg (~> 0.17.0)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -575,6 +577,7 @@ DEPENDENCIES
   poltergeist
   pry-rails
   puma
+  queue_classic
   quiet_assets
   rails
   readwritesettings
