@@ -9,6 +9,7 @@ describe Network do
   it { should have_one(:owner_membership).dependent(:destroy) }
   it { should have_many(:network_memberships).dependent(:destroy) }
   it { should have_many(:contacts).through(:network_memberships) }
+  it { should have_many(:invitations).dependent(:destroy) }
 
   it { should validate_presence_of(:title) }
   it { should validate_uniqueness_of(

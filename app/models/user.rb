@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :network_memberships, :dependent => :destroy
   has_many :shared_networks, :through => :network_memberships
   has_many :memberships, :dependent => :destroy
-  has_many :networks, :through => :memberships, :uniq => true
+  has_many :networks, proc { distinct }, :through => :memberships
 
   has_many :created_conversations, :class_name => Conversation
   has_many :conversation_memberships, :dependent => :destroy
@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_many :messages
   has_many :attachments
   has_one :avatar, :dependent => :destroy
+  has_many :invitations, :dependent => :destroy
 
   # Validations
   validates :email, :uniqueness => true, :presence => true

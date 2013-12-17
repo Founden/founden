@@ -10,6 +10,7 @@ class Membership < ActiveRecord::Base
   belongs_to :user
   belongs_to :network
   belongs_to :conversation
+  has_one :invitation, :as => :membership, :dependent => :destroy
 
   # Validations
   validates_presence_of :creator, :user

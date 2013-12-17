@@ -16,6 +16,7 @@ describe User do
   it { should have_many(:messages).dependent('') }
   it { should have_many(:attachments).dependent('') }
   it { should have_one(:avatar).dependent(:destroy) }
+  it { should have_many(:invitations).dependent(:destroy) }
 
   it { should validate_presence_of(:email) }
   it { should validate_uniqueness_of(:email) }

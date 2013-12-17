@@ -15,6 +15,8 @@ class Network < ActiveRecord::Base
   has_many :network_memberships, :dependent => :destroy
   has_many :contacts, :through => :network_memberships, :source => :user
 
+  has_many :invitations, :dependent => :destroy
+
   # Validations
   validates_presence_of :title, :user
   validates_uniqueness_of :title, :scope => :user_id, :case_sensitive => false
