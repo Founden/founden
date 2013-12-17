@@ -1,5 +1,5 @@
 .conversation {
-  margin: 0 110px 0 20px;
+  margin: 0 20px;
 
   &.has-summary {
 
@@ -42,31 +42,30 @@
 .conversation-header {
   @include clearfix;
   position: relative;
+  overflow: hidden;
   z-index: $zindex-conversation;
-  box-shadow: 0 1px rgba($black, 0.1);
+  box-shadow: 0 1px 2px rgba($black, 0.1);
   background-color: $white;
-  padding: 10px 15px;
   border-radius: 0 0 3px 3px;
 }
 
 .conversation-title {
+  float: left;
   font-size: em(24);
-  font-weight: 600;
+  font-weight: 500;
+  margin: 17px 20px;
   border: 0;
   padding: 0;
-  margin: 0;
   outline: 0;
-  width: 100%;
 }
 
 .conversation-participants {
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  float: right;
+  margin: 20px;
 
   li {
     float: left;
-    margin: 3px 10px 0 0;
+    margin: 0 0 0 10px;
   }
 
   img {
@@ -77,11 +76,18 @@
   }
 }
 
-.conversation-meta {
-  font-size: em(12);
-  color: shade($white, 40%);
+.conversation-summary-btn {
+  float: right;
+  width: 80px;
+  line-height: 70px;
+  text-align: center;
+  background-color: $green;
+  cursor: pointer;
 
-  strong {
-    font-weight: 600;
+  .icon {
+    color: $white;
+    padding: 10px;
+    border: 1px solid rgba($black, 0.2);
+    border-radius: 50%;
   }
 }

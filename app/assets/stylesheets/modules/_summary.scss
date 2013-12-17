@@ -7,23 +7,6 @@
   overflow: hidden;
 }
 
-.summary-btn {
-  position: fixed;
-  right: 20px;
-  top: 78px;
-  width: 80px;
-  line-height: 74px;
-  text-align: center;
-  background-color: $green;
-  border-radius: 0 0 3px 3px;
-  cursor: pointer;
-  box-shadow: 0 1px rgba($black, 0.1);
-
-  .icon {
-    color: $white;
-  }
-}
-
 .summary-message {
   border-bottom: 1px solid $beige;
 

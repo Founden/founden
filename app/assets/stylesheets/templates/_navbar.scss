@@ -6,9 +6,37 @@
   z-index: $zindex-navbar;
   width: 280px;
   height: 100%;
-  padding: 78px 0 0 0;
-  box-shadow: 1px 0 1px rgba($black, 0.1);
-  background-color: $beige;
+  background-color: tint($black, 5%);
+  color: $white;
+}
+
+.navbar-logo {
+  display: block;
+  @include hide-text;
+  background: image-url('logo.png') no-repeat center center;
+  width: 133px;
+  height: 33px;
+  margin: 20px 25px;
+}
+
+.navbar-search {
+  position: absolute;
+  right: 25px;
+  top: 26px;
+}
+
+.navbar-main-action {
+  padding: 20px 25px;
+  border-top: 1px solid $black;
+
+  .button {
+    display: block;
+
+    .icon {
+      float: right;
+      margin: 1px 0 0 0;
+    }
+  }
 }
 
 .navbar-title {
@@ -16,19 +44,16 @@
 
   a {
     display: block;
-    padding: 6px 20px 4px 20px;
-    background-color: rgba($black, 0.05);
-    border-bottom: 1px solid rgba($black, 0.05);
+    padding: 5px 20px;
+    background-color: rgba($black, 0.5);
+    border-top: 1px solid $black;
+    border-bottom: 1px solid $black;
     @include transition(all 0.2s);
-    color: rgba($black, 0.5);
+    color: rgba($white, 0.5);
     text-transform: uppercase;
     font-size: em(10);
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 1px;
-
-    &:hover {
-      background-color: rgba($black, 0.1);
-    }
   }
 
   .icon {
@@ -37,13 +62,17 @@
     top: 0;
     padding: 9px;
     cursor: pointer;
-    color: rgba($black, 0.5);
+    color: rgba($white, 0.5);
     @include transition(all 0.2s);
 
     &:hover {
-      color: rgba($black, 0.8);
+      color: $white;
     }
   }
+}
+
+.navbar-list {
+  margin: 10px 0;
 }
 
 .navbar-list-item {
@@ -51,32 +80,44 @@
   a {
     display: block;
     position: relative;
-    padding: 12px 20px 10px 50px;
-    border-bottom: 1px solid rgba($black, 0.05);
+    padding: 10px 20px;
     font-size: em(12);
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: $black;
+    color: rgba($white, 0.5);
     @include transition(all 0.2s);
 
     &:hover {
-      background-color: rgba($black, 0.05);
-    }
-
-    &.primary {
-      position: relative;
-      background-color: $green;
       color: $white;
-
-      &:hover {
-        background-color: shade($green, 5%);
-      }
-
-      .icon {
-        position: absolute;
-        left: 20px;
-      }
     }
+  }
+}
+
+.navbar-account {
+  @include box-sizing(border-box);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: $black;
+  padding: 15px 20px;
+  font-size: em(14);
+
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    width: 30px;
+    height: 30px;
+    border: 5px solid $black;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba($white, 0.1);
+  }
+
+  .icon {
+    position: absolute;
+    right: 20px;
+    top: 26px;
   }
 }

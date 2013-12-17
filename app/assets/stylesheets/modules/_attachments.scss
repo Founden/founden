@@ -1,6 +1,6 @@
 .attachments {
   @include clearfix;
-  @include linear-gradient(to bottom, tint($beige, 50%), $white);
+  background-color: tint($beige, 50%);
   border-top: 1px solid $beige;
 }
 
@@ -8,7 +8,6 @@
   font-size: em(18);
   font-weight: 600;
   padding: 15px 20px;
-  background-color: $white;
 }
 
 .attachment-file {
@@ -56,23 +55,10 @@
     position: relative;
     overflow: hidden;
 
-    &:nth-of-type(odd) {
-
-      label {
-        background-color: tint($beige, 50%);
-      }
-    }
-
     &.checked {
 
       label {
         color: rgba($black, 0.5);
-      }
-
-      .icon-checkbox,
-      .icon-checkmark {
-        color: $white;
-        background-color: $green;
       }
     }
   }
@@ -88,9 +74,13 @@
     padding: 12px 0 0 0;
     border-right: 1px solid $beige;
     text-align: center;
-    color: $green;
+    color: $beige;
     cursor: pointer;
     background-color: $white;
+  }
+
+  .icon-checkmark {
+    color: $green;
   }
 
   .icon-delete {
@@ -106,7 +96,6 @@
     font-size: em(14);
     padding: 10px 15px;
     margin: 0 0 0 50px;
-    background-color: $white;
   }
 
   input[type=checkbox] {

@@ -3,11 +3,8 @@
   .conversation-header
     %h1.conversation-title
       {{content.title}} ({{unreadCount}})
-    .conversation-meta
-      {{timeago content.timeAgo}}
-      from
-      %strong
-        {{content.user.name}}
+    .conversation-summary-btn{:_action => 'toggleSummary'}
+      %span{:bind => {:class => ':icon hasSummary:icon-close:icon-star'}}
     %ul.conversation-participants
       {{#each participant in content.participants}}
       %li

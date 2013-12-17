@@ -24,9 +24,8 @@
   }
 
   &.btn-secondary {
-    padding: 4px 10px;
-    border: 1px solid shade($beige, 10%);
-    background-color: shade($beige, 5%);
+    padding: 5px 10px;
+    background-color: $beige;
     color: $black;
 
     .icon {
@@ -34,8 +33,7 @@
     }
 
     &:hover {
-      border-color: shade($beige, 15%);
-      background-color: shade($beige, 10%);
+      background-color: shade($beige, 5%);
     }
   }
 }

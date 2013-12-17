@@ -1,5 +1,3 @@
-{{partial 'partials/header'}}
-
 {{partial 'partials/navbar'}}
 
 .content

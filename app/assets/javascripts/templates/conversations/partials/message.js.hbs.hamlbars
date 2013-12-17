@@ -4,7 +4,19 @@
     .message-content
       {{content}}
       .message-meta
-        {{user.name}} &middot; {{timeago timeAgo}}
+        {{user.name}}
+        &middot;
+        {{timeago timeAgo}}
+        {{#unless parentMessage}}
+        &middot;
+        %a{:href => '#', :_action => 'activateReplyOn this'}
+          {{#if isFocused}}
+          You are replying to this message. Click again to cancel.
+          {{else}}
+          Reply
+          {{/if}}
+        {{/unless}}
+
     {{partial 'conversations/partials/attachments'}}
     .message-actions
       %span{:_action => 'addToSummary this', :bind => {:class => ':icon :icon-star isSummary:pinned'}}
@@ -16,12 +28,4 @@
     {{/with}}
     {{/each}}
   {{/if}}
-  {{#unless parentMessage}}
-  .message-reply-btn{:_action => 'activateReplyOn this'}
-    %span.icon.icon-reply
-    {{#if isFocused}}
-    You are replying to this message. Click again to cancel.
-    {{else}}
-    Reply (use @ to mention or + to attach media).
-    {{/if}}
-  {{/unless}}
+
