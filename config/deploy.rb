@@ -23,6 +23,9 @@ set :keep_releases, 5
 set :rbenv_type, :user
 set :rbenv_ruby, '2.0.0-p353'
 
+set :queue_classic_pid_path, proc {
+  shared_path.join('tmp', 'pids', 'qc-%s' % fetch(:stage)) }
+
 namespace :deploy do
   desc 'Restart application'
   task :restart do
