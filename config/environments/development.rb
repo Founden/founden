@@ -30,4 +30,6 @@ Founden::Application.configure do
   # Tell Action Mailer not to deliver emails to the real world.
   config.action_mailer.delivery_method = :letter_opener
 
+  # Setup default url options for mail
+  config.action_mailer.default_url_options = { :host => 'lvh.me' }
 end

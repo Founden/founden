@@ -78,6 +78,14 @@ Founden::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+  # Setup default url options for mail
+  config.action_mailer.default_url_options = {
+    :host => Founden::Config.app_id
+  }
+
+  # Use Amazon AWS for mail delivery
+  config.action_mailer.delivery_method = :amazon_ses
+
   # Use Amazon S3 settings for Paperclip uploads
   config.paperclip_defaults = {
     :storage => :s3,
