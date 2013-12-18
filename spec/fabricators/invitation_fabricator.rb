@@ -1,5 +1,5 @@
 Fabricator(:invitation) do
   email      { Faker::Internet.email }
   user
-  network
+  network { |attrs| Fabricate(:network, :user => attrs[:user]) }
 end

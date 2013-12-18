@@ -13,7 +13,6 @@ Founden::Application.routes.draw do
   end
 
   namespace :api, :constraints => {:format => :json} do
-     resources(:invitations, :only => [:index, :create])
     namespace :v1 do
       resources(:users, :only => [:index, :show])
       resources(:networks, :only => [:index, :show])
@@ -21,6 +20,7 @@ Founden::Application.routes.draw do
       resources(:messages, :only => [:index, :show, :create])
       resources(:attachments, :only => [:index, :show, :create])
       resources(:memberships, :only => [:create])
+      resources(:invitations, :only => [:index, :create, :update])
     end
   end
 

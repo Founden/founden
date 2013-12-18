@@ -12,6 +12,11 @@ describe Api::V1::InvitationsController do
       post('/api/v1/invitations').should route_to('api/v1/invitations#create')
     end
 
+    it 'for updating an invitation' do
+      patch('/api/v1/invitations/ID').should route_to(
+        'api/v1/invitations#update', :id => 'ID')
+    end
+
   end
 end
 

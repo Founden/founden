@@ -19,6 +19,19 @@ class Api::V1::InvitationsController < Api::V1::ApplicationController
     end
   end
 
+  # Updates a new invitation
+  def update
+    invitation = Invitation.find_by!(
+      :slug => params[:id], :email => current_account.email)
+
+    if invitation and !invitation.membership
+      invitation.membership = invitation.network.network_memberships.create(
+        :creator => invitation.user, :user => current_account)
+      invitation.save
+    end
+    render :json => invitation
+  end
+
   private
 
   # Allowed params for a new invitation
