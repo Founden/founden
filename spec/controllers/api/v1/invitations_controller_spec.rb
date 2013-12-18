@@ -11,7 +11,7 @@ describe Api::V1::InvitationsController do
     let(:invitation_ids) { [] }
     before { get(:index, :ids => invitation_ids) }
 
-    subject(:api_user) { json_to_ostruct(response.body) }
+    subject(:api_invitations) { json_to_ostruct(response.body) }
 
     its('invitations.count') { should eq(0) }
 
@@ -24,6 +24,39 @@ describe Api::V1::InvitationsController do
     end
   end
 
+  describe '#show' do
+    let(:invitation) { Fabricate(:invitation, :email => user.email) }
+    let(:invitation_id) { invitation.slug }
+    before { get(:show, :id => invitation_id) }
+
+    subject(:api_invitation) { json_to_ostruct(response.body, :invitation) }
+
+    its('keys.count') { should eq(5) }
+    its(:id) { should eq(invitation.slug) }
+    its(:created_at) { should eq(invitation.created_at.as_json) }
+    its(:network_title) { should eq(invitation.network.title) }
+    its(:membership_id) { should be_blank }
+    its(:user_id) { should eq(invitation.user.slug) }
+
+    context 'when an invalid invitation ID is queried' do
+      let(:invitation_id) { '-' }
+
+      subject { response }
+
+      its(:status) { should eq(404) }
+      its(:body) { should include(_('Resource unavailable')) }
+    end
+
+    context 'when invitation is not available' do
+      let(:invitation) { Fabricate(:invitation) }
+
+      subject { response }
+
+      its(:status) { should eq(404) }
+      its(:body) { should include(_('Resource unavailable')) }
+    end
+  end
+
   describe '#create' do
     let(:attrs) do
       Fabricate.attributes_for(
@@ -33,10 +66,11 @@ describe Api::V1::InvitationsController do
 
     subject(:api_invitation) { json_to_ostruct(response.body, :invitation) }
 
-    its('keys.count') { should eq(6) }
+    its('keys.count') { should eq(7) }
     its(:id) { should_not be_blank }
     its(:created_at) { should_not be_blank }
     its(:network_id) { should eq(attrs[:network_id]) }
+    its(:network_title) { should_not be_blank }
     its(:membership_id) { should be_blank }
     its(:user_id) { should eq(user.slug) }
     its(:email) { should eq(attrs[:email]) }
@@ -76,13 +110,14 @@ describe Api::V1::InvitationsController do
 
     subject(:api_invitation) { json_to_ostruct(response.body, :invitation) }
 
-    its('keys.count') { should eq(6) }
+    its('keys.count') { should eq(7) }
     its(:id) { should eq(invitation.slug) }
+    its(:email) { should eq(user.email) }
     its(:created_at) { should eq(invitation.created_at.as_json) }
     its(:network_id) { should eq(invitation.network.slug) }
+    its(:network_title) { should eq(invitation.network.title) }
     its(:membership_id) { should eq(invitation.reload.membership.slug) }
     its(:user_id) { should eq(invitation.user.slug) }
-    its(:email) { should eq(user.email) }
 
     context 'when email is wrong' do
       let(:invitation) do
@@ -100,13 +135,12 @@ describe Api::V1::InvitationsController do
         Fabricate(:invitation, :email => user.email, :membership => membership)
       end
 
-      its('keys.count') { should eq(6) }
+      its('keys.count') { should eq(5) }
       its(:id) { should eq(invitation.slug) }
       its(:created_at) { should eq(invitation.created_at.as_json) }
-      its(:network_id) { should eq(invitation.network.slug) }
+      its(:network_title) { should eq(invitation.network.title) }
       its(:membership_id) { should eq(membership.slug) }
       its(:user_id) { should eq(invitation.user.slug) }
-      its(:email) { should eq(user.email) }
     end
   end
 end

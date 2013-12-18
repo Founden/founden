@@ -8,6 +8,11 @@ describe Api::V1::InvitationsController do
       get('/api/v1/invitations').should route_to('api/v1/invitations#index')
     end
 
+    it 'for showing an invitation' do
+      get('/api/v1/invitations/ID').should route_to(
+        'api/v1/invitations#show', :id => 'ID')
+    end
+
     it 'for creating an invitation' do
       post('/api/v1/invitations').should route_to('api/v1/invitations#create')
     end

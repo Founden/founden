@@ -5,6 +5,13 @@ class Api::V1::InvitationsController < Api::V1::ApplicationController
     render :json => current_account.invitations.where(:slug => params[:ids])
   end
 
+  # Shows the available invitation
+  def show
+    invitation = Invitation.find_by!(
+      :slug => params[:id], :email => current_account.email)
+    render :json => invitation
+  end
+
   # Creates a new invitation
   def create
     network = current_account.networks.find_by!(
