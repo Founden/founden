@@ -34,7 +34,7 @@ class Api::V1::InvitationsController < Api::V1::ApplicationController
     if invitation and !invitation.membership
       invitation.membership = invitation.network.network_memberships.create(
         :creator => invitation.user, :user => current_account)
-      invitation.save
+      invitation.save(:validate => false)
     end
     render :json => invitation
   end
