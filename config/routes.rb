@@ -13,15 +13,15 @@ Founden::Application.routes.draw do
   end
 
   namespace :api, :constraints => {:format => :json} do
-   namespace :v1 do
-     resources(:users, :only => [:index, :show])
-     resources(:networks, :only => [:index, :show])
-     resources(:conversations, :only => [:index, :show, :create])
-     resources(:messages, :only => [:index, :show, :create])
-     resources(:attachments, :only => [:index, :show, :create])
-     resources(:memberships, :only => [:create])
      resources(:invitations, :only => [:index, :create])
-   end
+    namespace :v1 do
+      resources(:users, :only => [:index, :show])
+      resources(:networks, :only => [:index, :show])
+      resources(:conversations, :only => [:index, :show, :create])
+      resources(:messages, :only => [:index, :show, :create])
+      resources(:attachments, :only => [:index, :show, :create])
+      resources(:memberships, :only => [:create])
+    end
   end
 
   root :to => 'pages#dashboard'
