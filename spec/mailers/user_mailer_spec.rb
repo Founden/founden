@@ -21,17 +21,6 @@ describe UserMailer do
     its('body.encoded') { should include(
       root_url(:anchor => '/invitations/%s' % invitation.slug)) }
     its(:to) { should include(invitation.email) }
-
-    context 'when email is unregistered' do
-      let(:invitation) { Fabricate(:invitation, :user => user) }
-
-      it_should_behave_like 'an email from us'
-      its('body.encoded') { should include(invitation.user.full_name) }
-      its('body.encoded') { should_not include(
-        root_url(:anchor => '/invitations/%s' % invitation.slug)) }
-      its('body.encoded') { should include(root_url) }
-      its(:to) { should include(invitation.email) }
-    end
   end
 
 end

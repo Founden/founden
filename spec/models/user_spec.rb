@@ -39,5 +39,6 @@ describe User do
       its(:length) { should eq(1) }
       its('first.title') { should eq(_('%s Network') % user.full_name) }
     end
+
   end
 end
