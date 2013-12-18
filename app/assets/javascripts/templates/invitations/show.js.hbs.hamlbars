@@ -1,0 +1,12 @@
+.wrapper
+  .invitation
+    %img{:bind => {:src => 'content.user.avatarUrl'}}
+    %p
+      {{content.user.name}}
+      = _('asked you to join his network:')
+      %strong
+        {{content.networkTitle}}
+      {{timeago content.timeAgo}}
+
+    %button{:_action => 'acceptInvitation'}
+      Click to join
