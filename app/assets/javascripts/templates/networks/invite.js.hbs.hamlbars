@@ -1,0 +1,10 @@
+.wrapper
+  .invitation
+    %img{:bind => {:src => 'controller.currentUser.avatarUrl'}}
+    %p
+      {{controller.currentUser.name}}
+      = _('write down the email of the person you want to invite to your network:')
+      {{input value=email}}
+
+    %button{:_action => 'sendInvitation'}
+      Send
