@@ -2,13 +2,15 @@
 class Api::V1::ConversationsController < Api::V1::ApplicationController
   # Lists available conversations
   def index
-    conversations = current_account.conversations.where(:slug => params[:ids])
+    conversations = Conversation.where(
+      :slug => params[:ids], :network_id => current_account.network_ids)
     render :json => conversations
   end
 
   # Lists a conversation
   def show
-    conversation = current_account.conversations.find_by!(:slug => params[:id])
+    conversation = Conversation.find_by!(
+      :slug => params[:id], :network_id => current_account.network_ids)
     render :json => conversation
   end
 
