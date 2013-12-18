@@ -19,6 +19,15 @@ describe Invitation do
 
     it { should be_valid }
 
+    context 'validates email exclusivity' do
+      subject(:invitation) do
+        Fabricate.build(
+          :invitation, :user => user, :network => network, :email => user.email)
+      end
+
+      it { should_not be_valid }
+    end
+
     context '#save queues an email' do
       before do
         QC.should_receive(:enqueue) do |mailer, mailer_method, invitation_id|
