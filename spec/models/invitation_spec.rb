@@ -21,8 +21,11 @@ describe Invitation do
 
     context '#save queues an email' do
       before do
-        QC.should_receive(:enqueue).with(
-          'UserMailer.deliver', :invite, invitation.email, user.id)
+        QC.should_receive(:enqueue) do |mailer, mailer_method, invitation_id|
+          mailer.should eq('UserMailer.deliver')
+          mailer_method.should eq(:invite)
+          invitation_id.should eq(invitation.id)
+        end
         invitation.save
       end
 

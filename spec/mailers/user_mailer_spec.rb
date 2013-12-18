@@ -10,16 +10,28 @@ describe UserMailer do
   before(:each) { ActionMailer::Base.deliveries.clear }
 
   describe '#invite' do
-    let(:some_email) { Faker::Internet.email }
+    let(:invitation) { Fabricate(:invitation, :email => user.email) }
 
     before do
-      UserMailer.deliver(:invite, some_email, user)
+      UserMailer.deliver(:invite, invitation.id)
     end
 
     it_should_behave_like 'an email from us'
-    its('body.encoded') { should include(user.full_name) }
-    its('body.encoded') { should include(root_url) }
-    its(:to) { should include(some_email) }
+    its('body.encoded') { should include(invitation.user.full_name) }
+    its('body.encoded') { should include(
+      root_url(:anchor => '/invitations/%s' % invitation.slug)) }
+    its(:to) { should include(invitation.email) }
+
+    context 'when email is unregistered' do
+      let(:invitation) { Fabricate(:invitation, :user => user) }
+
+      it_should_behave_like 'an email from us'
+      its('body.encoded') { should include(invitation.user.full_name) }
+      its('body.encoded') { should_not include(
+        root_url(:anchor => '/invitations/%s' % invitation.slug)) }
+      its('body.encoded') { should include(root_url) }
+      its(:to) { should include(invitation.email) }
+    end
   end
 
 end

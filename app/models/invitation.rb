@@ -20,6 +20,6 @@ class Invitation < ActiveRecord::Base
 
   # Emails the invitation
   def email_invitation
-    QC.enqueue('UserMailer.deliver', :invite, self.email, self.user.id)
+    QC.enqueue('UserMailer.deliver', :invite, self.id)
   end
 end
