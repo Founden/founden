@@ -16,6 +16,11 @@ class Invitation < ActiveRecord::Base
   # Callbacks
   after_commit :email_invitation, :on => :create
 
+  # Returns the user with the invitation email
+  def invitee
+    User.find_by(:email => self.email)
+  end
+
   private
 
   # Emails the invitation

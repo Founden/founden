@@ -18,6 +18,15 @@ describe Invitation do
     end
 
     it { should be_valid }
+    its(:invitee) { should be_nil }
+
+    context 'when the email is registered' do
+      let(:registered_email_user) {Fabricate(:user, :email => invitation.email)}
+
+      before { registered_email_user }
+
+      its(:invitee) { should eq(registered_email_user) }
+    end
 
     context '#save queues an email' do
       before do
