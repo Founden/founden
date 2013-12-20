@@ -14,7 +14,7 @@ gem 'activerecord-session_store'
 gem 'friendly_id'
 gem 'sanitize'
 gem 'paperclip'
-gem 'active_model_serializers', :github => 'stas/active_model_serializers', :branch => 'fork'
+gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 gem 'queue_classic'
 
 group :development do

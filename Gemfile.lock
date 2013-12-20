@@ -7,9 +7,8 @@ GIT
       rails (~> 4.0.0)
 
 GIT
-  remote: git://github.com/stas/active_model_serializers.git
-  revision: 1ee0857192a5d284a62eefa1fcbd40f40aadc2c5
-  branch: fork
+  remote: git://github.com/rails-api/active_model_serializers.git
+  revision: d04cbb3806f3223e2da152dbbef3e2241ad43223
   specs:
     active_model_serializers (0.9.0.pre)
       activemodel (>= 3.2)
