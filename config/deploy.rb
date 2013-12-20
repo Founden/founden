@@ -26,6 +26,8 @@ set :rbenv_ruby, '2.0.0-p353'
 set :queue_classic_pid_path, proc {
   shared_path.join('tmp', 'pids', 'qc-%s' % fetch(:stage)) }
 
+set :puma_flags, proc { '-C %s' % current_path.join('config', 'puma.rb') }
+
 namespace :deploy do
   desc 'Restart application'
   task :restart do
