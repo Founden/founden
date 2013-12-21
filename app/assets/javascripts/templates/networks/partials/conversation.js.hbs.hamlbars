@@ -1,5 +1,5 @@
 %li{:bind => {:class => ':conversation-item isUnread:unread'}}
-  {{#linkTo 'conversations.show' this}}
+  {{#link-to 'conversations.show' this}}
   %h3.conversation-item-title
     {{title}}
   .conversation-item-meta
@@ -8,4 +8,4 @@
     from
     %strong
       {{user.name}}
-  {{/linkTo}}
+  {{/link-to}}

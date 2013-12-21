@@ -7,6 +7,16 @@ GIT
       rails (~> 4.0.0)
 
 GIT
+  remote: git://github.com/jamesotron/hamlbars.git
+  revision: 6fd7e943217cfbd12eb055eb8a990b427159b411
+  specs:
+    hamlbars (2.0.2)
+      execjs (>= 1.2)
+      haml
+      sprockets
+      tilt
+
+GIT
   remote: git://github.com/rails-api/active_model_serializers.git
   revision: d04cbb3806f3223e2da152dbbef3e2241ad43223
   specs:
@@ -167,11 +177,6 @@ GEM
       activesupport (>= 4.0.1)
       haml (>= 3.1, < 5.0)
       railties (>= 4.0.1)
-    hamlbars (2.0.1)
-      execjs (>= 1.2)
-      haml
-      sprockets
-      tilt
     handlebars-source (1.1.2)
     hike (1.2.3)
     httparty (0.12.0)
@@ -568,7 +573,7 @@ DEPENDENCIES
   guard-migrate
   guard-rspec
   haml-rails
-  hamlbars
+  hamlbars!
   jquery-rails
   letter_opener
   momentjs-rails

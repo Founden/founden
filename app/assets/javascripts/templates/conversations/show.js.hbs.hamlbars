@@ -18,9 +18,11 @@
 
   .messages
     {{#each message in content.messages}}
+    {{#unless message.parentMessage}}
     {{#with message}}
     {{partial 'conversations/partials/message'}}
     {{/with}}
+    {{/unless}}
     {{/each}}
 
   {{message-form user=currentUser network=content.network messageForm=messageForm isActive=isReplying}}

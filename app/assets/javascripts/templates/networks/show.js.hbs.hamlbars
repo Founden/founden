@@ -12,9 +12,9 @@
 
     {{#unless inboxLimitReached}}
     .bucket-actions
-      {{#linkTo 'networks.inbox' content}}
+      {{#link-to 'networks.inbox' content}}
       view all {{content.inbox.length}} conversations
-      {{/linkTo}}
+      {{/link-to}}
     {{/unless}}
 
   .bucket
@@ -29,7 +29,7 @@
 
     {{#unless ongoingLimitReached}}
     .bucket-actions
-      {{#linkTo 'networks.ongoing' content}}
+      {{#link-to 'networks.ongoing' content}}
       view all {{content.ongoing.length}} conversations
-      {{/linkTo}}
+      {{/link-to}}
     {{/unless}}

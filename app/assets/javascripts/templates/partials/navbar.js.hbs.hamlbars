@@ -2,25 +2,25 @@
 
   {{#each network in currentUser.networks}}
   .navbar-title
-    {{#linkTo 'networks.show' network}}
+    {{#link-to 'networks.show' network}}
     {{network.title}}
-    {{/linkTo}}
+    {{/link-to}}
     %span{:_action => 'showHideNetwork network target=view', :bind => {:class => ':icon-small network.isHidden:icon-arrow-down:icon-arrow-up'}}
 
   {{#unless network.isHidden}}
   %ul.navbar-list
     %li.navbar-list-item
-      {{#linkTo 'networks.compose' network class='primary'}}
+      {{#link-to 'networks.compose' network class='primary'}}
       %span.icon.icon-conversation
       New conversation
-      {{/linkTo}}
+      {{/link-to}}
     %li.navbar-list-item
-      {{#linkTo 'networks.inbox' network}}
+      {{#link-to 'networks.inbox' network}}
       Inbox ({{network.inbox.length}})
-      {{/linkTo}}
+      {{/link-to}}
     %li.navbar-list-item
-      {{#linkTo 'networks.ongoing' network}}
+      {{#link-to 'networks.ongoing' network}}
       Ongoing ({{network.ongoing.length}})
-      {{/linkTo}}
+      {{/link-to}}
   {{/unless}}
   {{/each}}
