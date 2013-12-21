@@ -8,4 +8,6 @@ Founden.ApplicationAdapter = DS.ActiveModelAdapter.extend
     decamelized = Ember.String.decamelize(type)
     if decamelized in ['link', 'location', 'task_list', 'timestamp', 'upload']
       decamelized = 'attachment'
+    if decamelized in ['parentMessage', 'reply']
+      decamelized = 'message'
     Ember.String.pluralize(decamelized)
