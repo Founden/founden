@@ -22,8 +22,13 @@ class Api::V1::MessagesController < Api::V1::ApplicationController
     conversation = network.conversations.find_by!(
       :slug => new_message_params[:conversation_id])
 
+    parent_message = conversation.messages.find_by!(
+      :slug => new_message_params[:parent_message_id]
+    ) if new_message_params[:parent_message_id]
+
     message = conversation.messages.build(new_message_params.merge(
-      :network => network, :user => current_account))
+      :network => network, :user => current_account,
+      :parent_message => parent_message))
 
     if message.save
       render :json => message
@@ -36,6 +41,7 @@ class Api::V1::MessagesController < Api::V1::ApplicationController
 
   # Parameters for creating a new message
   def new_message_params
-    params.require(:message).permit(:content, :network_id, :conversation_id)
+    params.require(:message).permit(
+      :content, :network_id, :conversation_id, :parent_message_id)
   end
 end

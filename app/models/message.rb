@@ -10,7 +10,10 @@ class Message < ActiveRecord::Base
   belongs_to :network
   belongs_to :conversation
   belongs_to :summary
+  belongs_to :parent_message, :class_name => Message
   has_many :attachments, :dependent => :destroy
+  has_many :replies, :class_name => Message,
+    :dependent => :destroy, :foreign_key => :parent_message_id
 
   # Validations
   validates_presence_of :content, :user, :network, :conversation

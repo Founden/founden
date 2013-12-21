@@ -5,7 +5,9 @@ describe Message do
   it { should belong_to(:network) }
   it { should belong_to(:conversation) }
   it { should belong_to(:summary) }
+  it { should belong_to(:parent_message) }
   it { should have_many(:attachments).dependent(:destroy) }
+  it { should have_many(:replies).dependent(:destroy) }
 
   it { should validate_presence_of(:content) }
   it { should validate_presence_of(:user) }
