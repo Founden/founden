@@ -29,7 +29,7 @@ group :production do
 end
 
 # See why https://github.com/rails/rails/commit/49c4af43ec
-group :development, :assets, :test, :production do
+group :assets do
   gem 'sprockets-rails'
   gem 'sass-rails'
   gem 'coffee-rails'

@@ -9,7 +9,9 @@ require "sprockets/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env)
+# Bundler.require(:default, Rails.env)
+# See https://github.com/rails/rails/commit/49c4af43ec5819d8f5c1a91f9b84296c927ce6e7
+Bundler.require(*Rails.groups(assets: %w[development test]))
 
 module Founden
   class Application < Rails::Application
