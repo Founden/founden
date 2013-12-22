@@ -1,0 +1,8 @@
+# See https://github.com/rails/rails/commit/49c4af43ec5819d8f5c1a91f9b84296c927ce6e7
+before 'deploy:assets:precompile', 'deploy:assets:add_rails_groups' do
+  SSHKit.config.command_map.prefix[:rake].unshift('RAILS_GROUPS=assets')
+end
+
+after 'deploy:assets:precompile', 'deploy:assets:remove_rails_groups' do
+  SSHKit.config.command_map.prefix[:rake].delete('RAILS_GROUPS=assets')
+end
