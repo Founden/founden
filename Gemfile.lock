@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: git://github.com/rails-api/active_model_serializers.git
-  revision: d04cbb3806f3223e2da152dbbef3e2241ad43223
+  revision: 19bdc52a4309c1be61e6e9f39047df737eb164c9
   specs:
     active_model_serializers (0.9.0.pre)
       activemodel (>= 3.2)
@@ -95,16 +95,14 @@ GEM
     capistrano-bundler (1.1.1)
       capistrano (~> 3.0)
       sshkit (>= 1.2.0)
-    capistrano-platform-resources (0.1.2)
-      capistrano
     capistrano-puma (0.2.3)
       capistrano (>= 3.0)
     capistrano-rails (1.1.0)
       capistrano (>= 3.0.0)
       capistrano-bundler (>= 1.0.0)
-    capistrano-rbenv (1.0.3)
-      capistrano
-      capistrano-platform-resources (>= 0.1.0)
+    capistrano-rbenv (2.0.0)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2.0)
     capybara (2.2.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -517,7 +515,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sshkit (1.3.0)
+    sshkit (1.2.0)
       net-scp (>= 1.1.2)
       net-ssh
       term-ansicolor
@@ -556,7 +554,7 @@ DEPENDENCIES
   bugsnag
   capistrano-puma
   capistrano-rails
-  capistrano-rbenv
+  capistrano-rbenv (>= 2.0)
   capybara-puma
   coffee-rails
   database_rewinder

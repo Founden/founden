@@ -52,7 +52,7 @@ group :development, :test do
   gem 'guard-rspec', :require => false
   gem 'guard-migrate', :require => false
   gem 'capistrano-rails', :require => false
-  gem 'capistrano-rbenv', :require => false
+  gem 'capistrano-rbenv', '>= 2.0', :require => false
   gem 'capistrano-puma', :require => false
 end
 
