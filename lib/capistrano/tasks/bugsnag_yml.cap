@@ -1,4 +1,4 @@
-remote_file 'config/bugsnag.yml' => '/tmp/bugsnag.yml', :roles => :app
-file '/tmp/bugsnag.yml' do |t|
+remote_file 'config/bugsnag.yml' => './config/bugsnag.yml', :roles => :app
+file './config/bugsnag.yml' do |t|
   yml_file(t.name)
 end

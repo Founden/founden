@@ -1,4 +1,4 @@
-remote_file 'config/aws.yml' => '/tmp/aws.yml', :roles => :app
-file '/tmp/aws.yml' do |t|
+remote_file 'config/aws.yml' => './config/aws.yml', :roles => :app
+file './config/aws.yml' do |t|
   yml_file(t.name)
 end
