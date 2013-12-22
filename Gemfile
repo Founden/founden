@@ -30,7 +30,6 @@ end
 
 # See why https://github.com/rails/rails/commit/49c4af43ec
 group :assets do
-  gem 'sprockets-rails'
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'

@@ -591,7 +591,6 @@ DEPENDENCIES
   sass-rails
   shoulda-matchers
   simplecov
-  sprockets-rails
   therubyracer
   uglifier
   vcr
