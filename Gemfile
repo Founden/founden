@@ -15,6 +15,7 @@ gem 'sanitize'
 gem 'paperclip'
 gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 gem 'queue_classic'
+gem 'tubesock'
 
 group :development do
   gem 'quiet_assets'

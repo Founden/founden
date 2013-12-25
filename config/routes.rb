@@ -22,6 +22,7 @@ Founden::Application.routes.draw do
       resources(:memberships, :only => [:create])
       resources(:invitations, :only => [:index, :create, :update, :show])
       resources(:summaries, :only => [:index, :show])
+      resources(:updates, :only => [:index])
     end
   end
 

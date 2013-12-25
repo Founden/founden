@@ -18,4 +18,5 @@ Founden.ApplicationSerializer = DS.ActiveModelSerializer.extend
   extractSingle: (store, primaryType, payload, recordId, requestType) ->
     payload['summaries'] ||= [] if payload.summaries == null
     payload['parent_messages'] ||= [] if payload.parent_messages == null
+    payload['memberships'] ||= [] if payload.memberships == null
     @_super(store, primaryType, payload, recordId, requestType)

@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   include EasyAuth::Models::Account
   # Include support for obfuscated ID
   include ObfuscatedId
+  # Include support for notifications
+  include Listener
 
   store_accessor :data, :promo_code
 

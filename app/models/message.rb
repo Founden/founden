@@ -2,6 +2,8 @@
 class Message < ActiveRecord::Base
   # Include support for obfuscated ID
   include ObfuscatedId
+  # Include support for notifications
+  include Notifier
 
   # store_accessor :data, :attr
 
@@ -22,5 +24,16 @@ class Message < ActiveRecord::Base
   # Callbacks
   before_validation do
     self.content = Sanitize.clean(self.content)
+  end
+
+  private
+
+  # Overwrites `Notifier#notification_channels`
+  def notification_channels
+    if self.conversation
+      self.conversation.participants.map { |part| 'user_%d' % part.id }
+    else
+      super
+    end
   end
 end
