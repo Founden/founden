@@ -1,5 +1,5 @@
 .summary
-  {{#each message in summaryMessages}}
+  {{#each message in content.summary.messages}}
   .summary-message
     .message-content
       {{message.content}}

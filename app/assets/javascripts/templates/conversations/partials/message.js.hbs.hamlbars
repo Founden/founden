@@ -19,7 +19,7 @@
 
     {{partial 'conversations/partials/attachments'}}
     .message-actions
-      %span{:_action => 'addToSummary this', :bind => {:class => ':icon :icon-star isSummary:pinned'}}
+      %span{:_action => 'addToSummary this', :bind => {:class => ':icon :icon-star summaryId:pinned'}}
   {{#if replies.firstObject}}
   .message-replies
     {{#each reply in message.replies}}

@@ -37,7 +37,28 @@ class Api::V1::MessagesController < Api::V1::ApplicationController
     end
   end
 
+  # Updates a message
+  def update
+    message = Message.find_by!(
+      :slug => params[:id], :network_id => current_account.network_ids)
+
+    unless message_params[:summary_id].blank?
+      message.summary = message.conversation.summary || Summary.create!(
+        :conversation => message.conversation, :network => message.network)
+      message.save
+    else
+      message.update_attributes(:summary => nil)
+    end
+
+    render :json => message
+  end
+
   private
+
+  # Parameters for updating a message
+  def message_params
+    params.require(:message).permit(:summary_id)
+  end
 
   # Parameters for creating a new message
   def new_message_params

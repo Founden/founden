@@ -8,6 +8,7 @@ class Conversation < ActiveRecord::Base
   # Relationships
   belongs_to :user
   belongs_to :network
+  has_one :summary
   has_many :messages
   has_many :attachments
 

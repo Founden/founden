@@ -18,5 +18,10 @@ describe Api::V1::MessagesController do
         'api/v1/messages#create')
     end
 
+    it 'for updating a message' do
+      patch('/api/v1/messages/ID').should route_to(
+        'api/v1/messages#update', :id => 'ID')
+    end
+
   end
 end

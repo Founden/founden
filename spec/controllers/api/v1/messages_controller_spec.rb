@@ -31,7 +31,7 @@ describe Api::V1::MessagesController do
 
     subject(:api_message) { json_to_ostruct(response.body, :message) }
 
-    its('keys.size') { should eq(9) }
+    its('keys.size') { should eq(10) }
     its(:id) { should eq(message.slug) }
     its(:created_at) { should eq(message.created_at.as_json) }
     its(:content) { should eq(message.content) }
@@ -39,8 +39,21 @@ describe Api::V1::MessagesController do
     its(:network_id) { should eq(message.network.slug) }
     its(:conversation_id) { should eq(message.conversation.slug) }
     its(:parent_message_id) { should be_blank }
+    its(:summary_id) { should be_blank }
     its(:reply_ids) { should be_empty }
     its(:attachments) { should be_empty }
+
+    context 'when it has a summary' do
+      let(:summary) { Fabricate(:summary, :user => user) }
+      let(:message) do
+        Fabricate(:message, :user => user, :network => summary.network,
+          :conversation => summary.conversation, :summary => summary)
+      end
+      let(:message_id) { message.slug }
+
+      its('keys.size') { should eq(10) }
+      its(:summary_id) { should eq(summary.slug) }
+    end
 
     context 'when it has replies' do
       let(:parent_message) { Fabricate(:message, :user => user) }
@@ -52,7 +65,7 @@ describe Api::V1::MessagesController do
       end
       let(:message_id) { message.parent_message.slug }
 
-      its('keys.size') { should eq(9) }
+      its('keys.size') { should eq(10) }
       its('reply_ids.size') { should eq(1) }
       its(:reply_ids) { should include(message.slug) }
     end
@@ -61,7 +74,7 @@ describe Api::V1::MessagesController do
       let(:attachment) { Fabricate(:task_list, :user => user) }
       let(:message) { attachment.message }
 
-      its('keys.size') { should eq(9) }
+      its('keys.size') { should eq(10) }
       its('attachments.length') { should eq(1) }
       its('attachments.first.keys.sort') { should eq(%w(type id).sort) }
       its('attachments.first.values.sort') { should eq(
@@ -85,7 +98,7 @@ describe Api::V1::MessagesController do
 
     subject(:api_message) { json_to_ostruct(response.body, :message) }
 
-    its('keys.size') { should eq(9) }
+    its('keys.size') { should eq(10) }
     its(:id) { should_not be_blank }
     its(:created_at) { should_not be_blank }
     its(:content) { should eq(attrs[:content]) }
@@ -93,6 +106,7 @@ describe Api::V1::MessagesController do
     its(:network_id) { should eq(attrs[:network_id]) }
     its(:conversation_id) { should eq(attrs[:conversation_id]) }
     its(:parent_message_id) { should be_blank }
+    its(:summary_id) { should be_blank }
     its(:attachments) { should be_empty }
     its(:reply_ids) { should be_empty }
 
@@ -106,7 +120,7 @@ describe Api::V1::MessagesController do
         )
       end
 
-      its('keys.size') { should eq(9) }
+      its('keys.size') { should eq(10) }
       its(:parent_message_id) { should eq(attrs[:parent_message_id]) }
 
       context 'and it is invalid' do
@@ -148,6 +162,59 @@ describe Api::V1::MessagesController do
 
       its(:status) { should eq(404) }
       its(:body) { should include(_('Resource unavailable')) }
+    end
+  end
+
+  describe '#show' do
+    let(:message) { Fabricate(:message, :user => user) }
+    let(:message_id) { message.slug }
+    let(:attrs) { {} }
+
+    before { patch(:update, :id => message_id, :message => attrs) }
+
+    subject(:api_message) { json_to_ostruct(response.body, :message) }
+
+    context 'on missing params' do
+      subject { response }
+
+      its(:status) { should eq(400) }
+      its(:body) { should include(_('We were expecting a different input')) }
+    end
+
+    context 'creates a summary if conversation has none' do
+      let(:attrs) { {:summary_id => 'true'} }
+
+      its('keys.size') { should eq(10) }
+      its(:id) { should eq(message.slug) }
+      its(:summary_id) { should eq(message.conversation.summary.slug) }
+    end
+
+    context 'assigns the conversation summary when there is one' do
+      let(:summary) do
+        Fabricate(:summary, :conversation => message.conversation,
+                  :network => message.network)
+      end
+      let(:attrs) { {:summary_id => summary.slug} }
+
+      its('keys.size') { should eq(10) }
+      its(:id) { should eq(message.slug) }
+      its(:summary_id) { should eq(message.conversation.summary.slug) }
+      its(:summary_id) { should eq(summary.slug) }
+    end
+
+    context 'removes the summary if summary is blank' do
+      let(:summary) do
+        Fabricate(:summary, :conversation => message.conversation,
+                  :network => message.network)
+      end
+      let(:attrs) do
+        message.update_attribute(:summary, summary)
+        {:summary_id => nil}
+      end
+
+      its('keys.size') { should eq(10) }
+      its(:id) { should eq(message.slug) }
+      its(:summary_id) { should be_blank }
     end
   end
 

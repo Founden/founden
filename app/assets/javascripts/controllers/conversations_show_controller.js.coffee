@@ -10,12 +10,6 @@ Founden.ConversationsShowController = Ember.Controller.extend
       messages.filterProperty('isUnread', true).get('length')
   ).property('content.messages.@each.isUnread')
 
-  summaryMessages: ( ->
-    messages = @get('content.messages')
-    if messages
-      messages.filterProperty('isSummary', true)
-  ).property('content.messages.@each.isSummary')
-
   focusOnMessage: (message) ->
     previousMessage = @get('replyToMessage')
     previousMessage.set('isFocused', false) if previousMessage
@@ -103,6 +97,3 @@ Founden.ConversationsShowController = Ember.Controller.extend
       textarea.value += '@'
       textarea.selectionEnd += 1 if textarea.selectionEnd
       @get('messageForm.mentionsSupport').onAtKeyPress(textarea)
-
-    toggleSummary: ->
-      @toggleProperty('hasSummary')
