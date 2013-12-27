@@ -31,7 +31,7 @@ class Message < ActiveRecord::Base
   # Overwrites `Notifier#notification_channels`
   def notification_channels
     if self.conversation
-      self.conversation.participants.map { |part| 'user_%d' % part.id }
+      self.conversation.participant_ids.map { |pid| 'user_%d' % pid }
     else
       super
     end
