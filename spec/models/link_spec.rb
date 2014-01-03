@@ -7,7 +7,6 @@ describe Link do
 
   it { should validate_presence_of(:url) }
   it { should validate_presence_of(:user) }
-  it { should validate_presence_of(:network) }
   it { should validate_presence_of(:message) }
 
   context 'instance' do

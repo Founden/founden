@@ -6,12 +6,11 @@ class Summary < ActiveRecord::Base
   # store_accessor :data, :key
 
   # Relationships
-  belongs_to :network
   belongs_to :conversation
   has_many :messages
 
   # Validations
-  validates_presence_of :network, :conversation
+  validates_presence_of :conversation
   validates_uniqueness_of :slug
 
   # Callbacks

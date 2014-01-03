@@ -7,7 +7,6 @@ class Attachment < ActiveRecord::Base
 
   # Relationship
   belongs_to :user
-  belongs_to :network
   belongs_to :conversation
   belongs_to :message
   belongs_to :summary

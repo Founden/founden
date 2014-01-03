@@ -1,10 +1,7 @@
 Fabricator(:attachment) do
   title        { Faker::Lorem.sentence }
   user
-  network      { |attrs| Fabricate(:network, :user => attrs[:user]) }
-  conversation { |attrs| Fabricate(
-    :conversation, :user => attrs[:user], :network => attrs[:network]) }
+  conversation { |attrs| Fabricate(:conversation, :user => attrs[:user]) }
   message      { |attrs| Fabricate(
-    :message, :user => attrs[:user], :network => attrs[:network],
-    :conversation => attrs[:conversation]) }
+    :message, :user => attrs[:user], :conversation => attrs[:conversation]) }
 end

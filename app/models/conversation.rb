@@ -7,7 +7,6 @@ class Conversation < ActiveRecord::Base
 
   # Relationships
   belongs_to :user
-  belongs_to :network
   has_one :summary
   has_many :messages
   has_many :attachments
@@ -17,7 +16,7 @@ class Conversation < ActiveRecord::Base
     :through => :conversation_memberships, :source => :user
 
   # Validations
-  validates_presence_of :title, :user, :network
+  validates_presence_of :title, :user
   validates_uniqueness_of :slug
 
   # Callbacks
@@ -26,6 +25,6 @@ class Conversation < ActiveRecord::Base
   end
   after_create do
     self.conversation_memberships.create(
-      :creator => self.user, :user => self.user, :network => self.network)
+      :creator => self.user, :user => self.user)
   end
 end

@@ -10,5 +10,5 @@ class Link < Attachment
 
   # Validations
   validates_format_of :url, :with => URI.regexp(ALLOWED_SCHEMES)
-  validates_presence_of :user, :network, :message, :url
+  validates_presence_of :user, :message, :url
 end

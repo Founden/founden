@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe TaskList do
   it { should validate_presence_of(:user) }
-  it { should validate_presence_of(:network) }
   it { should validate_presence_of(:message) }
   it { should validate_presence_of(:tasks) }
 

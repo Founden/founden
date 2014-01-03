@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131220204307) do
+ActiveRecord::Schema.define(version: 20140103195909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20131220204307) do
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.integer  "user_id"
-    t.integer  "network_id"
     t.integer  "conversation_id"
     t.integer  "message_id"
     t.integer  "summary_id"
@@ -37,7 +36,6 @@ ActiveRecord::Schema.define(version: 20131220204307) do
 
   add_index "attachments", ["conversation_id"], name: "index_attachments_on_conversation_id", using: :btree
   add_index "attachments", ["message_id"], name: "index_attachments_on_message_id", using: :btree
-  add_index "attachments", ["network_id"], name: "index_attachments_on_network_id", using: :btree
   add_index "attachments", ["slug"], name: "index_attachments_on_slug", unique: true, using: :btree
   add_index "attachments", ["summary_id"], name: "index_attachments_on_summary_id", using: :btree
   add_index "attachments", ["type"], name: "index_attachments_on_type", using: :btree
@@ -48,12 +46,10 @@ ActiveRecord::Schema.define(version: 20131220204307) do
     t.string   "slug"
     t.hstore   "data"
     t.integer  "user_id"
-    t.integer  "network_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "conversations", ["network_id"], name: "index_conversations_on_network_id", using: :btree
   add_index "conversations", ["slug"], name: "index_conversations_on_slug", unique: true, using: :btree
   add_index "conversations", ["user_id"], name: "index_conversations_on_user_id", using: :btree
 
@@ -73,7 +69,6 @@ ActiveRecord::Schema.define(version: 20131220204307) do
     t.string   "slug"
     t.string   "email"
     t.integer  "user_id"
-    t.integer  "network_id"
     t.integer  "membership_id"
     t.string   "membership_type"
     t.hstore   "data"
@@ -83,14 +78,12 @@ ActiveRecord::Schema.define(version: 20131220204307) do
 
   add_index "invitations", ["email"], name: "index_invitations_on_email", using: :btree
   add_index "invitations", ["membership_id", "membership_type"], name: "index_invitations_on_membership_id_and_membership_type", using: :btree
-  add_index "invitations", ["network_id"], name: "index_invitations_on_network_id", using: :btree
   add_index "invitations", ["slug"], name: "index_invitations_on_slug", using: :btree
   add_index "invitations", ["user_id"], name: "index_invitations_on_user_id", using: :btree
 
   create_table "memberships", force: true do |t|
     t.integer  "creator_id"
     t.integer  "user_id"
-    t.integer  "network_id"
     t.integer  "conversation_id"
     t.hstore   "data"
     t.string   "type"
@@ -101,7 +94,6 @@ ActiveRecord::Schema.define(version: 20131220204307) do
 
   add_index "memberships", ["conversation_id"], name: "index_memberships_on_conversation_id", using: :btree
   add_index "memberships", ["creator_id"], name: "index_memberships_on_creator_id", using: :btree
-  add_index "memberships", ["network_id"], name: "index_memberships_on_network_id", using: :btree
   add_index "memberships", ["slug"], name: "index_memberships_on_slug", unique: true, using: :btree
   add_index "memberships", ["type"], name: "index_memberships_on_type", using: :btree
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
@@ -111,7 +103,6 @@ ActiveRecord::Schema.define(version: 20131220204307) do
     t.string   "slug"
     t.hstore   "data"
     t.integer  "user_id"
-    t.integer  "network_id"
     t.integer  "conversation_id"
     t.integer  "summary_id"
     t.datetime "created_at"
@@ -120,23 +111,10 @@ ActiveRecord::Schema.define(version: 20131220204307) do
   end
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
-  add_index "messages", ["network_id"], name: "index_messages_on_network_id", using: :btree
   add_index "messages", ["parent_message_id"], name: "index_messages_on_parent_message_id", using: :btree
   add_index "messages", ["slug"], name: "index_messages_on_slug", unique: true, using: :btree
   add_index "messages", ["summary_id"], name: "index_messages_on_summary_id", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
-
-  create_table "networks", force: true do |t|
-    t.string   "title"
-    t.string   "slug"
-    t.hstore   "data"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "networks", ["slug"], name: "index_networks_on_slug", unique: true, using: :btree
-  add_index "networks", ["user_id"], name: "index_networks_on_user_id", using: :btree
 
   create_table "queue_classic_jobs", force: true do |t|
     t.text     "q_name",    null: false
@@ -161,14 +139,12 @@ ActiveRecord::Schema.define(version: 20131220204307) do
     t.string   "title"
     t.string   "slug"
     t.hstore   "data"
-    t.integer  "network_id"
     t.integer  "conversation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "summaries", ["conversation_id"], name: "index_summaries_on_conversation_id", using: :btree
-  add_index "summaries", ["network_id"], name: "index_summaries_on_network_id", using: :btree
   add_index "summaries", ["slug"], name: "index_summaries_on_slug", unique: true, using: :btree
 
   create_table "users", force: true do |t|

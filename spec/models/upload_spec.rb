@@ -6,7 +6,6 @@ describe Upload do
   it { should have_attached_file(:attachment) }
 
   it { should validate_presence_of(:user) }
-  it { should validate_presence_of(:network) }
   it { should validate_presence_of(:message) }
   it { should validate_attachment_presence(:attachment) }
 

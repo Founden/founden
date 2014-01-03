@@ -8,7 +8,6 @@ class Membership < ActiveRecord::Base
   # Relationships
   belongs_to :creator, :class_name => User
   belongs_to :user
-  belongs_to :network
   belongs_to :conversation
   has_one :invitation, :as => :membership, :dependent => :destroy
 

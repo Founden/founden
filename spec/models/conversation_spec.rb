@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Conversation do
   it { should belong_to(:user) }
-  it { should belong_to(:network) }
   it { should have_one(:summary) }
   it { should have_many(:messages).dependent('') }
   it { should have_many(:attachments).dependent('') }
@@ -11,7 +10,6 @@ describe Conversation do
   it { should have_many(:participants).through(:conversation_memberships) }
 
   it { should validate_presence_of(:title) }
-  it { should validate_presence_of(:network) }
   it { should validate_presence_of(:user) }
   it { should validate_uniqueness_of(:slug) }
 

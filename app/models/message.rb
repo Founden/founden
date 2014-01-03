@@ -9,7 +9,6 @@ class Message < ActiveRecord::Base
 
   # Relationship
   belongs_to :user
-  belongs_to :network
   belongs_to :conversation
   belongs_to :summary
   belongs_to :parent_message, :class_name => Message
@@ -18,7 +17,7 @@ class Message < ActiveRecord::Base
     :dependent => :destroy, :foreign_key => :parent_message_id
 
   # Validations
-  validates_presence_of :content, :user, :network, :conversation
+  validates_presence_of :content, :user, :conversation
   validates_uniqueness_of :slug
 
   # Callbacks

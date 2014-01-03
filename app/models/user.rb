@@ -12,11 +12,7 @@ class User < ActiveRecord::Base
   # Relationships
   has_many :identities, :dependent => :destroy, :foreign_key => :account_id
 
-  has_many :created_networks, :class_name => Network
-  has_many :network_memberships, :dependent => :destroy
-  has_many :shared_networks, :through => :network_memberships
   has_many :memberships, :dependent => :destroy
-  has_many :networks, proc { distinct }, :through => :memberships
 
   has_many :created_conversations, :class_name => Conversation
   has_many :conversation_memberships, :dependent => :destroy
@@ -32,9 +28,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :slug
 
   # Callbacks
-  after_create do
-    self.created_networks.create(:title => _('%s Network') % self.full_name)
-  end
 
   # Returns user full name
   def full_name

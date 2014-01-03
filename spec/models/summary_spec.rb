@@ -1,11 +1,9 @@
 require 'spec_helper'
 
 describe Summary do
-  it { should belong_to(:network) }
   it { should belong_to(:conversation) }
   it { should have_many(:messages).dependent('') }
 
-  it { should validate_presence_of(:network) }
   it { should validate_presence_of(:conversation) }
   it { should validate_uniqueness_of(:slug) }
 

@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Membership do
   it { should belong_to(:creator) }
   it { should belong_to(:user) }
-  it { should belong_to(:network) }
   it { should belong_to(:conversation) }
   it { should have_one(:invitation).dependent(:destroy) }
 
