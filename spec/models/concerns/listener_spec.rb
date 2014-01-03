@@ -14,7 +14,7 @@ describe Listener do
       user.stub(:loop).and_yield
     end
     after do
-      user.class.connection.unstub(:execute)
+      user.class.connection.unstub(:execute) rescue false
       queries.each do |query|
         user.class.connection.execute(query)
       end
