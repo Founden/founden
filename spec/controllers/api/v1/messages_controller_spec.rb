@@ -34,13 +34,24 @@ describe Api::V1::MessagesController do
     its('keys.size') { should eq(9) }
     its(:id) { should eq(message.slug) }
     its(:created_at) { should eq(message.created_at.as_json) }
-    its(:content) { should eq(message.content) }
+    its(:content) { should include(message.content) }
     its(:user_id) { should eq(message.user.slug) }
     its(:conversation_id) { should eq(message.conversation.slug) }
     its(:parent_message_id) { should be_blank }
     its(:summary_id) { should be_blank }
     its(:reply_ids) { should be_empty }
     its(:attachments) { should be_empty }
+
+    context 'when content is markdown' do
+      let(:markdown) { '### text\n\n *text* \n```text```' }
+      let(:message) do
+        Fabricate(:message, :user => user, :content => markdown)
+      end
+
+      its(:content) { should include('em') }
+      its(:content) { should include('code') }
+      its(:content) { should include('h3') }
+    end
 
     context 'when it has a summary' do
       let(:summary) { Fabricate(:summary, :user => user) }
@@ -90,7 +101,7 @@ describe Api::V1::MessagesController do
     its('keys.size') { should eq(9) }
     its(:id) { should_not be_blank }
     its(:created_at) { should_not be_blank }
-    its(:content) { should eq(attrs[:content]) }
+    its(:content) { should include(attrs[:content]) }
     its(:user_id) { should eq(user.slug) }
     its(:conversation_id) { should eq(attrs[:conversation_id]) }
     its(:parent_message_id) { should be_blank }

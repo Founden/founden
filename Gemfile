@@ -16,6 +16,7 @@ gem 'paperclip'
 gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 gem 'queue_classic'
 gem 'tubesock'
+gem 'redcarpet'
 
 group :development do
   gem 'quiet_assets'

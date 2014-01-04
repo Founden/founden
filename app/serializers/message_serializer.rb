@@ -17,6 +17,11 @@ class MessageSerializer < ActiveModel::Serializer
     object.slug
   end
 
+  # Get the original content through a Markdown parser
+  def content
+    Founden::Application.config.markdown.render(object.content)
+  end
+
   # Since `polymorphic` is not available yet, lets use it through attributes
   def attachments
     object.attachments.map do |attachment|

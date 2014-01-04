@@ -273,6 +273,7 @@ GEM
     rb-inotify (0.9.3)
       ffi (>= 0.5.0)
     readwritesettings (3.0.1)
+    redcarpet (3.0.0)
     ref (1.0.5)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
@@ -589,6 +590,7 @@ DEPENDENCIES
   quiet_assets
   rails
   readwritesettings
+  redcarpet
   rspec-rails
   rubysl
   sanitize
