@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'membership'
 
 describe Api::V1::UsersController do
   let(:user) { Fabricate(:user) }
@@ -27,8 +28,10 @@ describe Api::V1::UsersController do
   describe '#show' do
     include AvatarHelper
 
-    let(:network) { Fabricate(:network, :user => user) }
-    let(:user_id) { network.user.slug }
+    let!(:friendship) do
+      Fabricate(:membership, :type => Friendship.name, :creator => user)
+    end
+    let(:user_id) { friendship.creator.slug }
 
     before { get(:show, :id => user_id) }
 
@@ -40,7 +43,7 @@ describe Api::V1::UsersController do
       its(:first_name) { should eq(user.first_name) }
       its(:last_name) { should eq(user.last_name) }
       its(:avatar_url) { should eq(avatar_uri(user)) }
-      its('network_ids.size') { should eq(user.networks.count) }
+      its(:contact_ids) { should include(friendship.user.slug) }
     end
 
     context 'if user is the logged in' do

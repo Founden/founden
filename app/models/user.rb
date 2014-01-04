@@ -14,6 +14,12 @@ class User < ActiveRecord::Base
 
   has_many :memberships, :dependent => :destroy
 
+  has_many :created_friendships, :dependent => :destroy,
+    :foreign_key => :creator_id, :class_name => Friendship
+  has_many :added_contacts, :through => :created_friendships, :source => :user
+  has_many :friendships, :dependent => :destroy
+  has_many :mutual_contacts, :through => :friendships, :source => :creator
+
   has_many :created_conversations, :class_name => Conversation
   has_many :conversation_memberships, :dependent => :destroy
   has_many :conversations, :through => :conversation_memberships

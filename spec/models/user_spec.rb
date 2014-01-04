@@ -5,6 +5,11 @@ describe User do
 
   it { should have_many(:memberships).dependent(:destroy) }
 
+  it { should have_many(:created_friendships).dependent(:destroy) }
+  it { should have_many(:added_contacts).through(:created_friendships) }
+  it { should have_many(:friendships).dependent(:destroy) }
+  it { should have_many(:mutual_contacts).through(:friendships) }
+
   it { should have_many(:created_conversations).dependent('') }
   it { should have_many(:conversation_memberships).dependent(:destroy) }
   it { should have_many(:conversations).through(:conversation_memberships) }

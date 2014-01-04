@@ -5,9 +5,7 @@ class UserSerializer < ActiveModel::Serializer
   root :user
 
   attributes :id, :first_name, :last_name
-  attributes :avatar_url
-
-  has_many :networks, :embed_key => :slug
+  attributes :avatar_url, :contact_ids
 
   # Mask the id with the slug value
   def id
@@ -19,9 +17,15 @@ class UserSerializer < ActiveModel::Serializer
     avatar_uri(object)
   end
 
+  # User contacts
+  # TODO: Delegate a separate endpoint to avoid pre-loading huge data set
+  def contact_ids
+    (object.added_contacts + object.mutual_contacts).map{|ct| ct.slug }
+  end
+
   # Filters out some keys from other users
   def filter(keys)
-    keys.delete(:networks) if !scope.id.eql?(object.id)
+    keys.delete(:contact_ids) if !scope.id.eql?(object.id)
     keys
   end
 end
