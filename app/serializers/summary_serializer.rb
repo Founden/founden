@@ -4,7 +4,6 @@ class SummarySerializer < ActiveModel::Serializer
 
   attributes :id, :created_at
 
-  has_one :network, :embed_key => :slug, :embed_in_root => false
   has_one :conversation, :embed_key => :slug, :embed_in_root => false
   has_many :messages, :embed_key => :slug
 

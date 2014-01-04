@@ -2,23 +2,19 @@
 class Api::V1::ConversationsController < Api::V1::ApplicationController
   # Lists available conversations
   def index
-    conversations = Conversation.where(
-      :slug => params[:ids], :network_id => current_account.network_ids)
+    conversations = current_account.conversations.where(:slug => params[:ids])
     render :json => conversations
   end
 
   # Lists a conversation
   def show
-    conversation = Conversation.find_by!(
-      :slug => params[:id], :network_id => current_account.network_ids)
+    conversation = current_account.conversations.find_by!(:slug => params[:id])
     render :json => conversation
   end
 
   # Create a conversation
   def create
-    network = current_account.networks.find_by!(
-      :slug => new_conversation_params[:network_id])
-    conversation = network.conversations.build(
+    conversation = current_account.conversations.build(
       new_conversation_params.merge(:user => current_account))
 
     if conversation.save
@@ -32,6 +28,6 @@ class Api::V1::ConversationsController < Api::V1::ApplicationController
 
   # Parameters for creating a new conversation
   def new_conversation_params
-    params.require(:conversation).permit(:title, :network_id)
+    params.require(:conversation).permit(:title)
   end
 end

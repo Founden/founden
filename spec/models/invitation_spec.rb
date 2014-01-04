@@ -16,13 +16,25 @@ describe Invitation do
 
     it { should be_valid }
 
-    context 'validates email exclusivity', :pending do
+    context 'validates email exclusivity' do
       subject(:invitation) do
-        Fabricate.build(
-          :invitation, :user => user, :email => user.email)
+        Fabricate.build(:invitation, :user => user, :email => user.email)
       end
 
       it { should_not be_valid }
+
+      context 'including added contact emails' do
+        subject(:friendship) do
+          Fabricate(:membership, :type => Friendship.name, :creator => user)
+        end
+
+        subject(:invitation) do
+          Fabricate.build(
+            :invitation, :user => user, :email => friendship.user.email)
+        end
+
+        it { should_not be_valid }
+      end
     end
 
     context '#save queues an email' do

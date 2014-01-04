@@ -15,7 +15,6 @@ Founden::Application.routes.draw do
   namespace :api, :constraints => {:format => :json} do
     namespace :v1 do
       resources(:users, :only => [:index, :show])
-      resources(:networks, :only => [:index, :show])
       resources(:conversations, :only => [:index, :show, :create])
       resources(:messages, :only => [:index, :show, :create, :update])
       resources(:attachments, :only => [:index, :show, :create])

@@ -8,9 +8,10 @@ describe Api::V1::MembershipsController do
   end
 
   describe '#create' do
+    let(:conversation) { Fabricate(:conversation, :user => user) }
     let(:attrs) do
       Fabricate.attributes_for(
-        :membership, :creator => user, :network => user.networks.first)
+        :membership, :creator => user, :conversation => conversation)
     end
     before { post(:create, :membership => attrs) }
 
@@ -19,33 +20,12 @@ describe Api::V1::MembershipsController do
     its('keys.count') { should eq(5) }
     its(:id) { should_not be_blank }
     its(:created_at) { should_not be_blank }
-    its(:network_id) { should eq(attrs[:network_id]) }
     its(:user_id) { should eq(attrs[:user_id]) }
     its(:creator_id) { should eq(user.slug) }
+    its(:conversation_id) { should eq(attrs[:conversation_id]) }
 
-    context 'when a conversation is included' do
-      let(:conversation) do
-        Fabricate(:conversation, :user => user, :network => user.networks.first)
-      end
-      let(:attrs) do
-        Fabricate.attributes_for(:membership, :creator => user,
-                                 :network => user.networks.first, :conversation => conversation)
-      end
-
-      its('keys.count') { should eq(6) }
-      its(:id) { should_not be_blank }
-      its(:created_at) { should_not be_blank }
-      its(:network_id) { should eq(attrs[:network_id]) }
-      its(:conversation_id) { should eq(attrs[:conversation_id]) }
-      its(:user_id) { should eq(attrs[:user_id]) }
-      its(:creator_id) { should eq(user.slug) }
-    end
-
-    context 'when user reference is unavailable' do
-      let(:attrs) do
-        Fabricate.attributes_for(:membership, :creator => user, :user_id => '-',
-          :network => user.networks.first)
-      end
+    context 'when a conversation is not included' do
+      let(:conversation) { nil }
 
       subject { response }
 
@@ -53,10 +33,9 @@ describe Api::V1::MembershipsController do
       its(:body) { should include('Resource unavailable') }
     end
 
-    context 'when network reference is unavailable' do
+    context 'when user reference is unavailable' do
       let(:attrs) do
-        Fabricate.attributes_for(:membership, :creator => user,
-          :network => Fabricate(:network))
+        Fabricate.attributes_for(:membership, :creator => user, :user_id => '-')
       end
 
       subject { response }
@@ -68,7 +47,6 @@ describe Api::V1::MembershipsController do
     context 'when conversation reference is unavailable' do
       let(:attrs) do
         Fabricate.attributes_for(:membership, :creator => user,
-          :network => user.networks.first,
           :conversation => Fabricate(:conversation))
       end
 

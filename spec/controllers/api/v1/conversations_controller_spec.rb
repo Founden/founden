@@ -31,12 +31,11 @@ describe Api::V1::ConversationsController do
 
     subject(:api_conversation) { json_to_ostruct(response.body, :conversation) }
 
-    its('keys.size') { should eq(8) }
+    its('keys.size') { should eq(7) }
     its(:id) { should eq(conversation.slug) }
     its(:created_at) { should eq(conversation.created_at.as_json) }
     its(:title) { should eq(conversation.title) }
     its(:user_id) { should eq(conversation.user.slug) }
-    its(:network_id) { should eq(conversation.network.slug) }
     its(:summary_id) { should be_blank }
     its('message_ids.count') { should eq(conversation.messages.count) }
     its('participant_ids.count') { should eq(conversation.participants.count) }
@@ -44,7 +43,7 @@ describe Api::V1::ConversationsController do
     context 'when conversation has a summary' do
       let(:conversation) { Fabricate(:summary, :user => user).conversation }
 
-      its('keys.size') { should eq(8) }
+      its('keys.size') { should eq(7) }
       its(:summary_id) { should eq(conversation.summary.slug) }
     end
 
@@ -65,12 +64,11 @@ describe Api::V1::ConversationsController do
 
     subject(:api_conversation) { json_to_ostruct(response.body, :conversation) }
 
-    its('keys.size') { should eq(8) }
+    its('keys.size') { should eq(7) }
     its(:id) { should_not be_blank }
     its(:created_at) { should_not be_blank }
     its(:title) { should eq(attrs[:title]) }
     its(:user_id) { should eq(user.slug) }
-    its(:network_id) { should eq(attrs[:network_id]) }
     its(:summary) { should be_blank }
     its(:message_ids) { should be_empty }
     its(:participant_ids) { should eq([user.slug]) }
@@ -83,15 +81,6 @@ describe Api::V1::ConversationsController do
 
       its(:status) { should eq(400) }
       its(:body) { should include("Title can't be blank") }
-    end
-
-    context 'when network id is not available' do
-      let(:attrs) { Fabricate.attributes_for(:conversation, :network_id => 0) }
-
-      subject { response }
-
-      its(:status) { should eq(404) }
-      its(:body) { should include(_('Resource unavailable')) }
     end
   end
 

@@ -7,23 +7,20 @@ class Api::V1::AttachmentsController < Api::V1::ApplicationController
   # Lists available attachments
   def index
     attachments = Attachment.where(
-      :slug => params[:ids], :network_id => current_account.network_ids)
+      :slug => params[:ids], :conversation_id => current_account.conversation_ids)
     render :json => attachments
   end
 
   # Lists an attachment
   def show
-    attachment = Attachment.find_by!(
-      :slug => params[:id], :network_id => current_account.network_ids + [nil])
+    attachment = Attachment.find_by!(:slug => params[:id],
+      :conversation_id => current_account.conversation_ids + [nil])
     render :json => attachment
   end
 
   # Create an attachment
   def create
-    network = current_account.networks.find_by!(
-      :slug => new_attachment_params[:network_id])
-
-    conversation = network.conversations.find_by!(
+    conversation = current_account.conversations.find_by!(
       :slug => new_attachment_params[:conversation_id])
 
     message = conversation.messages.find_by!(
@@ -31,8 +28,7 @@ class Api::V1::AttachmentsController < Api::V1::ApplicationController
 
     klass = (@attachment_type.to_s.camelize).safe_constantize
 
-    attachment = klass.new(new_attachment_params.merge(
-      :user => current_account, :network => network,
+    attachment = klass.new(new_attachment_params.merge(:user => current_account,
       :conversation => conversation, :message => message))
 
     if attachment.save

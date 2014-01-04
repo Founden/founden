@@ -32,10 +32,9 @@ describe Api::V1::SummariesController do
 
     subject(:api_summary) { json_to_ostruct(response.body, :summary) }
 
-    its('keys.size') { should eq(5) }
+    its('keys.size') { should eq(4) }
     its(:id) { should eq(summary.slug) }
     its(:created_at) { should eq(summary.created_at.as_json) }
-    its(:network_id) { should eq(summary.network.slug) }
     its(:conversation_id) { should eq(summary.conversation.slug) }
     its(:message_ids) { should be_empty }
 

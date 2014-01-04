@@ -43,8 +43,7 @@ describe Notifier do
       let(:conversation) { message.conversation }
       before do
         conversation.conversation_memberships.create(
-          :creator => message.user, :network => message.network,
-          :user => participant)
+          :creator => message.user, :user => participant)
       end
 
       it { should include('user_%d' % participant.id) }

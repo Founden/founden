@@ -34,7 +34,6 @@ describe Api::V1::AttachmentsController do
       its(:type) { should eq(attachment.type.to_s.underscore) }
       its(:title) { should eq(attachment.title) }
       its(:user_id) { should eq(attachment.user.slug) }
-      its(:network_id) { should eq(attachment.network.slug) }
       its(:conversation_id) { should eq(attachment.conversation.slug) }
       its(:message_id) { should eq(attachment.message.slug) }
     end
@@ -63,7 +62,7 @@ describe Api::V1::AttachmentsController do
 
       subject(:api_link) { json_to_ostruct(response.body, :link) }
 
-      its('keys.size') { should eq(9) }
+      its('keys.size') { should eq(8) }
       its(:url) { should eq(attachment.url) }
       it_behaves_like 'an attachment'
     end
@@ -74,7 +73,7 @@ describe Api::V1::AttachmentsController do
 
       subject(:api_location) { json_to_ostruct(response.body, :location) }
 
-      its('keys.size') { should eq(10) }
+      its('keys.size') { should eq(9) }
       its(:latitude) { should eq(attachment.latitude.to_s) }
       its(:longitude) { should eq(attachment.longitude.to_s) }
       it_behaves_like 'an attachment'
@@ -86,7 +85,7 @@ describe Api::V1::AttachmentsController do
 
       subject(:api_task_list) { json_to_ostruct(response.body, :task_list) }
 
-      its('keys.size') { should eq(9) }
+      its('keys.size') { should eq(8) }
       its('tasks.length') { should eq(attachment.tasks.length) }
       its('tasks.first.keys') { should eq(attachment.tasks.first.keys) }
       its('tasks.first.values') { should eq(attachment.tasks.first.values) }
@@ -99,7 +98,7 @@ describe Api::V1::AttachmentsController do
 
       subject(:api_timestamp) { json_to_ostruct(response.body, :timestamp) }
 
-      its('keys.size') { should eq(9) }
+      its('keys.size') { should eq(8) }
       its(:timestamp) { should eq(attachment.timestamp.to_s) }
       it_behaves_like 'an attachment'
     end
@@ -110,7 +109,7 @@ describe Api::V1::AttachmentsController do
 
       subject(:api_upload) { json_to_ostruct(response.body, :upload) }
 
-      its('keys.size') { should eq(14) }
+      its('keys.size') { should eq(13) }
       its(:attachment) { should eq(attachment.attachment.to_s) }
       its(:attachment_file_size) { should eq(attachment.attachment_file_size) }
       its(:attachment_file_name) { should eq(attachment.attachment_file_name) }
@@ -141,14 +140,13 @@ describe Api::V1::AttachmentsController do
     context 'for a timestamp attachment type' do
       let(:attachment_type) { :timestamp }
 
-      its('keys.size') { should eq(9) }
+      its('keys.size') { should eq(8) }
       its(:id) { should_not be_blank }
       its(:created_at) { should_not be_blank }
       its(:type) { should eq(attachment_type.to_s) }
       its(:title) { should eq(attrs[:title]) }
       its(:timestamp) { should eq(attrs[:timestamp]) }
       its(:user_id) { should eq(user.slug) }
-      its(:network_id) { should eq(attrs[:network_id]) }
       its(:conversation_id) { should eq(attrs[:conversation_id]) }
       its(:message_id) { should eq(attrs[:message_id]) }
     end
@@ -156,7 +154,7 @@ describe Api::V1::AttachmentsController do
     context 'for a location attachment type' do
       let(:attachment_type) { :location }
 
-      its('keys.size') { should eq(10) }
+      its('keys.size') { should eq(9) }
       its(:id) { should_not be_blank }
       its(:created_at) { should_not be_blank }
       its(:type) { should eq(attachment_type.to_s) }
@@ -164,7 +162,6 @@ describe Api::V1::AttachmentsController do
       its(:longitude) { should eq(attrs[:longitude].to_s) }
       its(:latitude) { should eq(attrs[:latitude].to_s) }
       its(:user_id) { should eq(user.slug) }
-      its(:network_id) { should eq(attrs[:network_id]) }
       its(:conversation_id) { should eq(attrs[:conversation_id]) }
       its(:message_id) { should eq(attrs[:message_id]) }
     end
@@ -177,16 +174,6 @@ describe Api::V1::AttachmentsController do
 
       its(:status) { should eq(400) }
       its(:body) { should include(_('We were expecting a different input')) }
-    end
-
-    context 'when network id is not available' do
-      let(:attachment_type) { :timestamp }
-      let(:attrs) { Fabricate.attributes_for(attachment_type, :network_id => 0)}
-
-      subject { response }
-
-      its(:status) { should eq(404) }
-      its(:body) { should include(_('Resource unavailable')) }
     end
   end
 

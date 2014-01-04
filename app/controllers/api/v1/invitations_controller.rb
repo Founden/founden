@@ -14,10 +14,8 @@ class Api::V1::InvitationsController < Api::V1::ApplicationController
 
   # Creates a new invitation
   def create
-    network = current_account.networks.find_by!(
-      :slug => new_invitation_params[:network_id])
-    invitation = current_account.invitations.build(new_invitation_params.merge(
-      :user => current_account, :network => network))
+    invitation = current_account.invitations.build(
+      new_invitation_params.merge(:user => current_account))
 
     if invitation.save
       render :json => invitation
@@ -32,7 +30,7 @@ class Api::V1::InvitationsController < Api::V1::ApplicationController
       :slug => params[:id], :email => current_account.email)
 
     if invitation and !invitation.membership
-      invitation.membership = invitation.network.network_memberships.create(
+      invitation.membership = invitation.user.created_friendships.create(
         :creator => invitation.user, :user => current_account)
       invitation.save(:validate => false)
     end
@@ -43,6 +41,6 @@ class Api::V1::InvitationsController < Api::V1::ApplicationController
 
   # Allowed params for a new invitation
   def new_invitation_params
-    params.require(:invitation).permit(:network_id, :email)
+    params.require(:invitation).permit(:email)
   end
 end
