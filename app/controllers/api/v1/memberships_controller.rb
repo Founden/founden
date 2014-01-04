@@ -9,11 +9,8 @@ class Api::V1::MembershipsController < Api::V1::ApplicationController
     membership = ConversationMembership.find_or_initialize_by(
       :user => user, :creator => current_account, :conversation => conversation)
 
-    if membership.save
-      render :json => membership
-    else
-      respond_with_bad_request(membership.errors)
-    end
+    membership.save if membership.new_record?
+    render :json => membership
   end
 
   private
