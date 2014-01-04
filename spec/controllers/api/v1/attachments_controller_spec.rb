@@ -166,6 +166,16 @@ describe Api::V1::AttachmentsController do
       its(:message_id) { should eq(attrs[:message_id]) }
     end
 
+    context 'when params are not valid' do
+      let(:attachment_type) { :link }
+      let(:attrs) { Fabricate.attributes_for(:link, :user => user, :url => nil)}
+
+      subject { response }
+
+      its(:status) { should eq(400) }
+      its(:body) { should include(_("Url is invalid, Url can't be blank")) }
+    end
+
     context 'when root key is not available' do
       let(:attachment_type) { :some_key }
       let(:attrs) { Fabricate.attributes_for(:timestamp) }
