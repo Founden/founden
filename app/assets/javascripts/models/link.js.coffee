@@ -5,7 +5,7 @@ Founden.Link = Founden.Attachment.extend
   previewUrl: null
   html: null
   authorName: null
-  url: DS.attr('string')
+  url: Ember.attr()
   endpoint: 'http://api.embed.ly/1/oembed?&callback=?&url='
 
   didLoad: ->
@@ -27,3 +27,5 @@ Founden.Link = Founden.Attachment.extend
           @set('previewUrl', embed.thumbnail_url)
           @set('authorName', embed.author_name)
           @set('html', embed.html)
+
+Founden.Link.rootKey = 'link'

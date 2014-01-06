@@ -1,13 +1,14 @@
-Founden.ApplicationAdapter = DS.ActiveModelAdapter.extend
+Founden.ApplicationAdapter = Ember.RESTAdapter.extend
   # API End-point namespace
-  namespace: 'api/v1'
-  defaultSerializer: 'application'
+  url: 'api/v1'
 
-  # Make sure we send requests to parent type API endpoint
-  pathForType: (type) ->
-    decamelized = Ember.String.decamelize(type)
-    if decamelized in ['link', 'location', 'task_list', 'timestamp', 'upload']
-      decamelized = 'attachment'
-    if decamelized in ['parentMessage', 'reply']
-      decamelized = 'message'
-    Ember.String.pluralize(decamelized)
+Ember.Model.reopenClass
+  adapter: Founden.ApplicationAdapter.create()
+  url: 'api/v1/'
+  camelizeKeys: true
+
+# It's not idiomatic, but saves time migrating from ember-data
+Founden.hasMany = Ember.hasMany
+Ember.hasMany = (type, options) ->
+  typeClass = 'Founden.' + Ember.String.classify(type)
+  Founden.hasMany(typeClass, options)

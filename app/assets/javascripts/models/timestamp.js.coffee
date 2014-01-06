@@ -1,6 +1,6 @@
 Founden.Timestamp = Founden.Attachment.extend
   isTimestamp: true
-  timestamp: DS.attr('date')
+  timestamp: Ember.attr('date')
 
   rawValue: null
 
@@ -15,3 +15,5 @@ Founden.Timestamp = Founden.Attachment.extend
     if date
       @set('timestamp', new Date(date))
   ).observes('rawValue')
+
+Founden.Timestamp.rootKey = 'timestamp'
