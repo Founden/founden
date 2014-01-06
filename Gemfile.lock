@@ -39,6 +39,14 @@ GIT
       easy_auth
       oauth2
 
+GIT
+  remote: https://github.com/stas/ember-model
+  revision: 333b0241294973151033ea9f2620d82189815596
+  branch: gem
+  specs:
+    ember-model-source (0.0.10)
+      ember-source
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -566,7 +574,7 @@ DEPENDENCIES
   easy_auth!
   easy_auth-google!
   easy_auth-oauth2!
-  ember-data-source (~> 1.0.0.beta)
+  ember-model-source!
   ember-rails
   ember-source (~> 1.3.0.beta)
   fabrication

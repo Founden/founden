@@ -3,6 +3,7 @@
 #= require handlebars
 #= require ember
 #= require ember-data
+#= require ember-model
 
 #= require_self
 #= require_tree ./mixins
