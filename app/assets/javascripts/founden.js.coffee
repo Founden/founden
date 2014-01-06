@@ -7,9 +7,9 @@
 #= require_self
 #= require_tree ./mixins
 #= require ./adapter
+#= require_tree ./transforms
 #= require_tree ./models
 #= require_tree ./initializers
-#= require_tree ./transforms
 # require ./serializer
 # require ./store
 #= require_tree ./controllers
