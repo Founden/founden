@@ -30,8 +30,8 @@ Ember.EmbeddedHasManyArray = Ember.EmbeddedHasManyArray.extend
       record = klass.find(reference.id)
       return record
 
-  materializeRecord: (idx, ignoreEmbeddedCheck) ->
-    if @get('embedded') == 'polymorphic' and !ignoreEmbeddedCheck
+  materializeRecord: (idx) ->
+    if @get('embedded') == 'polymorphic'
       @materializePolymorphicRecord(idx)
     else
       @_super(idx)
