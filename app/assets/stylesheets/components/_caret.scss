@@ -1,17 +1,17 @@
 .caret {
   position: relative;
-  top: 20px;
-  @include transition(all 0.2s);
+  top: 2px;
+  z-index: 100;
   opacity: 0;
+  @include transition(all 0.2s);
 }
 
 .caret-actions {
   position: absolute;
-  background-color: $beige;
+  background-color: $black;
   border-radius: 20px;
-  box-shadow: 1px 1px rgba($black, 0.2);
   top: 25px;
-  left: -20px;
+  left: -18px;
   @include clearfix;
 
   &:before {
@@ -20,7 +20,7 @@
     left: 50%;
     top: -2px;
     margin-left: -3px;
-    background-color: $beige;
+    background-color: $black;
     width: 6px;
     height: 6px;
     @include transform(rotate(45deg));
@@ -29,20 +29,21 @@
   span {
     float: left;
     padding: 0 5px;
-    border-radius: 20px 0 0 20px;
     cursor: pointer;
     position: relative;
     z-index: 1;
     font-size: em(12);
     font-weight: 700;
     line-height: 20px;
-
-    &:hover {
-      background-color: shade($beige, 10%);
-    }
+    color: $white;
 
     &:last-of-type {
-      border-radius: 0 20px 20px 0;
+      font-size: em(16);
+      margin: -2px 0 0 -4px;
+    }
+
+    &:hover {
+      color: rgba($white, 0.8);
     }
   }
 }

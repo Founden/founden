@@ -23,10 +23,6 @@ Founden.MessageFormComponent = Ember.Component.extend Founden.ScrollEventsMixin,
       @set('showCaret', false)
   ).observes('mentionsSupport.isVisible', 'attachmentsSupport.isVisible')
 
-  contacts: ( ->
-    @get('network.contacts').removeObject(@get('user'))
-  ).property('network.contacts')
-
   handleMessage: ->
     content = @get('messageContent')
     if content.length > 1
@@ -41,7 +37,16 @@ Founden.MessageFormComponent = Ember.Component.extend Founden.ScrollEventsMixin,
     tabIndex: 1
     valueBinding: 'parentView.messageContent'
 
+    valueChanged: ( ->
+      @adjustHeight()
+    ).observes('value')
+
+    adjustHeight: ->
+      @$().height(0)
+      @$().height(@get('element.scrollHeight'))
+
     didInsertElement: ->
+      @adjustHeight()
       @set('parentView.textarea', @$())
 
     focusIn: (event) ->
