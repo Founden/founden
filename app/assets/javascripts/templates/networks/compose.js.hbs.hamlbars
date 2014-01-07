@@ -1,4 +1,0 @@
-.conversation
-
-  .conversation-header
-    {{input type='text' placeholder='Type conversation subject...' class='conversation-title' valueBinding='content.title' action='create'}}
