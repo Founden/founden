@@ -1,7 +1,6 @@
 Founden.ConversationsIndexRoute = Ember.Route.extend
   setupController: (controller, model) ->
-    conversations = Founden.Conversation.find()
-    controller.set('content', conversations)
+    controller.set('content', @currentUser.get('conversations'))
 
 Founden.ConversationsShowRoute = Ember.Route.extend
   deactivate: ->

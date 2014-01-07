@@ -2,7 +2,7 @@
 class Api::V1::ConversationsController < Api::V1::ApplicationController
   # Lists available conversations
   def index
-    conversations = current_account.conversations
+    conversations = current_account.conversations.where(:slug => params[:ids])
     render :json => conversations
   end
 
