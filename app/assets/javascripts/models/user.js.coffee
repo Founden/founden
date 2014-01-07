@@ -3,6 +3,7 @@ Founden.User = Ember.Model.extend
   lastName: Ember.attr()
   avatarUrl: Ember.attr()
 
+  conversations: Ember.hasMany('conversation', key: 'conversation_ids', embeded: true)
   contacts: Ember.hasMany('user', key: 'contact_ids')
 
   name: ( ->
