@@ -1,1 +1,4 @@
-Founden.IndexRoute = Ember.Route.extend()
+Founden.IndexRoute = Ember.Route.extend
+
+  redirect: (model) ->
+    @transitionTo('conversations')
