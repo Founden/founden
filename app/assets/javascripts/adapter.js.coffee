@@ -12,3 +12,7 @@ Founden.hasMany = Ember.hasMany
 Ember.hasMany = (type, options) ->
   typeClass = 'Founden.' + Ember.String.classify(type)
   Founden.hasMany(typeClass, options)
+Founden.belongsTo = Ember.belongsTo
+Ember.belongsTo = (type, options) ->
+  typeClass = 'Founden.' + Ember.String.classify(type)
+  Founden.belongsTo(typeClass, options)
