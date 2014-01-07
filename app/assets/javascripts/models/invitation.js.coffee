@@ -1,8 +1,12 @@
-Founden.Invitation = DS.Model.extend Founden.TimeAgoMixin,
-  email: DS.attr('string')
-  networkTitle: DS.attr('string', readOnly: true)
-  createdAt: DS.attr('date', readOnly: true, defaultValue: new Date)
+Founden.Invitation = Ember.Model.extend Founden.TimeAgoMixin,
+  email: Ember.attr()
+  networkTitle: Ember.attr(readOnly: true)
+  createdAt: Ember.attr('date', readOnly: true, defaultValue: new Date)
 
-  user: DS.belongsTo('user')
-  network: DS.belongsTo('network')
-  membership: DS.belongsTo('membership')
+  user: Ember.belongsTo('user')
+  network: Ember.belongsTo('network')
+  membership: Ember.belongsTo('membership')
+
+Founden.Invitation.rootKey = 'invitation'
+Founden.Invitation.collectionKey = 'invitations'
+Founden.Invitation.url += 'invitations'
