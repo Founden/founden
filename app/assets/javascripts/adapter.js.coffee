@@ -18,7 +18,8 @@ Ember.belongsTo = (type, options) ->
   typeClass = 'Founden.' + Ember.String.classify(type)
   Founden.belongsTo(typeClass, options)
 
-Ember.EmbeddedHasManyArray = Ember.EmbeddedHasManyArray.extend
+# Monkey patch to add support for polymorphic embedded relationships
+Ember.EmbeddedHasManyArray.reopen
   materializePolymorphicRecord: (idx) ->
     content = @get('content')
     reference = content.objectAt(idx)
