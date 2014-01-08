@@ -27,6 +27,7 @@ group :production do
   gem 'puma'
   gem 'bugsnag', :require => 'bugsnag/railtie'
   gem 'aws-sdk'
+  gem 'websocket-native'
 end
 
 # See why https://github.com/rails/rails/commit/49c4af43ec
