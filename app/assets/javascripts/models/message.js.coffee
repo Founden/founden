@@ -11,7 +11,7 @@ Founden.Message = Ember.Model.extend Founden.TimeAgoMixin,
   network: Ember.belongsTo('network')
   parentMessage: Ember.belongsTo('message', inverse: 'replies')
   conversation: Ember.belongsTo('conversation')
-  attachments: Ember.hasMany('attachment', polymorphic: true, defaultValue: [], async: true)
+  attachments: Ember.hasMany('attachment', embedded: 'polymorphic', key: 'attachments')
   replies: Ember.hasMany('message', inverse: 'parentMessage', defaultValue: [])
 
 Founden.Message.rootKey = 'message'
