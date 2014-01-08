@@ -1,5 +1,8 @@
 Founden.AttachmentsLocationSearchController = Founden.AttachmentsEditorContentController.extend
   # Overwrites `AttachmentsEditorContentController` attribute
   contentTypeKey: 'location'
-  # Since content is an array, we bind to the first object
-  locationBinding: 'content.firstObject'
+
+  # Wrap location to first object in content
+  location: ( ->
+    @get('content.firstObject')
+  ).property('content.firstObject')
