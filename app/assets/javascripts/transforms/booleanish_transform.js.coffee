@@ -5,4 +5,4 @@ Founden.BooleanishTransform =
   deserialize: (value) ->
     !!value
 
-Ember.Model.dataTypes['booleanish'] = Founden.BooleanishTransform
+Ember.Model.dataTypes['boolean'] = Founden.BooleanishTransform
