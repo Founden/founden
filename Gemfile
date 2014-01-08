@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'pg'
-gem 'rubysl', :platform => 'rbx'
 gem 'easy_auth', :github => 'dockyard/easy_auth'
 gem 'easy_auth-oauth2', :github => 'stas/easy_auth-oauth2', :branch => 'update_to_easy_auth_master'
 gem 'easy_auth-google', :github => 'stas/easy_auth-google'
@@ -64,4 +63,10 @@ group :test do
   gem 'shoulda-matchers'
   gem 'simplecov', :require => false
   gem 'capybara-puma'
+end
+
+platforms :rbx do
+  gem 'rubysl'
+  gem 'racc'
+  gem 'rubinius-coverage'
 end

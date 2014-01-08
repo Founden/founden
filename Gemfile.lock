@@ -260,6 +260,7 @@ GEM
       pg (~> 0.17.0)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
+    racc (1.4.10)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -299,6 +300,7 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
+    rubinius-coverage (2.0.3)
     rubysl (2.0.15)
       rubysl-abbrev (~> 2.0)
       rubysl-base64 (~> 2.0)
@@ -597,10 +599,12 @@ DEPENDENCIES
   puma
   queue_classic
   quiet_assets
+  racc
   rails
   readwritesettings
   redcarpet
   rspec-rails
+  rubinius-coverage
   rubysl
   sanitize
   sass-rails
