@@ -85,18 +85,7 @@ Founden.MentionsSupportComponent = Ember.Component.extend Founden.TextAreaCaretM
   appendMention: (user) ->
     mention = user.get('name')
     textarea = @get('textarea')
-    oldValue = textarea.value
-    newValue = @textBeforeCaret(textarea)
-    newValue += mention
-
-    # Snapshot the new position inside textarea
-    newCaretPosition = newValue.length
-
-    newValue +=
-      oldValue.substring(@textBeforeCaret(textarea).length, oldValue.length)
-    textarea.value = newValue
-    textarea.selectionStart = textarea.selectionEnd = newCaretPosition
-
+    @appendAfterCarret(textarea, mention)
     @get('parentView').sendAction('addMember', user)
 
   didInsertElement: ->

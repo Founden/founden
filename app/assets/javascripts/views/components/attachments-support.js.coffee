@@ -53,9 +53,7 @@ Founden.AttachmentsSupportComponent = Ember.Component.extend Founden.TextAreaCar
     type.set('attachments', [])
     @set('selectedAttachmentType', type)
     textarea = @get('textarea')
-    oldValue = textarea.value
-    textarea.value = oldValue.substring(0, oldValue.length - 1)
-    textarea.selectionStart = textarea.selectionEnd = oldValue.length - 1
+    @appendAfterCarret(textarea, '')
     @set('isVisible', false)
 
   searchChanged: ( ->
