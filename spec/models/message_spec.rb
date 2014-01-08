@@ -26,5 +26,21 @@ describe Message do
 
       its(:content) { should eq(Sanitize.clean(content)) }
     end
+
+    context '#materialize_mentions' do
+      let(:conversation) { Fabricate(:conversation) }
+      let(:participant) { conversation.participants.first }
+      let(:content) do
+        Faker::Lorem.paragraph + participant.full_name + Faker::Lorem.paragraph
+      end
+      subject(:message) do
+        Fabricate(:message, :content => content, :conversation => conversation)
+      end
+
+      before { message.reload }
+
+      its(:content) { should_not include(participant.full_name) }
+      its(:content) { should include('@id:%d@' % participant.id) }
+    end
   end
 end
