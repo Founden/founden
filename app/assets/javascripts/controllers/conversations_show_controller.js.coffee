@@ -23,13 +23,11 @@ Founden.ConversationsShowController = Ember.Controller.extend
 
   saveMessage: (content, attachments) ->
     conversation = @get('content')
-    network = @get('content.network')
     messages = @get('content.messages')
     user = @get('currentUser')
 
-    message = @store.createRecord 'message',
+    message = @container.resolve('model:message').create
       content: content
-      network: network
       conversation: conversation
       user: user
 
@@ -38,7 +36,6 @@ Founden.ConversationsShowController = Ember.Controller.extend
         attachments.forEach (attachment) ->
           attachment.set('message', message)
           attachment.set('conversation', conversation)
-          attachment.set('network', network)
           attachment.set('user', user)
           attachment.save().then ->
             message.get('attachments').pushObject(attachment)
@@ -47,13 +44,11 @@ Founden.ConversationsShowController = Ember.Controller.extend
 
   saveReply: (content, attachments) ->
     conversation = @get('content')
-    network = @get('content.network')
     parentMessage = @get('replyToMessage')
     user = @get('currentUser')
 
-    message = @store.createRecord 'message',
+    message = @container.resolve('model:message').create
       content: content
-      network: network
       conversation: conversation
       parentMessage: parentMessage
       user: user
@@ -63,7 +58,6 @@ Founden.ConversationsShowController = Ember.Controller.extend
         attachments.forEach (attachment) ->
           attachment.set('message', message)
           attachment.set('conversation', conversation)
-          attachment.set('network', network)
           attachment.set('user', user)
           attachment.save().then ->
             message.get('attachments').pushObject(attachment)
@@ -84,9 +78,8 @@ Founden.ConversationsShowController = Ember.Controller.extend
     addMember: (user) ->
       participants = @get('content.participants')
       if participants.indexOf(user) < 0
-        membership = @store.createRecord 'membership',
+        membership = @container.resolve('model:membership').create
           user: user
-          network: @get('content.network')
           conversation: @get('content')
         membership.save().then ->
           participants.pushObject(user)
