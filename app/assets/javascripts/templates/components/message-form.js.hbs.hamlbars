@@ -1,14 +1,12 @@
 .message-form-wrap
   %img.message-form-user-image{:bind => {:src => 'view.user.avatarUrl'}}
   {{attachments-support keyPressEvent=view.keyPressEvent selectedAttachmentType=view.selectedAttachmentType}}
-  {{mentions-support keyPressEvent=view.keyPressEvent results=view.contacts}}
+  {{mentions-support keyPressEvent=view.keyPressEvent results=view.user.contacts}}
   {{caret-cursor isVisible=view.showCaret}}
-  %form{:_action => 'submit on="submit"'}
-    {{view view.messageView placeholder='Click here to reply (use @ to mention or + to attach media).'}}
-    .message-form-actions
-      %button.button.btn-secondary
-        %span.icon.icon-reply
-        Send
+  {{view view.messageView placeholder='Click here to reply (use @ to mention or + to attach media).'}}
+  .message-form-actions
+    %button.button{:_action => 'submit'}
+      Send
 
   {{#if view.selectedAttachmentType}}
   {{attachments-editor selectedType=view.selectedAttachmentType}}
