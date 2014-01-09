@@ -1,7 +1,6 @@
-= form_for(current_account, :url => waiting_pages_path) do |f|
+= form_for(current_account, :url => waiting_pages_path, :html => {:class => 'promo-code'}) do |f|
   %p
     = f.text_field :promo_code, :placeholder => _('Promo code goes here...')
-
   %p
     = f.button :class => 'button' do
       = _('Claim')
