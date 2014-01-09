@@ -209,6 +209,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mapbox-rails (1.0.3.1)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.5.2)
@@ -590,6 +591,7 @@ DEPENDENCIES
   hamlbars!
   jquery-rails
   letter_opener
+  mapbox-rails
   momentjs-rails
   normalize-rails
   paperclip

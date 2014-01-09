@@ -43,6 +43,7 @@ group :assets do
   gem 'ember-model-source', :github => 'stas/ember-model', :branch => 'gem'
   gem 'hamlbars', :github => 'jamesotron/hamlbars'
   gem 'momentjs-rails'
+  gem 'mapbox-rails'
 end
 
 group :development, :test do
