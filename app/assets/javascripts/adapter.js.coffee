@@ -9,6 +9,8 @@ Ember.Model.reopenClass
 
 # Monkey patch to add support for readOnly attributes
 Ember.Model.reopen
+  id: Ember.attr(),
+
   removeReadOnly: (json) ->
     attributes = @constructor.getAttributes()
     attributes.pushObjects(@constructor.getRelationships())
