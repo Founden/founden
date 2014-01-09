@@ -47,7 +47,13 @@ class Message < ActiveRecord::Base
       if self.content.include?(name)
         token = '@id:%d@' % user[0]
         content.sub!(name, token)
+        notify_mention(user[0])
       end
     end
+  end
+
+  # Sends a notification email to mentioned user
+  def notify_mention(user_id)
+    QC.enqueue('UserMailer.deliver', :mention, self.id, user_id)
   end
 end
