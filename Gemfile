@@ -16,6 +16,7 @@ gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 gem 'queue_classic'
 gem 'tubesock'
 gem 'redcarpet'
+gem 'redcarpet-socialable', :github => 'stas/redcapret-socialable'
 
 group :development do
   gem 'quiet_assets'
@@ -27,6 +28,7 @@ group :production do
   gem 'puma'
   gem 'bugsnag', :require => 'bugsnag/railtie'
   gem 'aws-sdk'
+  gem 'websocket-native'
 end
 
 # See why https://github.com/rails/rails/commit/49c4af43ec

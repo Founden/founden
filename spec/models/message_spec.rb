@@ -26,5 +26,34 @@ describe Message do
 
       its(:content) { should eq(Sanitize.clean(content)) }
     end
+
+    context '#materialize_mentions' do
+      let(:conversation) { Fabricate(:conversation) }
+      let(:participant) { conversation.participants.first }
+      let(:content) do
+        Faker::Lorem.paragraph + participant.full_name + Faker::Lorem.paragraph
+      end
+      subject(:message) do
+        Fabricate.build(
+          :message, :content => content, :conversation => conversation)
+      end
+
+      before do
+        message.should_receive(:notify_mention).with(participant.id)
+        message.save
+      end
+
+      its(:content) { should_not include(participant.full_name) }
+      its(:content) { should include('@id:%d@' % participant.id) }
+    end
+
+    context '#notify_mention' do
+      before do
+        QC.should_receive(:enqueue).with(
+          'UserMailer.deliver', :mention, message.id, message.user.id)
+      end
+
+      it { message.send(:notify_mention, message.user.id).should be_nil }
+    end
   end
 end

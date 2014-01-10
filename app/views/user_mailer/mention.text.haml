@@ -1,0 +1,10 @@
+= _('Hello from %s %s') % [Founden::Config.app_name, @user.full_name]
+\
+= _('%s mentioned you in a conversation: %s.') % [@message.user.full_name, @message.conversation.title]
+= _('To reply, visit %s') % root_url(:anchor => '/conversations/%s' % @message.conversation.slug)
+\
+= _('Thanks')
+\
+= '---'
+= _('Your %s team.') % Founden::Config.app_name
+= Founden::Config.app_id
