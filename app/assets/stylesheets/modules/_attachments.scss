@@ -153,8 +153,7 @@
 
 .attachment-timestamp {
   @include clearfix;
-  background-color: $green;
-  color: $white;
+  color: tint($black, 20%);
   padding: 15px 20px;
   white-space: nowrap;
 
