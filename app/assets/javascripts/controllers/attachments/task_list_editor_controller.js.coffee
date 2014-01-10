@@ -1,10 +1,13 @@
 Founden.AttachmentsTaskListEditorController = Founden.AttachmentsEditorContentController.extend
   # Overwrites `AttachmentsEditorContentController` attribute
   contentTypeKey: 'TaskList'
-  # Since content is an array, we bind to the first object
-  taskListBinding: 'content.firstObject'
   newTask: null
   allowsTasksRemoval: true
+
+  # Wrap taskList to first object in content
+  taskList: ( ->
+    @get('content.firstObject')
+  ).property('content.firstObject')
 
   actions:
     addTask: ->

@@ -2,7 +2,7 @@
   %img.message-user-image{:bind => {:src => 'user.avatarUrl'}}
   .message-wrap
     .message-content
-      {{content}}
+      {{{content}}}
       .message-meta
         {{user.name}}
         &middot;

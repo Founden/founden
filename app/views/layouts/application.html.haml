@@ -24,8 +24,7 @@
 
   %body
 
-    .content
-      = yield
+    = yield
 
     = javascript_include_tag 'application'
     = yield(:footer_embed) if content_for?(:footer_embed)

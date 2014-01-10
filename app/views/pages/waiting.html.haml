@@ -1,7 +1,9 @@
-= form_for(current_account, :url => waiting_pages_path) do |f|
-  %p
-    = f.text_field :promo_code, :placeholder => _('Promo code goes here...')
-
-  %p
+.panel
+  %img.panel-user-image{:src => avatar_uri(current_account)}
+  .panel-user-name
+    = current_account.full_name
+  = form_for(current_account, :url => waiting_pages_path) do |f|
+    %p
+      = f.text_field :promo_code, :placeholder => _('Promo code goes here...')
     = f.button :class => 'button' do
       = _('Claim')

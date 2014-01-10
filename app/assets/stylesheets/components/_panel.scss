@@ -1,0 +1,36 @@
+.panel {
+  text-align: center;
+  margin: 100px auto;
+  width: 360px;
+  padding: 30px;
+  background-color: shade($beige, 5%);
+  border-radius: 3px;
+
+  input {
+    @include box-sizing(border-box);
+    border: 2px solid $green;
+    padding: 5px 10px;
+    border-radius: 3px;
+    outline: 0;
+    text-align: center;
+    font-size: em(14);
+    width: 100%;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+}
+
+
+.panel-user-image {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid $beige;
+  border-radius: 50%;
+}
+
+.panel-user-name {
+  font-weight: 600;
+}

@@ -12,7 +12,7 @@
       {{/each}}
       %li
         %button.button.btn-secondary{:_action => 'startMention'}
-          @ Add
+          Add
 
   {{partial 'conversations/partials/summary'}}
 

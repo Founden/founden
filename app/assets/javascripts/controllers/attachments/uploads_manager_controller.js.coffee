@@ -10,12 +10,11 @@ Founden.AttachmentsUploadsManagerController = Ember.ArrayController.extend
         if (/image/).test(upload.type)
           upload.preview = upload.result
 
-        upload = @store.createRecord 'upload',
+        upload = @container.resolve('model:upload').create
           title: upload.name
           previewUrl: upload.preview
           attachment: upload.result
           attachmentFileSize: upload.size
-
         content.pushObject(upload)
   ).observes('uploads.length')
 

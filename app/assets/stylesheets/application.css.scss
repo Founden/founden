@@ -15,6 +15,7 @@
 @import 'components/attachments';
 @import 'components/caret';
 @import 'components/uploader';
+@import 'components/panel';
 
 @import 'templates/wrapper';
 @import 'templates/header';
@@ -28,3 +29,5 @@
 @import 'modules/message-form';
 @import 'modules/attachments-editor';
 @import 'modules/summary';
+
+@import 'mapbox';

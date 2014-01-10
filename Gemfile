@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'pg'
-gem 'rubysl', :platform => 'rbx'
 gem 'easy_auth', :github => 'dockyard/easy_auth'
 gem 'easy_auth-oauth2', :github => 'stas/easy_auth-oauth2', :branch => 'update_to_easy_auth_master'
 gem 'easy_auth-google', :github => 'stas/easy_auth-google'
@@ -40,10 +39,11 @@ group :assets do
   gem 'bourbon'
   gem 'normalize-rails'
   gem 'ember-rails'
-  gem 'ember-source', '~> 1.3.0.beta'
+  gem 'ember-source', '~> 1.3.0'
   gem 'ember-model-source', :github => 'stas/ember-model', :branch => 'gem'
   gem 'hamlbars', :github => 'jamesotron/hamlbars'
   gem 'momentjs-rails'
+  gem 'mapbox-rails'
 end
 
 group :development, :test do
@@ -64,4 +64,10 @@ group :test do
   gem 'shoulda-matchers'
   gem 'simplecov', :require => false
   gem 'capybara-puma'
+end
+
+platforms :rbx do
+  gem 'rubysl'
+  gem 'racc'
+  gem 'rubinius-coverage'
 end

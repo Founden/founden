@@ -1,4 +1,5 @@
 #= require moment
+#= require mapbox
 
 #= require handlebars
 #= require ember

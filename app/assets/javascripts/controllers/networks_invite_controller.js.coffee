@@ -3,7 +3,7 @@ Founden.NetworksInviteController = Ember.Controller.extend
 
   actions:
     sendInvitation: ->
-      invitation = @store.createRecord 'invitation',
+      invitation = @container.resolve('model:invitation').create
         network: @get('content')
         email: @get('email')
       invitation.save().then =>

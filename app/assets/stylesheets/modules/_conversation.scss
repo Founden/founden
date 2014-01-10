@@ -19,22 +19,12 @@
 
   &.is-replying {
 
-    .messages {
-      padding-bottom: 360px;
-    }
-
-    .message-form {
-      height: 360px;
-    }
-
     .message-form-input {
       color: $black;
-      @include transition(all 0.2s);
     }
 
     .message-form-actions {
       opacity: 1;
-      bottom: 20px;
     }
   }
 }

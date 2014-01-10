@@ -5,7 +5,7 @@ class SummarySerializer < ActiveModel::Serializer
   attributes :id, :created_at
 
   has_one :conversation, :embed_key => :slug, :embed_in_root => false
-  has_many :messages, :embed_key => :slug
+  has_many :messages, :embed_key => :slug, :embed_in_root => false
 
   # Mask the id with the slug value
   def id

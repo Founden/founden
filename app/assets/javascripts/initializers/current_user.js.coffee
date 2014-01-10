@@ -5,7 +5,6 @@ Founden.initializer
     application.deferReadiness()
 
     container.resolve('model:user').fetch('mine').then (user) ->
-      window.me = user
       # Register the `user:current` namespace
       container.register(
         'user:current', user, {instantiate: false, singleton: true})

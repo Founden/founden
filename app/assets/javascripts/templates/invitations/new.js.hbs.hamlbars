@@ -1,0 +1,8 @@
+.panel
+  %img.panel-user-image{:bind => {:src => 'currentUser.avatarUrl'}}
+  .panel-user-name
+    {{currentUser.name}}
+  %p
+    {{input type='email' valueBinding='content.email' placeholder='Type an email address...'}}
+  %button.button{:_action => 'sendInvitation'}
+    = _('Invite')
