@@ -47,6 +47,13 @@ GIT
     ember-model-source (0.0.10)
       ember-source
 
+GIT
+  remote: git://github.com/stas/redcapret-socialable.git
+  revision: 19587437e4e6c28913a75bdf9286bd16f5e3f563
+  specs:
+    redcarpet-socialable (0.0.2)
+      redcarpet (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -604,6 +611,7 @@ DEPENDENCIES
   rails
   readwritesettings
   redcarpet
+  redcarpet-socialable!
   rspec-rails
   rubinius-coverage
   rubysl
