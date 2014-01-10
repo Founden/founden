@@ -1,7 +1,7 @@
 .wrapper
   .bucket
     .bucket-title
-      Inbox
+      Conversations
     %ul.conversations
       {{#each conversation in content}}
       {{#with conversation}}
