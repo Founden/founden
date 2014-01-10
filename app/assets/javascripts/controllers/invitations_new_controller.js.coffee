@@ -1,5 +1,5 @@
-Founden.InvitationsShowController = Ember.Controller.extend
+Founden.InvitationsNewController = Ember.Controller.extend
   actions:
-    acceptInvitation: ->
+    sendInvitation: ->
       @get('content').save().then =>
         @transitionTo('conversations')

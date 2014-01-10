@@ -1,12 +1,9 @@
-.wrapper
-  .invitation
-    %img{:bind => {:src => 'content.user.avatarUrl'}}
-    %p
-      {{content.user.name}}
-      = _('asked you to join his network:')
-      %strong
-        {{content.networkTitle}}
-      {{timeago content.timeAgo}}
-
-    %button{:_action => 'acceptInvitation'}
-      Click to join
+.panel
+  %img.panel-user-image{:bind => {:src => 'content.user.avatarUrl'}}
+  .panel-user-name
+    {{content.user.name}}
+  %p
+    = _('asked you to join his network')
+    {{timeago content.timeAgo}}
+  %button.button{:_action => 'acceptInvitation'}
+    Click to join
