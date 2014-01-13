@@ -3,4 +3,4 @@
   {{title}}
 {{/if}}
 .attachment-location
-  %img{:bind => {:src => 'previewUrl'}}
+  {{location-map latitude=latitude longitude=longitude}}
