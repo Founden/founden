@@ -8,19 +8,6 @@ Founden.Location = Founden.Attachment.extend
   longitude: Ember.attr('number')
   latitude: Ember.attr('number')
 
-  params: ( ->
-    center = [@get('latitude'), @get('longitude')].join(',')
-    $.param
-      center: center
-      zoom: @get('zoom')
-      size: @get('size')
-      sensor: @get('sensor')
-  ).property('latitude', 'longitude')
-
-  previewUrl: ( ->
-    '//maps.googleapis.com/maps/api/staticmap?%@'.fmt(@get('params'))
-  ).property('params')
-
   queryChanged: ( ->
     Ember.run.debounce(@, 'search', 200)
   ).observes('query')
