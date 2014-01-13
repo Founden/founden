@@ -20,3 +20,9 @@ Founden.ConversationsShowRoute = Ember.Route.extend
     toggleSummary: ->
       @controller.get('content.summary').reload()
       @controller.toggleProperty('hasSummary')
+
+Founden.ConversationsNewRoute = Ember.Route.extend
+
+  setupController: (controller, model) ->
+    conversation = @container.resolve('model:conversation').create()
+    controller.set('content', conversation)
