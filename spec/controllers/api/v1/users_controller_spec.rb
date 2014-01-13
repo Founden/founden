@@ -38,12 +38,13 @@ describe Api::V1::UsersController do
     subject(:api_user) { json_to_ostruct(response.body, :user) }
 
     shared_examples 'shows current user details' do
-      its('keys.size') { should eq(5) }
+      its('keys.size') { should eq(6) }
       its(:id) { should eq(user.slug) }
       its(:first_name) { should eq(user.first_name) }
       its(:last_name) { should eq(user.last_name) }
       its(:avatar_url) { should eq(avatar_uri(user)) }
       its(:contact_ids) { should include(friendship.user.slug) }
+      its('conversation_ids.count') { should eq(0) }
     end
 
     context 'if user is the logged in' do
@@ -59,7 +60,7 @@ describe Api::V1::UsersController do
       let(:some_user) { Fabricate(:user) }
       let(:user_id) { some_user.slug }
 
-      its('keys.size') { should eq(4) }
+      its('keys.size') { should eq(5) }
       its(:id) { should eq(some_user.slug) }
       its(:first_name) { should eq(some_user.first_name) }
       its(:last_name) { should eq(some_user.last_name) }
