@@ -51,6 +51,13 @@ describe Api::V1::MessagesController do
       its(:content) { should include('em') }
       its(:content) { should include('code') }
       its(:content) { should include('h3') }
+
+      context 'and it has mentions' do
+        let(:markdown) { 'Mentions %s' % user.full_name }
+
+        its(:content) { should include(
+          '<span class="mention">%s</span>' % user.full_name) }
+      end
     end
 
     context 'when it has a summary' do

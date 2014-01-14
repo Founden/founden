@@ -2,7 +2,7 @@
   {{#each message in content.summary.messages}}
   .summary-message
     .message-content
-      {{message.content}}
+      {{{message.content}}}
     {{#with message}}
     {{partial 'conversations/partials/attachments'}}
     {{/with}}

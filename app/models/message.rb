@@ -24,6 +24,7 @@ class Message < ActiveRecord::Base
   before_validation do
     self.content = Sanitize.clean(self.content)
   end
+  before_create :materialize_mentions
 
   private
 
@@ -34,5 +35,25 @@ class Message < ActiveRecord::Base
     else
       super
     end
+  end
+
+  # Replaces participant names with ampersate and their IDs.
+  def materialize_mentions
+    return unless self.conversation
+
+    members = self.conversation.participants.pluck(*%i{id first_name last_name})
+    members.each do |user|
+      name = user[1..2].join(' ')
+      if self.content.include?(name)
+        token = '@id:%d@' % user[0]
+        content.sub!(name, token)
+        notify_mention(user[0])
+      end
+    end
+  end
+
+  # Sends a notification email to mentioned user
+  def notify_mention(user_id)
+    QC.enqueue('UserMailer.deliver', :mention, self.id, user_id)
   end
 end

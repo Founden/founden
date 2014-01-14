@@ -94,6 +94,5 @@ Founden.ConversationsShowController = Ember.Controller.extend
     startMention: ->
       # TODO: DRY this, probably move to mentions-support component
       textarea = @get('messageForm.textarea').get(0)
-      textarea.value += '@'
-      textarea.selectionEnd += 1 if textarea.selectionEnd
+      textarea.value += ' '
       @get('messageForm.mentionsSupport').onAtKeyPress(textarea)

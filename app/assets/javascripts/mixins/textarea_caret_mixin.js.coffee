@@ -56,3 +56,20 @@ Founden.TextAreaCaretMixin = Ember.Mixin.create Founden.KeyboardEventsMixin,
     # lynx
     else
       textarea.value
+
+  appendAfterCarret: (textarea, textToAppend) ->
+    newValue = @textBeforeCaret(textarea)
+    # Remove last typed character
+    newValue = newValue.substring(0, newValue.length - 1)
+    oldValue = textarea.value
+
+    # Snapshot old caret position including last character
+    caretPosition = newValue.length + 1
+    newValue += textToAppend
+
+    # Snapshot the new position inside textarea
+    newCaretPosition = newValue.length
+
+    newValue += oldValue.substring(caretPosition, oldValue.length)
+    textarea.value = newValue
+    textarea.selectionStart = textarea.selectionEnd = newCaretPosition
