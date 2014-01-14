@@ -8,7 +8,6 @@ Founden.Message = DS.Model.extend Founden.TimeAgoMixin,
 
   user: DS.belongsTo('user')
   conversation: DS.belongsTo('conversation')
-  network: DS.belongsTo('network')
   parentMessage: DS.belongsTo('message', inverse: 'replies')
   conversation: DS.belongsTo('conversation')
   attachments: DS.hasMany('attachment', polymorphic: true, defaultValue: [], async: true)
