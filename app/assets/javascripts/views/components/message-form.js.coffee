@@ -73,6 +73,9 @@ Founden.MessageFormComponent = Ember.Component.extend Founden.ScrollEventsMixin,
     # Activate `onScroll` event
     @registerOnScroll()
 
+  willDestroyElement: ->
+    @unregisterOnScroll()
+
   actions:
     submit: ->
       @handleMessage()
