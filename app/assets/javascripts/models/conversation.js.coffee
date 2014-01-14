@@ -1,17 +1,13 @@
-Founden.Conversation = Ember.Model.extend Founden.TimeAgoMixin,
-  title: Ember.attr()
-  createdAt: Ember.attr('date', readOnly: true)
-  isUnread: Ember.attr('boolean', readOnly: true)
+Founden.Conversation = DS.Model.extend Founden.TimeAgoMixin,
+  title: DS.attr('string')
+  createdAt: DS.attr('date', readOnly: true, defaultValue: new Date)
+  isUnread: DS.attr('boolean', readOnly: true)
 
-  user: Ember.belongsTo('user', key: 'user_id', readOnly: true)
-  summary: Ember.belongsTo('summary', key: 'summary_id', readOnly: true)
-  participants: Ember.hasMany('user', embeded: true)
-  messages: Ember.hasMany('message', key: 'message_ids', embeded: true)
+  user: DS.belongsTo('user', readOnly: true)
+  summary: DS.belongsTo('summary', readOnly: true)
+  participants: DS.hasMany('user', async: true)
+  messages: DS.hasMany('message', async: true)
 
   identifier: (->
     'conversation-' + @get('id')
   ).property('id')
-
-Founden.Conversation.rootKey = 'conversation'
-Founden.Conversation.collectionKey = 'conversations'
-Founden.Conversation.url += 'conversations'

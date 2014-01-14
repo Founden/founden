@@ -1,9 +1,5 @@
-Founden.Summary = Ember.Model.extend Founden.TimeAgoMixin,
-  createdAt: Ember.attr('date', readOnly: true)
+Founden.Summary = DS.Model.extend Founden.TimeAgoMixin,
+  createdAt: DS.attr('date')
 
-  conversation: Ember.belongsTo('conversation', key: 'conversation_id')
-  messages: Ember.hasMany('message', key: 'message_ids')
-
-Founden.Summary.rootKey = 'summary'
-Founden.Summary.collectionKey = 'summaries'
-Founden.Summary.url += 'summaries'
+  conversation: DS.belongsTo('conversation', async: true)
+  messages: DS.hasMany('message', async: true)

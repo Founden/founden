@@ -5,8 +5,8 @@ Founden.Location = Founden.Attachment.extend
   sensor: false
   query: null
 
-  longitude: Ember.attr('number')
-  latitude: Ember.attr('number')
+  longitude: DS.attr('number')
+  latitude: DS.attr('number')
 
   queryChanged: ( ->
     Ember.run.debounce(@, 'search', 200)
@@ -24,5 +24,3 @@ Founden.Location = Founden.Attachment.extend
         if response.length > 0
           @set('latitude', response[0].lat)
           @set('longitude', response[0].lon)
-
-Founden.Location.rootKey = 'location'

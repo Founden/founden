@@ -1,8 +1,6 @@
-Founden.BooleanishTransform =
+Founden.BooleanishTransform = DS.Transform.extend
   serialize: (value) ->
     !!value
 
   deserialize: (value) ->
     !!value
-
-Ember.Model.dataTypes['boolean'] = Founden.BooleanishTransform
