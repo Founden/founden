@@ -11,6 +11,19 @@ feature 'Conversation', :js, :slow do
     visit root_path(:anchor => anchor)
   end
 
+  scenario 'can be started from dashboard' do
+    expect(Conversation.count).to eq(1)
+
+    page.find('.navbar-main-action .button').click
+    fill_in('title', :with => Faker::Lorem.sentence)
+    page.find('.conversation-create-btn').click
+    wait_for_ajax
+
+    expect(Conversation.count).to eq(2)
+    expect(page.current_url).to include(
+      '/conversations/%s' % Conversation.last.slug)
+  end
+
   scenario 'can be accessed from dashboard' do
     expect(page).to have_content(conversation.title)
 
