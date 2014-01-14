@@ -12,7 +12,6 @@ feature 'Conversation link attachment', :js, :slow do
   end
 
   scenario 'details are shown' do
-    expect(page).to have_content(link.title)
     expect(page).to have_content(link.url)
   end
 

@@ -44,6 +44,7 @@ feature 'Invitation', :js, :slow do
 
     scenario 'and clicking confirmation shows the conversations' do
       page.find('.panel button').click
+      wait_for_ajax
       expect(page.current_url).to include('#/conversations')
     end
   end

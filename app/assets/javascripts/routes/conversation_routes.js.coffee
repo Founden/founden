@@ -21,7 +21,6 @@ Founden.ConversationsShowRoute = Ember.Route.extend
       @controller.toggleProperty('hasSummary')
 
 Founden.ConversationsNewRoute = Ember.Route.extend
-
   setupController: (controller, model) ->
-    conversation = @store.createRecord 'conversation',
+    conversation = @store.createRecord 'conversation'
     controller.set('content', conversation)

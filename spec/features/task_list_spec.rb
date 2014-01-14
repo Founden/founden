@@ -19,12 +19,11 @@ feature 'Conversation task list attachment', :js, :slow do
   end
 
   scenario 'tasks can be checked' do
-    page.all('.attachment-tasks li').each do |task|
-      task.click unless task[:css].blank?
+    page.all('.attachment-tasks li.checked').each do |task|
+      task.click
     end
 
-    expect(page).to have_css(
-      '.attachment-tasks li.checked', :count => task_list.tasks.count)
+    expect(page).to have_css('.attachment-tasks li.checked', :count => 0)
   end
 
 end
