@@ -16,7 +16,7 @@ gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 gem 'queue_classic'
 gem 'tubesock'
 gem 'redcarpet'
-gem 'redcarpet-socialable', :github => 'stas/redcapret-socialable'
+gem 'redcarpet-socialable', :github => 'releu/redcapret-socialable'
 
 group :development do
   gem 'quiet_assets'
