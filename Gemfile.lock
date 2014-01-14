@@ -17,11 +17,9 @@ GIT
       tilt
 
 GIT
-  remote: git://github.com/rails-api/active_model_serializers.git
-  revision: 9436d73b9220b64a5940cfdaa176cab861b22441
+  remote: git://github.com/releu/redcapret-socialable.git
+  revision: b60ca9fb3c00e7271fb17640f8c48f8ab1a7b97a
   specs:
-    active_model_serializers (0.9.0.alpha1)
-      activemodel (>= 3.2)
     redcarpet-socialable (0.0.3)
       redcarpet (>= 3.0)
 
@@ -61,6 +59,8 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    active_model_serializers (0.9.0.alpha1)
+      activemodel (>= 3.2)
     activemodel (4.0.2)
       activesupport (= 4.0.2)
       builder (~> 3.1.0)
@@ -566,7 +566,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers!
+  active_model_serializers (~> 0.9.0.alpha)
   activerecord-session_store
   aws-sdk
   bourbon
