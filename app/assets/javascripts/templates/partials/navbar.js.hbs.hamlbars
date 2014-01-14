@@ -1,26 +1,25 @@
 .navbar
 
-  {{#each network in currentUser.networks}}
-  .navbar-title
-    {{#link-to 'networks.show' network}}
-    {{network.title}}
+  .navbar-main-action
+    {{#link-to 'conversations.new' class='button btn-primary'}}
+    %span.icon.icon-conversation
+    New conversation
     {{/link-to}}
-    %span{:_action => 'showHideNetwork network target=view', :bind => {:class => ':icon-small network.isHidden:icon-arrow-down:icon-arrow-up'}}
 
-  {{#unless network.isHidden}}
+  .navbar-title
+    %a{:href => '#'}
+      Your network
+
   %ul.navbar-list
     %li.navbar-list-item
-      {{#link-to 'networks.compose' network class='primary'}}
-      %span.icon.icon-conversation
-      New conversation
+      {{#link-to 'conversations'}}
+      Conversations
       {{/link-to}}
     %li.navbar-list-item
-      {{#link-to 'networks.inbox' network}}
-      Inbox ({{network.inbox.length}})
+      {{#link-to 'conversations'}}
+      Contacts
       {{/link-to}}
-    %li.navbar-list-item
-      {{#link-to 'networks.ongoing' network}}
-      Ongoing ({{network.ongoing.length}})
-      {{/link-to}}
-  {{/unless}}
-  {{/each}}
+
+  .navbar-account
+    %img{:bind => {:src => 'currentUser.avatarUrl'}}
+    {{currentUser.name}}

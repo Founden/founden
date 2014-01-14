@@ -108,8 +108,9 @@
 
 .attachment-location {
 
-  img {
+  .location-map-canvas {
     display: block;
+    height: 260px;
   }
 }
 
@@ -154,6 +155,7 @@
 .attachment-timestamp {
   @include clearfix;
   color: tint($black, 20%);
+  border-top: 1px solid $beige;
   padding: 15px 20px;
   white-space: nowrap;
 

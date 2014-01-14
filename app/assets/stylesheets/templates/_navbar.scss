@@ -8,7 +8,6 @@
   height: 100%;
   background-color: tint($black, 5%);
   color: $white;
-  display: none;
 }
 
 .navbar-logo {
@@ -28,7 +27,7 @@
 
 .navbar-main-action {
   padding: 20px 25px;
-  border-top: 1px solid $black;
+  border-bottom: 1px solid $black;
 
   .button {
     display: block;
@@ -102,7 +101,7 @@
   bottom: 0;
   width: 100%;
   background-color: $black;
-  padding: 15px 20px;
+  padding: 20px;
   font-size: em(14);
 
   img {

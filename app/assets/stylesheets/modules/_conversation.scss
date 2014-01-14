@@ -15,6 +15,14 @@
     .message-form {
       display: none;
     }
+
+    .conversation-summary-btn {
+      background-color: transparent;
+
+      .icon {
+        color: $green;
+      }
+    }
   }
 
   &.is-replying {
@@ -43,9 +51,10 @@
   float: left;
   font-size: em(24);
   font-weight: 500;
-  margin: 17px 20px;
+  padding: 17px 20px;
+  width: 50%;
   border: 0;
-  padding: 0;
+  margin: 0;
   outline: 0;
 }
 
@@ -66,6 +75,7 @@
   }
 }
 
+.conversation-create-btn,
 .conversation-summary-btn {
   float: right;
   width: 80px;
@@ -73,6 +83,7 @@
   text-align: center;
   background-color: $green;
   cursor: pointer;
+  box-shadow: inset 1px 0 rgba($black, 0.1);
 
   .icon {
     color: $white;
