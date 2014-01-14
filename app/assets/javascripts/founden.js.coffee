@@ -3,16 +3,17 @@
 
 #= require handlebars
 #= require ember
+#= require ember-data
 #= require ember-model
 
 #= require_self
 #= require_tree ./mixins
-#= require ./adapter
-#= require_tree ./transforms
 #= require_tree ./models
 #= require_tree ./initializers
-# require ./serializer
-# require ./store
+#= require_tree ./transforms
+#= require ./serializer
+#= require ./adapter
+#= require ./store
 #= require_tree ./controllers
 #= require_tree ./views
 #= require_tree ./helpers

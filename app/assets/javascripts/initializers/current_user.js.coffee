@@ -4,7 +4,7 @@ Founden.initializer
     # Wait until all the promises are resolved
     application.deferReadiness()
 
-    container.resolve('model:user').fetch('mine').then (user) ->
+    container.lookup('store:main').find('user', 'mine').then (user) ->
       # Register the `user:current` namespace
       container.register(
         'user:current', user, {instantiate: false, singleton: true})

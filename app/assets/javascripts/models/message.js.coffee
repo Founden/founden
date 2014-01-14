@@ -1,17 +1,15 @@
-Founden.Message = Ember.Model.extend Founden.TimeAgoMixin,
+Founden.Message = DS.Model.extend Founden.TimeAgoMixin,
   isFocused: false
 
-  content: Ember.attr()
-  createdAt: Ember.attr('date', readOnly: true)
-  isUnread: Ember.attr('boolean', readOnly: true)
-  summaryId: Ember.attr('boolean')
+  content: DS.attr('string')
+  createdAt: DS.attr('date', readOnly: true, defaultValue: new Date)
+  isUnread: DS.attr('boolean', readOnly: true)
+  summaryId: DS.attr('booleanish')
 
-  user: Ember.belongsTo('user', key: 'user_id', readOnly: true)
-  conversation: Ember.belongsTo('conversation', key: 'conversation_id')
-  parentMessage: Ember.belongsTo('message', key: 'parent_message_id')
-  attachments: Ember.hasMany('attachment', embedded: 'polymorphic', key: 'attachments')
-  replies: Ember.hasMany('message', key: 'reply_ids')
-
-Founden.Message.rootKey = 'message'
-Founden.Message.collectionKey = 'messages'
-Founden.Message.url += 'messages'
+  user: DS.belongsTo('user')
+  conversation: DS.belongsTo('conversation')
+  network: DS.belongsTo('network')
+  parentMessage: DS.belongsTo('message', inverse: 'replies')
+  conversation: DS.belongsTo('conversation')
+  attachments: DS.hasMany('attachment', polymorphic: true, defaultValue: [], async: true)
+  replies: DS.hasMany('message', inverse: 'parentMessage', defaultValue: [])

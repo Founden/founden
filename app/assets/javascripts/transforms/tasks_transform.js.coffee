@@ -1,4 +1,4 @@
-Founden.TasksTransform =
+Founden.TasksTransform = DS.Transform.extend
   taskClass: Ember.Object.extend
     list: null
     label: null
@@ -22,5 +22,3 @@ Founden.TasksTransform =
         task.set('list', list)
         list.addObject task
     list
-
-Ember.Model.dataTypes['tasks'] = Founden.TasksTransform
