@@ -12,6 +12,7 @@ feature 'Conversation task list attachment', :js, :slow do
   end
 
   scenario 'tasks are shown' do
+    expect(page).to have_content(task_list.title)
     task_list.tasks.each do |task|
       expect(page).to have_content(task[:label])
     end
