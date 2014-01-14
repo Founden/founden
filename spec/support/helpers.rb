@@ -21,6 +21,20 @@ module Founden::RSpecHelpers
     ostruct.keys = root ? json[root.to_s].keys : json.keys
     ostruct
   end
+
+  # Capybara helper to avoid calling `sleep` by checking active ajax requests
+  def wait_for_ajax
+    counter = 0
+    wait_time = Capybara.default_wait_time
+    while page.evaluate_script('$.active').to_i > 0
+      counter += 1
+      sleep(0.1)
+      # Lets test failure raise error
+      # if counter >= wait_time
+      #   raise 'AJAX request took longer than %s seconds.' % wait_time
+      # end
+    end
+  end
 end
 
 RSpec.configure do |config|

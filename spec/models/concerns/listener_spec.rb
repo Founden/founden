@@ -13,8 +13,12 @@ describe Listener do
       user.should_receive(:handle_notifications).and_yield(nil)
       user.stub(:loop).and_yield
     end
+
     after do
-      user.class.connection.unstub(:execute) rescue false
+      if user.class.connection.respond_to?(:obfuscated_by_rspec_mocks__execute)
+        user.class.connection.unstub(:execute)
+      end
+
       queries.each do |query|
         user.class.connection.execute(query)
       end

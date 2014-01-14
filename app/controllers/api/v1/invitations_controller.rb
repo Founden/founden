@@ -8,7 +8,7 @@ class Api::V1::InvitationsController < Api::V1::ApplicationController
   # Shows the available invitation
   def show
     invitation = Invitation.find_by!(
-      :slug => params[:id])
+      :slug => params[:id], :email => current_account.email)
     render :json => invitation
   end
 
@@ -27,7 +27,7 @@ class Api::V1::InvitationsController < Api::V1::ApplicationController
   # Updates a new invitation
   def update
     invitation = Invitation.find_by!(
-      :slug => params[:id])
+      :slug => params[:id], :email => current_account.email)
 
     if invitation and !invitation.membership
       invitation.membership = invitation.user.created_friendships.create(

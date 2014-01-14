@@ -8,6 +8,10 @@ Founden.Conversation = Ember.Model.extend Founden.TimeAgoMixin,
   participants: Ember.hasMany('user', embeded: true)
   messages: Ember.hasMany('message', key: 'message_ids', embeded: true)
 
+  identifier: (->
+    'conversation-' + @get('id')
+  ).property('id')
+
 Founden.Conversation.rootKey = 'conversation'
 Founden.Conversation.collectionKey = 'conversations'
 Founden.Conversation.url += 'conversations'
