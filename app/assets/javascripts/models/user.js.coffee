@@ -3,8 +3,8 @@ Founden.User = DS.Model.extend
   lastName: DS.attr('string')
   avatarUrl: DS.attr('string')
 
-  conversations: Ember.hasMany('conversation', key: 'conversation_ids', embeded: true)
-  contacts: Ember.hasMany('user', key: 'contact_ids')
+  conversations: DS.hasMany('conversation', key: 'conversation_ids', async: true)
+  contacts: DS.hasMany('user', key: 'contact_ids', async: true)
 
   name: ( ->
     @get('firstName') + ' ' + @get('lastName')

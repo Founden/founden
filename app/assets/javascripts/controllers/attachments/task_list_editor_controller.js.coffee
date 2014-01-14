@@ -3,11 +3,7 @@ Founden.AttachmentsTaskListEditorController = Founden.AttachmentsEditorContentCo
   contentTypeKey: 'TaskList'
   newTask: null
   allowsTasksRemoval: true
-
-  # Wrap taskList to first object in content
-  taskList: ( ->
-    @get('content.firstObject')
-  ).property('content.firstObject')
+  taskListBinding: 'content.firstObject'
 
   actions:
     addTask: ->

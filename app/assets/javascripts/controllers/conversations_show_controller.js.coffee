@@ -31,7 +31,7 @@ Founden.ConversationsShowController = Ember.Controller.extend
     messages = @get('content.messages')
     user = @get('currentUser')
 
-    message = @container.resolve('model:message').create
+    message = @store.createRecord 'message',
       content: content
       conversation: conversation
       user: user
@@ -53,7 +53,7 @@ Founden.ConversationsShowController = Ember.Controller.extend
     parentMessage = @get('replyToMessage')
     user = @get('currentUser')
 
-    message = @container.resolve('model:message').create
+    message = @store.createRecord 'message',
       content: content
       conversation: conversation
       parentMessage: parentMessage
@@ -85,7 +85,7 @@ Founden.ConversationsShowController = Ember.Controller.extend
     addMember: (user) ->
       participants = @get('content.participants')
       if participants.indexOf(user) < 0
-        membership = @container.resolve('model:membership').create
+        membership = @store.createRecord 'membership',
           user: user
           conversation: @get('content')
         membership.save().then ->

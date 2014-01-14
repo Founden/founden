@@ -3,15 +3,13 @@ Founden.AttachmentsEditorContentController = Ember.ArrayController.extend
   contentTypeKey: null
 
   # If there's no content, we create one
-  init: ->
-    @_super()
+  contentDidChange: ( ->
     content = @get('content')
-    type = @get('contentTypeKey')
 
     if Ember.isEmpty(content)
-      entry = @container.resolve('model:' + type).create
-        createdAt: new Date()
+      entry = @store.createRecord @get('contentTypeKey')
       content.pushObject(entry)
+  ).observes('content.length')
 
   actions:
     cancel: ->
