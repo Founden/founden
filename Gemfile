@@ -41,7 +41,7 @@ group :assets do
   gem 'bourbon'
   gem 'normalize-rails'
   gem 'ember-rails'
-  gem 'ember-source', '~> 1.3'
+  gem 'ember-source', '~> 1.3.1'
   gem 'ember-data-source', '~> 1.0.0.beta'
   gem 'hamlbars'
   gem 'momentjs-rails'
