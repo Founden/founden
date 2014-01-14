@@ -4,7 +4,7 @@ Founden.Message = Ember.Model.extend Founden.TimeAgoMixin,
   content: Ember.attr()
   createdAt: Ember.attr('date', readOnly: true)
   isUnread: Ember.attr('boolean', readOnly: true)
-  summaryId: Ember.attr('boolean', readOnly: true)
+  summaryId: Ember.attr('boolean')
 
   user: Ember.belongsTo('user', key: 'user_id', readOnly: true)
   conversation: Ember.belongsTo('conversation', key: 'conversation_id')

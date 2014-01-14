@@ -9,9 +9,8 @@
   font-size: em(12);
   line-height: 20px;
   border-radius: 20px;
-  font-weight: 400;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 2px;
   @include transition(background-color 0.2s);
 
   .icon {
