@@ -3,4 +3,4 @@ Founden.ConversationsNewController = Ember.Controller.extend
     create: ->
       conversation = @get('content')
       conversation.save().then =>
-        @transitionTo('conversations.show', conversation)
+        @transitionToRoute('conversations.show', conversation)

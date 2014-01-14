@@ -7,3 +7,7 @@ Founden.Conversation = DS.Model.extend Founden.TimeAgoMixin,
   summary: DS.belongsTo('summary', readOnly: true)
   participants: DS.hasMany('user', async: true)
   messages: DS.hasMany('message', async: true)
+
+  identifier: (->
+    'conversation-' + @get('id')
+  ).property('id')
