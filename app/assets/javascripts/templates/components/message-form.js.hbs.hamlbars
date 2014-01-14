@@ -3,7 +3,7 @@
   {{attachments-support keyPressEvent=view.keyPressEvent selectedAttachmentType=view.selectedAttachmentType}}
   {{mentions-support keyPressEvent=view.keyPressEvent results=view.user.contacts}}
   {{caret-cursor isVisible=view.showCaret}}
-  {{view view.messageView placeholder='Click here to reply (use @ to mention or + to attach media).'}}
+  {{view view.messageView placeholder='Click here to reply (use @ to mention or + to attach media).' name='message'}}
   .message-form-actions
     %button.button{:_action => 'submit'}
       Send

@@ -1,4 +1,4 @@
-%li{:bind => {:class => ':conversation-item isUnread:unread'}}
+%li{:bind => {:class => ':conversation-item isUnread:unread identifier'}}
   {{#link-to 'conversations.show' this}}
   %h3.conversation-item-title
     {{title}}
