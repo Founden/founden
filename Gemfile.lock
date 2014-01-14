@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: git://github.com/jamesotron/hamlbars.git
-  revision: 6fd7e943217cfbd12eb055eb8a990b427159b411
+  revision: 76539e0139ac110b86a753c9d35ffc1860fe1489
   specs:
-    hamlbars (2.0.2)
+    hamlbars (2.1.0)
       execjs (>= 1.2)
       haml
       sprockets
@@ -504,7 +504,7 @@ GEM
     rubysl-xmlrpc (2.0.0)
     rubysl-yaml (2.0.4)
     rubysl-zlib (2.0.1)
-    sanitize (2.0.6)
+    sanitize (2.1.0)
       nokogiri (>= 1.4.4)
     sass (3.2.13)
     sass-rails (4.0.1)
