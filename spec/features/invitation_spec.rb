@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Invitation', :js, :aslow do
+feature 'Invitation', :js, :slow do
 
   given(:anchor) { '/invitations/new' }
   given(:user) { User.first }
