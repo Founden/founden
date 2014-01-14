@@ -41,9 +41,9 @@ group :assets do
   gem 'bourbon'
   gem 'normalize-rails'
   gem 'ember-rails'
-  gem 'ember-source', '~> 1.3.0'
-  gem 'ember-model-source', :github => 'stas/ember-model', :branch => 'gem'
-  gem 'hamlbars', :github => 'jamesotron/hamlbars'
+  gem 'ember-source', '~> 1.3'
+  gem 'ember-data-source', '~> 1.0.0.beta'
+  gem 'hamlbars'
   gem 'momentjs-rails'
   gem 'mapbox-rails'
 end
