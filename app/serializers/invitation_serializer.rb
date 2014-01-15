@@ -5,7 +5,7 @@ class InvitationSerializer < ActiveModel::Serializer
   attributes :id, :email, :created_at
 
   has_one :user, :embed_key => :slug, :embed_in_root => false
-  has_one :membership, :embed_key => :slug
+  has_one :membership, :embed_key => :slug, :embed_in_root => false
 
   # Mask the id with the slug value
   def id
