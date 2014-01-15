@@ -3,8 +3,11 @@
   .conversation-header
     %h1.conversation-title
       {{content.title}} ({{unreadCount}})
-    .conversation-summary-btn{:_action => 'toggleSummary'}
-      %span{:bind => {:class => ':icon hasSummary:icon-close:icon-star'}}
+
+    {{#link-to 'summaries.show' content.summary class='conversation-summary-btn'}}
+    %span{:bind => {:class => ':icon hasSummary:icon-close:icon-star'}}
+    {{/link-to}}
+
     %ul.conversation-participants
       {{#each participant in content.participants}}
       %li
@@ -13,8 +16,6 @@
       %li
         %button.button.btn-secondary{:_action => 'startMention'}
           Add
-
-  {{partial 'conversations/partials/summary'}}
 
   .messages
     {{#each message in content.messages}}

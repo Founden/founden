@@ -8,6 +8,7 @@ class UserSerializer < ActiveModel::Serializer
   attributes :avatar_url, :contact_ids
 
   has_many :conversations, :embed_key => :slug
+  has_many :summaries, :embed_key => :slug
 
   # Mask the id with the slug value
   def id
@@ -27,7 +28,10 @@ class UserSerializer < ActiveModel::Serializer
 
   # Filters out some keys from other users
   def filter(keys)
-    keys.delete(:contact_ids) if !scope.id.eql?(object.id)
-    keys
+    if !scope.id.eql?(object.id)
+      keys - %i{conversations summaries contact_ids}
+    else
+      keys
+    end
   end
 end

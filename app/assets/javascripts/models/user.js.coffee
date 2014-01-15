@@ -3,8 +3,9 @@ Founden.User = DS.Model.extend
   lastName: DS.attr('string')
   avatarUrl: DS.attr('string')
 
-  conversations: DS.hasMany('conversation', key: 'conversation_ids', async: true)
-  contacts: DS.hasMany('user', key: 'contact_ids', async: true)
+  conversations: DS.hasMany('conversation', async: true)
+  contacts: DS.hasMany('user', async: true)
+  summaries: DS.hasMany('summary', async: true)
 
   name: ( ->
     @get('firstName') + ' ' + @get('lastName')

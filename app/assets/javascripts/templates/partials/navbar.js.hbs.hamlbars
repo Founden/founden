@@ -3,21 +3,25 @@
   .navbar-main-action
     {{#link-to 'conversations.new' class='button btn-primary'}}
     %span.icon.icon-conversation
-    New conversation
+    = _('New conversation')
     {{/link-to}}
 
   .navbar-title
     %a{:href => '#'}
-      Your network
+      = _('Your network')
 
   %ul.navbar-list
     %li.navbar-list-item
       {{#link-to 'conversations'}}
-      Conversations
+      = _('Conversations')
       {{/link-to}}
     %li.navbar-list-item
       {{#link-to 'conversations'}}
-      Contacts
+      = _('Contacts')
+      {{/link-to}}
+    %li.navbar-list-item
+      {{#link-to 'summaries'}}
+      = _('Summaries')
       {{/link-to}}
 
   .navbar-account

@@ -1,0 +1,24 @@
+.summary
+  .summary-header
+    %h1.summary-title
+      = _('Summary for:')
+      {{content.conversation.title}}
+
+    {{#link-to 'conversations.show' content.conversation.id class='summary-conversation-btn'}}
+    %span{:bind => {:class => ':icon :icon-close'}}
+    {{/link-to}}
+
+    %ul.summary-participants
+      {{#each message in content.messages}}
+      %li
+        %img{:bind => {:src => 'message.user.avatarUrl'}}
+      {{/each}}
+
+  {{#each message in content.messages}}
+  .summary-message
+    .message-content
+      {{{message.content}}}
+    {{#with message}}
+    {{partial 'conversations/partials/attachments'}}
+    {{/with}}
+  {{/each}}

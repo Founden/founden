@@ -1,0 +1,11 @@
+.summary-item {
+  @extend .conversation-item;
+}
+
+.summary-item-title {
+  @extend .conversation-item-title;
+}
+
+.summary-item-meta {
+  @extend .conversation-item-meta;
+}

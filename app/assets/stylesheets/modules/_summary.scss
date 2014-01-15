@@ -1,10 +1,21 @@
 .summary {
-  @include box-sizing(border-box);
-  background-color: $white;
-  border-radius: 0 0 3px 3px;
-  box-shadow: 0 1px rgba($black, 0.1);
-  height: 0;
-  overflow: hidden;
+  @extend .conversation;
+}
+
+.summary-header {
+  @extend .conversation-header;
+}
+
+.summary-title {
+  @extend .conversation-title;
+}
+
+.summary-participants {
+  @extend .conversation-participants;
+}
+
+.summary-conversation-btn {
+  @extend .conversation-summary-btn;
 }
 
 .summary-message {

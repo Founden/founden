@@ -1,0 +1,9 @@
+%li{:bind => {:class => ':summary-item identifier'}}
+  {{#link-to 'summaries.show' this}}
+  %h3.summary-item-title
+    = _('Summary for:')
+    {{conversation.title}}
+  .summary-item-meta
+    {{timeago timeAgo}}
+    = _('from last update.')
+  {{/link-to}}

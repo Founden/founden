@@ -13,6 +13,7 @@ describe User do
   it { should have_many(:created_conversations).dependent('') }
   it { should have_many(:conversation_memberships).dependent(:destroy) }
   it { should have_many(:conversations).through(:conversation_memberships) }
+  it { should have_many(:summaries).through(:conversations) }
 
   it { should have_many(:messages).dependent('') }
   it { should have_many(:attachments).dependent('') }

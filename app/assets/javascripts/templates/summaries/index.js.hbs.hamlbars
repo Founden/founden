@@ -1,0 +1,10 @@
+.wrapper
+  .bucket
+    .bucket-title
+      Summaries
+    %ul.summaries
+      {{#each summary in content}}
+      {{#with summary}}
+      {{partial 'summaries/partials/summary'}}
+      {{/with}}
+      {{/each}}

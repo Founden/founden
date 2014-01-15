@@ -5,3 +5,5 @@ Founden.Router.map (match) ->
   @resource 'invitations', ->
     @route 'show', {path: '/:invitation_id'}
     @route 'new', {path: '/new'}
+  @resource 'summaries', ->
+    @route 'show', {path: '/:summary_id'}
