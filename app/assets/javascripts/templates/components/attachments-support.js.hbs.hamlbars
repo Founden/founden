@@ -1,7 +1,7 @@
 %ul
   {{#each type in view.content}}
 
-  {{#view view.optionView option=type}}
+  {{#view view.optionView option=type class=type.name}}
   {{#if type.isUpload}}
   Attach files or images
   {{/if}}
