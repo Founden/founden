@@ -10,7 +10,7 @@ class Api::V1::UpdatesController < Api::V1::ApplicationController
       socket_thread = Thread.new do
         current_account.on_notifications do |obj|
           tubesock.send_data _render_option_json(
-            obj, {:serializer => MessageSerializer})
+            obj, {:serializer => UpdateSerializer})
         end
       end
 

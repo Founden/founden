@@ -39,7 +39,10 @@ describe Message do
       end
 
       before do
-        message.should_receive(:notify_mention).with(participant.id)
+        message.should_receive(
+          :notify_mention).with(participant.id).and_call_original
+        QC.should_receive(:enqueue).with(
+          'UserMailer.deliver', :mention, kind_of(Numeric), participant.id)
         message.save
       end
 
@@ -54,6 +57,23 @@ describe Message do
       end
 
       it { message.send(:notify_mention, message.user.id).should be_nil }
+    end
+  end
+
+  context 'order defaults to ascending Message#created_at' do
+    let(:conversation) { Fabricate(:conversation) }
+
+    let!(:messages) do
+      3.times do
+        Fabricate(:message, :conversation => conversation)
+      end
+    end
+
+    context '#all' do
+      subject { Message.all.pluck(:id) }
+
+      it { should eq(
+        conversation.messages.order(:created_at => :asc).pluck(:id)) }
     end
   end
 end

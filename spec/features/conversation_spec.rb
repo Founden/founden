@@ -5,10 +5,15 @@ feature 'Conversation', :js, :slow do
   given(:user) { User.first }
   given(:conversation) { Fabricate(:conversation, :user => user) }
   given(:anchor) { '/conversations' % conversation }
+  given(:use_websockets) { false }
 
   background do
     try_google_sign_in
-    visit root_path(:anchor => anchor)
+    if use_websockets
+      visit root_path(:anchor => anchor, :use_websockets => true)
+    else
+      visit root_path(:anchor => anchor)
+    end
   end
 
   scenario 'can be started from dashboard' do
@@ -39,6 +44,19 @@ feature 'Conversation', :js, :slow do
 
     scenario 'message details are included' do
       expect(page).to have_content(message.content)
+    end
+
+    context 'also in real-time', :pending => 'Trigger somehow message update' do
+      given(:use_websockets) { true }
+      given(:new_message) do
+        Fabricate(:message, :conversation => conversation)
+      end
+
+      scenario 'new messages are shown' do
+        expect(page).to_not have_content(new_message.content)
+        wait_for_ajax
+        expect(page).to have_content(new_message.content)
+      end
     end
   end
 

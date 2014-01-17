@@ -11,3 +11,8 @@ Founden.Message = DS.Model.extend Founden.TimeAgoMixin,
   conversation: DS.belongsTo('conversation')
   attachments: DS.hasMany('attachment', polymorphic: true, defaultValue: [], async: true)
   replies: DS.hasMany('message', inverse: 'parentMessage', defaultValue: [])
+
+  # This is a callback to be used when an entry
+  # is loaded from `store.pushPayload`
+  didLoadFromPayload: ->
+    @reload()
