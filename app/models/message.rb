@@ -7,6 +7,9 @@ class Message < ActiveRecord::Base
 
   # store_accessor :data, :attr
 
+  # Default scope: order by creation date
+  default_scope { order(:created_at => :asc) }
+
   # Relationship
   belongs_to :user
   belongs_to :conversation

@@ -56,4 +56,21 @@ describe Message do
       it { message.send(:notify_mention, message.user.id).should be_nil }
     end
   end
+
+  context 'order defaults to ascending Message#created_at' do
+    let(:conversation) { Fabricate(:conversation) }
+
+    let!(:messages) do
+      3.times do
+        Fabricate(:message, :conversation => conversation)
+      end
+    end
+
+    context '#all' do
+      subject { Message.all.pluck(:id) }
+
+      it { should eq(
+        conversation.messages.order(:created_at => :asc).pluck(:id)) }
+    end
+  end
 end
