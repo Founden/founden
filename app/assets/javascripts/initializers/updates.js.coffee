@@ -15,7 +15,13 @@ Founden.initializer
     socket = new WebSocket(endpoint)
     socket.onmessage = (event) ->
       if event.data.length
-        # TODO: Manually append conversations and messages to avoid hicups
-        #       in rendering of the conversation thread
         data = $.parseJSON(event.data)
+
+        # Try a later reload to see if there are any messages
+        if data and data.message
+          Ember.run.later {store: store, data: data}, (->
+            @store.find('message', @data.message.id).then (message) ->
+              message.didLoadFromPayload()
+          ), 500
+
         store.pushPayload('message', data)
