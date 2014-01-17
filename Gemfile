@@ -29,6 +29,7 @@ group :production do
   gem 'bugsnag', :require => 'bugsnag/railtie'
   gem 'aws-sdk'
   gem 'websocket-native'
+  gem 'rails_serve_static_assets'
 end
 
 # See why https://github.com/rails/rails/commit/49c4af43ec
