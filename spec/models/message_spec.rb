@@ -39,7 +39,10 @@ describe Message do
       end
 
       before do
-        message.should_receive(:notify_mention).with(participant.id)
+        message.should_receive(
+          :notify_mention).with(participant.id).and_call_original
+        QC.should_receive(:enqueue).with(
+          'UserMailer.deliver', :mention, kind_of(Numeric), participant.id)
         message.save
       end
 
