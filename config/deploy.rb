@@ -21,7 +21,7 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets} +
 set :keep_releases, 5
 
 set :rbenv_type, :user
-set :rbenv_ruby, '2.0.0-p353'
+set :rbenv_ruby, '2.1.0'
 
 set :queue_classic_pid_path, proc {
   shared_path.join('tmp', 'pids', 'qc-%s' % fetch(:stage)) }
