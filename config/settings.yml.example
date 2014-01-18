@@ -12,8 +12,6 @@ defaults: &defaults
       medium: 600x600>
   s3_protocol: 'https'
   s3_bucket: 'assets.founden.com'
-  s3_host: assets.founden.com.s3.amazonaws.com
-  asset_host:
   promo_codes:
     - FOUNDEN_VLAD
     - FOUNDEN_STAS
