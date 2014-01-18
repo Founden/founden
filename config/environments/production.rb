@@ -88,15 +88,16 @@ Founden::Application.configure do
 
   # Use Amazon S3 settings for Paperclip uploads
   config.paperclip_defaults = {
-    :url => ':asset_host',
-    :path => '/:class/:attachment/:id_partition/:style/:filename',
     :storage => :s3,
+    :s3_host_alias => Founden::Config.asset_host,
     :s3_protocol => Founden::Config.s3_protocol,
     :s3_credentials => {
       :preload_aws => AWS::Rails.setup,
       :bucket => Founden::Config.s3_bucket,
       :access_key_id => AWS.config.credentials[:access_key_id],
       :secret_access_key => AWS.config.credentials[:secret_access_key]
-    }
+    },
+    :url => ':s3_alias_url',
+    :path => '/:class/:attachment/:id_partition/:style/:filename'
   }
 end
