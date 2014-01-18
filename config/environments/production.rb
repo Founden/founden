@@ -90,6 +90,7 @@ Founden::Application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_protocol => Founden::Config.s3_protocol,
+    :url => Founden::Config.s3_host,
     :s3_credentials => {
       :preload_aws => AWS::Rails.setup,
       :bucket => Founden::Config.s3_bucket,
