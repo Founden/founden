@@ -87,7 +87,7 @@ GEM
     capistrano-bundler (1.1.1)
       capistrano (~> 3.0)
       sshkit (>= 1.2.0)
-    capistrano-lazy (0.0.1)
+    capistrano-lazy (0.0.2)
       capistrano (>= 3.0)
     capistrano-puma (0.2.3)
       capistrano (>= 3.0)

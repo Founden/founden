@@ -23,6 +23,7 @@ require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 require 'capistrano/puma'
 require 'capistrano/rbenv/lazy'
+require 'capistrano/lazy/yaml_file_tasks'
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/*.rb').each { |r| load r }

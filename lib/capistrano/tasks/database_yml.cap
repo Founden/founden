@@ -1,4 +1,0 @@
-remote_file 'config/database.yml' => './config/database.yml', :roles => :app
-file './config/database.yml' do |t|
-  yml_file(t.name)
-end
