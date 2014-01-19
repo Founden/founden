@@ -1,5 +1,5 @@
-# This one is needed in order to make pushPayload
-# handle the models based on relationship names
+# AMS is kinda broken now and will output JSON with null attributes
+# instead of empty arrays, this should fix it for a while
 Founden.initializer
   name: 'aliases'
   initialize: (container, application)->
