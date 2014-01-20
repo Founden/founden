@@ -1,11 +1,11 @@
 .attachment-field
-  {{view view.inputView value=location.query placeholder='Type to find a location...'}}
+  {{view view.inputView value=location.query name='location' placeholder='Type to find a location...'}}
 
 .attachment-field
   {{#if view.needsTitle}}
-  {{view view.titleView value=location.title placeholder='Type a name for this location...'}}
+  {{view view.titleView name='title' value=location.title placeholder='Type a name for this location...'}}
   {{else}}
-  %a{:href => '#', :_action => 'enableTitle target=view'}
+  %a.enable-title{:href => '#', :_action => 'enableTitle target=view'}
     Add a title (optional)
   {{/if}}
 
