@@ -25,6 +25,13 @@ feature 'Conversation task list attachment', :js, :slow do
     end
 
     expect(page).to have_css('.attachment-tasks li.checked', :count => 0)
+    wait_for_ajax
+
+    tasks = task_list.reload.tasks.collect do |task|
+      task if task['checked']
+    end
+
+    expect(tasks.compact.count).to eq(0)
   end
 
   context 'is available to add' do

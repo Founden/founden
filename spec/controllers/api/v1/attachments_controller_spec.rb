@@ -129,6 +129,61 @@ describe Api::V1::AttachmentsController do
     end
   end
 
+  describe '#update' do
+    let(:attachment_id) { }
+    let(:attachment_type) { :task_list }
+    let(:attrs) { }
+
+    before { patch(:update, :id => attachment_id, attachment_type => attrs) }
+
+    shared_examples_for 'an attachment' do
+      its(:id) { should eq(attachment.slug) }
+      its(:created_at) { should eq(attachment.created_at.as_json) }
+      its(:type) { should eq(attachment.type.to_s.underscore) }
+      its(:title) { should eq(attachment.title) }
+      its(:user_id) { should eq(attachment.user.slug) }
+      its(:conversation_id) { should eq(attachment.conversation.slug) }
+      its(:message_id) { should eq(attachment.message.slug) }
+    end
+
+    context 'for a task list attachment' do
+      let(:attachment) { Fabricate(:task_list, :user => user) }
+      let(:attachment_id) { attachment.slug }
+      let(:attachment_type) { :task_list }
+      let(:attrs) { Fabricate.attributes_for(:task_list) }
+
+      subject(:api_task_list) { json_to_ostruct(response.body, :task_list) }
+
+      its('keys.size') { should eq(8) }
+      its('tasks.length') { should eq(attrs[:tasks].length) }
+      its('tasks.first.keys') { should eq(attrs[:tasks].first.keys) }
+      its('tasks.first.values') { should eq(attrs[:tasks].first.values) }
+      it_behaves_like 'an attachment'
+    end
+
+    context 'for a non task list attachment' do
+      let(:attachment) { Fabricate(:link, :user => user) }
+      let(:attachment_id) { attachment.slug }
+      let(:attachment_type) { :link }
+      let(:attrs) { Fabricate.attributes_for(:link) }
+
+      subject(:api_timestamp) { json_to_ostruct(response.body, :link) }
+
+      its('keys.size') { should eq(8) }
+      its(:url) { should_not eq(attrs[:url]) }
+      it_behaves_like 'an attachment'
+    end
+
+    context 'when attachment id is not available' do
+      let(:attachment_id) { rand(100) }
+
+      subject { response }
+
+      its(:status) { should eq(404) }
+      its(:body) { should include(_('Resource unavailable')) }
+    end
+  end
+
   describe '#create' do
     let(:attachment_type) { }
     let(:attrs) { Fabricate.attributes_for(attachment_type, :user => user) }

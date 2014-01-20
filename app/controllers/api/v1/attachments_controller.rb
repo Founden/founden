@@ -18,6 +18,19 @@ class Api::V1::AttachmentsController < Api::V1::ApplicationController
     render :json => attachment
   end
 
+  # Update an attachment
+  # Limited support atm, just for task lists.
+  def update
+    attachment = Attachment.find_by!(:slug => params[:id],
+      :conversation_id => current_account.conversation_ids + [nil])
+
+    if params[:task_list] and !params[:task_list][:tasks].empty?
+      attachment.update_attribute(:tasks, params[:task_list][:tasks])
+    end
+
+    render :json => attachment
+  end
+
   # Create an attachment
   def create
     conversation = current_account.conversations.find_by!(
