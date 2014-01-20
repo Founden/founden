@@ -4,7 +4,8 @@ feature 'Conversation task list attachment', :js, :slow do
 
   given(:user) { User.first }
   given(:task_list) { Fabricate(:task_list, :user => user) }
-  given(:anchor) { '/conversations/%s' % task_list.conversation.slug }
+  given(:conversation) { task_list.conversation }
+  given(:anchor) { '/conversations/%s' % conversation.slug }
 
   background do
     try_google_sign_in
@@ -26,4 +27,38 @@ feature 'Conversation task list attachment', :js, :slow do
     expect(page).to have_css('.attachment-tasks li.checked', :count => 0)
   end
 
+  context 'is available to add' do
+    given(:conversation) { Fabricate(:conversation, :user => user) }
+    given(:title) { Faker::Lorem.sentence }
+    given(:content) { Faker::Lorem.sentence }
+
+    background do
+      page.find('.message-form-input').click
+      page.all('.caret-actions span').last.click
+      page.find('.attachment-options .tasklist').click
+    end
+
+    scenario 'filling attachment editor saves it' do
+      page.fill_in('message', :with => content)
+      page.find('.attachments-editor .enable-title').trigger('click')
+      page.fill_in('title', :with => title)
+
+      page.fill_in('task', :with => 'Task 1')
+      page.find_field('task').native.send_key(:Enter)
+      page.find('.attachment-tasks li label').click
+
+      page.fill_in('task', :with => 'Task 2')
+      page.find_field('task').native.send_key(:Enter)
+
+      page.find('.message-form-actions button').trigger('click')
+      wait_for_ajax
+
+      expect(page).to have_content(title)
+      expect(page).to have_content(content)
+      expect(page).to have_content('Task 1')
+      expect(page).to have_content('Task 2')
+      expect(page).to have_css('.attachment-tasks li.checked', :count => 1)
+    end
+
+  end
 end

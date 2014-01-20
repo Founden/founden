@@ -1,11 +1,11 @@
 .attachment-field
-  {{view view.inputView value=newTask placeholder='Type and press enter to add a new task...' enter="addTask"}}
+  {{view view.inputView value=newTask name='task' placeholder='Type and press enter to add a new task...' enter="addTask"}}
 
 .attachment-field
   {{#if view.needsTitle}}
-  {{view view.titleView value=taskList.title placeholder='Give your list a name...'}}
+  {{view view.titleView name='title' value=taskList.title placeholder='Give your list a name...'}}
   {{else}}
-  %a{:href => '#', :_action => 'enableTitle target=view'}
+  %a.enable-title{:href => '#', :_action => 'enableTitle target=view'}
     Add a title
   {{/if}}
 
