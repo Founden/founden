@@ -1,5 +1,5 @@
 .attachment-field
-  {{view view.inputView value=link.url placeholder='Type an url...'}}
+  {{view view.inputView value=link.url name='link' placeholder='Type an url...'}}
 
 .attachments
   {{#with link}}
