@@ -1,14 +1,14 @@
 .navbar
 
+  .navbar-logo
+    %a{:href => '#'}
+      = Founden::Config.app_name
+
   .navbar-main-action
     {{#link-to 'conversations.new' class='button btn-primary'}}
     %span.icon.icon-conversation
     = _('New conversation')
     {{/link-to}}
-
-  .navbar-title
-    %a{:href => '#'}
-      = _('Your network')
 
   %ul.navbar-list
     %li.navbar-list-item
@@ -16,7 +16,7 @@
       = _('Conversations')
       {{/link-to}}
     %li.navbar-list-item
-      {{#link-to 'conversations'}}
+      {{#link-to 'contacts'}}
       = _('Contacts')
       {{/link-to}}
     %li.navbar-list-item
