@@ -1,30 +1,6 @@
 .conversation {
   margin: 0 20px;
 
-  &.has-summary {
-
-    .conversation-header {
-      border-radius: 0;
-    }
-
-    .summary {
-      height: auto;
-    }
-
-    .messages,
-    .message-form {
-      display: none;
-    }
-
-    .conversation-summary-btn {
-      background-color: transparent;
-
-      .icon {
-        color: $green;
-      }
-    }
-  }
-
   &.is-replying {
 
     .message-form-input {

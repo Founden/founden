@@ -1,11 +1,11 @@
-%div{:bind => {:class => ':conversation hasSummary isReplying'}}
+%div{:bind => {:class => ':conversation isReplying'}}
 
   .conversation-header
     %h1.conversation-title
       {{content.title}} ({{unreadCount}})
 
     {{#link-to 'summaries.show' content.summary class='conversation-summary-btn'}}
-    %span{:bind => {:class => ':icon hasSummary:icon-close:icon-star'}}
+    %span.icon.icon-star
     {{/link-to}}
 
     %ul.conversation-participants
@@ -13,9 +13,6 @@
       %li
         %img{:bind => {:src => 'participant.avatarUrl'}}
       {{/each}}
-      %li
-        %button.button.btn-secondary{:_action => 'startMention'}
-          Add
 
   .messages
     {{#each message in content.messages}}

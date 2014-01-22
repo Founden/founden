@@ -17,9 +17,6 @@ Founden.ConversationsShowRoute = Ember.Route.extend
     activateReplyOn: (message) ->
       @controller.focusOnMessage(message)
 
-    toggleSummary: ->
-      @controller.toggleProperty('hasSummary')
-
 Founden.ConversationsNewRoute = Ember.Route.extend
   model: ->
     @store.createRecord 'conversation'
