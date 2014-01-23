@@ -4,6 +4,8 @@
 
 .summary-header {
   @extend .conversation-header;
+  border-radius: 0 0 3px 0;
+  box-shadow: none;
 }
 
 .summary-title {
@@ -18,10 +20,11 @@
   @extend .conversation-summary-btn;
 }
 
-.summary-message {
-  border-bottom: 1px solid $beige;
+.summary-messages {
+  background-color: $white;
+  margin: 0 80px 0 0;
+}
 
-  &:last-of-type {
-    border-bottom: 0;
-  }
+.summary-message {
+  border-top: 1px solid $beige;
 }

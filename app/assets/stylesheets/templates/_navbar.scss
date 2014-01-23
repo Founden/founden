@@ -11,12 +11,16 @@
 }
 
 .navbar-logo {
-  display: block;
-  @include hide-text;
-  background: image-url('logo.png') no-repeat center center;
-  width: 133px;
-  height: 33px;
-  margin: 20px 25px;
+  background-color: $black;
+  padding: 20px 25px;
+
+  a {
+    display: block;
+    @include hide-text;
+    background: image-url('logo.png') no-repeat center center;
+    width: 141px;
+    height: 27px;
+  }
 }
 
 .navbar-search {
@@ -26,7 +30,7 @@
 }
 
 .navbar-main-action {
-  padding: 20px 25px;
+  padding: 20px 15px;
   border-bottom: 1px solid $black;
 
   .button {
@@ -71,11 +75,8 @@
   }
 }
 
-.navbar-list {
-  margin: 10px 0;
-}
-
 .navbar-list-item {
+  border-bottom: 1px solid $black;
 
   a {
     display: block;
@@ -85,11 +86,11 @@
     font-weight: 500;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: rgba($white, 0.5);
+    color: $white;
     @include transition(all 0.2s);
 
-    &:hover {
-      color: $white;
+    &:hover, &.active {
+      background-color: $black;
     }
   }
 }
@@ -101,8 +102,10 @@
   bottom: 0;
   width: 100%;
   background-color: $black;
-  padding: 20px;
+  padding: 22px 25px;
   font-size: em(14);
+  font-weight: 600;
+  color: rgba($white, 0.4);
 
   img {
     display: inline-block;

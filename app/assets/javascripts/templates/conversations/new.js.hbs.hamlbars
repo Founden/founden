@@ -1,4 +1,4 @@
-%div{:bind => {:class => ':conversation hasSummary isReplying'}}
+%div{:bind => {:class => ':conversation isReplying'}}
 
   .conversation-header
     {{input type='text' valueBinding='content.title' placeholder='Type conversation subject...' class='conversation-title' name='title'}}

@@ -1,0 +1,36 @@
+.contact-item {
+  margin: 0 0 1px 0;
+  @include clearfix;
+  display: block;
+  padding: 8px 20px;
+  background-color: $white;
+}
+
+.contact-item-image {
+  float: left;
+  border-radius: 50%;
+  margin: 0 10px 0 0;
+  width: 30px;
+  height: 30px;
+}
+
+.contact-item-name {
+  float: left;
+  font-size: em(14);
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.contact-item-actions {
+  float: right;
+  margin: 4px 0 0 0;
+
+  .icon {
+    cursor: pointer;
+    color: rgba($black, 0.5);
+
+    &:hover {
+      color: $green;
+    }
+  }
+}

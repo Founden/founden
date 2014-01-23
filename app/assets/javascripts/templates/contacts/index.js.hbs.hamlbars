@@ -1,0 +1,10 @@
+.wrapper
+  .bucket
+    .bucket-title
+      Contacts
+    %ul.contacts
+      {{#each contact in currentUser.contacts}}
+      {{#with contact}}
+      {{partial 'contacts/partials/contact'}}
+      {{/with}}
+      {{/each}}

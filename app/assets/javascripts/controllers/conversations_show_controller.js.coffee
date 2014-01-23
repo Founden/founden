@@ -1,7 +1,6 @@
 Founden.ConversationsShowController = Ember.Controller.extend
   replyToMessage: null
   messageForm: null
-  hasSummary: false
   isReplying: false
 
   unreadCount: ( ->
@@ -90,9 +89,3 @@ Founden.ConversationsShowController = Ember.Controller.extend
           conversation: @get('content')
         membership.save().then ->
           participants.pushObject(user)
-
-    startMention: ->
-      # TODO: DRY this, probably move to mentions-support component
-      textarea = @get('messageForm.textarea').get(0)
-      textarea.value += ' '
-      @get('messageForm.mentionsSupport').onAtKeyPress(textarea)
