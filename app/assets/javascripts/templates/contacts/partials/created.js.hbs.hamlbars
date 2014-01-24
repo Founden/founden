@@ -1,6 +1,6 @@
 %li.contact-item
-  %img.contact-item-image{:bind => {:src => 'avatarUrl'}}
+  %img.contact-item-image{:bind => {:src => 'user.avatarUrl'}}
   %h3.contact-item-name
-    {{name}}
+    {{user.name}}
   .contact-item-actions
     %a.icon.icon-delete{:_action => 'removeContact this'}
