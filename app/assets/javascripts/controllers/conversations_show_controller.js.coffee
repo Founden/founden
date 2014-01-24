@@ -9,10 +9,10 @@ Founden.ConversationsShowController = Ember.Controller.extend
       messages.filterProperty('isUnread', true).get('length')
   ).property('content.messages.@each.isUnread')
 
-  scrollToBottom: ->
-    $('body, html').animate
-      scrollTop: $(document).height()
-    , 400
+  scrollToLastMessage: ( ->
+    Ember.run.schedule 'afterRender', @, ->
+      $.scrollTo('max')
+  ).observes('content.messages')
 
   focusOnMessage: (message) ->
     previousMessage = @get('replyToMessage')
@@ -36,7 +36,6 @@ Founden.ConversationsShowController = Ember.Controller.extend
       user: user
 
     message.save().then =>
-      @scrollToBottom()
       if attachments
         attachments.forEach (attachment) ->
           attachment.set('message', message)
@@ -59,7 +58,6 @@ Founden.ConversationsShowController = Ember.Controller.extend
       user: user
 
     message.save().then =>
-      @scrollToBottom()
       if attachments
         attachments.forEach (attachment) ->
           attachment.set('message', message)

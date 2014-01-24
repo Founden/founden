@@ -1,5 +1,6 @@
 #= require moment
 #= require mapbox
+#= require vendor/scrollTo
 
 #= require handlebars
 #= require ember
