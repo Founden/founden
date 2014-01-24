@@ -14,6 +14,12 @@ Founden.ConversationsShowController = Ember.Controller.extend
       $.scrollTo('max')
   ).observes('content.messages')
 
+  toggleNavbarOnReply: ( ->
+    active = @get('replyToMessage')
+    $('.navbar').toggleClass('narrow', active)
+    $('.content').toggleClass('wide', active)
+  ).observes('replyToMessage')
+
   focusOnMessage: (message) ->
     previousMessage = @get('replyToMessage')
     previousMessage.set('isFocused', false) if previousMessage
