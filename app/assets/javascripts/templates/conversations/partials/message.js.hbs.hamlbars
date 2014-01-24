@@ -7,20 +7,13 @@
         {{user.name}}
         &middot;
         {{timeago timeAgo}}
-        {{#unless parentMessage}}
-        &middot;
-        %a{:href => '#', :_action => 'activateReplyOn this'}
-          {{#if isFocused}}
-          You are replying to this message. Click again to cancel.
-          {{else}}
-          Reply
-          {{/if}}
-        {{/unless}}
-
     {{partial 'conversations/partials/attachments'}}
     .message-actions
       %span{:_action => 'addToSummary this', :bind => {:class => ':icon :icon-star summaryId:pinned'}}
-  {{#if replies.firstObject}}
+      {{#unless parentMessage}}
+      %span{:_action => 'activateReplyOn this', :bind => {:class => ':icon :icon-reply isFocused:pinned'}}
+      {{/unless}}
+  {{#if isFocused}}
   .message-replies
     {{#each reply in message.replies}}
     {{#with reply}}
@@ -28,4 +21,3 @@
     {{/with}}
     {{/each}}
   {{/if}}
-

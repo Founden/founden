@@ -26,6 +26,8 @@
   &.btn-secondary {
     background-color: $beige;
     color: $black;
+    padding: 5px 10px;
+    border: 1px solid rgba($black, 0.1);
 
     .icon {
       color: $green;
