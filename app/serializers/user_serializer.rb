@@ -9,6 +9,8 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :conversations, :embed_key => :slug
   has_many :summaries, :embed_key => :slug
+  has_many :created_friendships, :embed_key => :slug, :embed_in_root => false
+  has_many :friendships, :embed_key => :slug, :embed_in_root => false
 
   # Mask the id with the slug value
   def id
@@ -29,7 +31,8 @@ class UserSerializer < ActiveModel::Serializer
   # Filters out some keys from other users
   def filter(keys)
     if !scope.id.eql?(object.id)
-      keys - %i{conversations summaries contact_ids}
+      keys - %i{conversations summaries contact_ids} -
+       %i{created_friendships friendships}
     else
       keys
     end
