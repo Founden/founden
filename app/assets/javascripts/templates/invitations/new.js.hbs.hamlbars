@@ -1,7 +1,16 @@
 .panel
-  %img.panel-user-image{:bind => {:src => 'currentUser.avatarUrl'}}
+  {{#if content.gravatarUrl}}
+  %img.panel-user-image{:bind => {:src => 'content.gravatarUrl'}}
+  {{else}}
+  %img.panel-user-image{:bind => {:src => 'content.defaultGravatarUrl'}}
+  {{/if}}
+
   .panel-user-name
-    {{currentUser.name}}
+    {{#if content.gravatarName}}
+    {{content.gravatarName}}
+    {{else}}
+    {{content.email}}
+    {{/if}}
   %p
     {{input type='email' valueBinding='content.email' placeholder='Type an email address...' name='email'}}
   %button.button{:_action => 'sendInvitation'}
