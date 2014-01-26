@@ -13,11 +13,6 @@
     %meta{ :name => 'viewport', :content => 'width=device-width' }
     %meta{ :name => :generator, :content => Founden::Config.app_id }
 
-    / Typekit
-    %script{ :src => '//use.typekit.net/mtd8kej.js' }
-    :javascript
-      try{Typekit.load();}catch(e){}
-
     = stylesheet_link_tag 'application'
     = yield(:head_embed) if content_for?(:head_embed)
     = csrf_meta_tags
