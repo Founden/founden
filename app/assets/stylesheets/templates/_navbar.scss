@@ -8,6 +8,11 @@
   height: 100%;
   background-color: tint($black, 5%);
   color: $white;
+  @include transition(left, 0.2s);
+
+  &.narrow {
+    left: -270px;
+  }
 }
 
 .navbar-logo {

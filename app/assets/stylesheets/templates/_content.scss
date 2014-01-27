@@ -1,5 +1,13 @@
 .content {
   position: relative;
-  overflow: hidden;
   margin: 0 0 0 280px;
+  @include transition(margin, 0.2s);
+
+  &.wide {
+    margin: 0 0 0 10px;
+
+    .message-form {
+      padding: 0 0 0 10px;
+    }
+  }
 }

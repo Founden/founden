@@ -6,6 +6,7 @@
   z-index: $zindex-message-form;
   width: 100%;
   padding: 0 0 0 280px;
+  @include transition(padding, 0.2s);
 }
 
 .message-form-wrap {
