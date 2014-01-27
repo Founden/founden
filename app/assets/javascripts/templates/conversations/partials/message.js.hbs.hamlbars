@@ -15,9 +15,16 @@
       {{/unless}}
   {{#if isFocused}}
   .message-replies
-    {{#each reply in message.replies}}
-    {{#with reply}}
-    {{partial 'conversations/partials/message'}}
-    {{/with}}
-    {{/each}}
+    .message-replies-wrap
+      {{#each reply in message.replies}}
+      {{#with reply}}
+      {{partial 'conversations/partials/message'}}
+      {{/with}}
+      {{/each}}
+      %form.message-reply-form{:_action => 'saveReply on="submit"'}
+        %img.message-user-image{:bind => {:src => 'controller.currentUser.avatarUrl'}}
+        {{textarea valueBinding='controller.replyContent' class='message-reply-input' placeholder='Click here to reply.'}}
+        .message-reply-actions
+          %button.button.btn-secondary{:_action => 'saveReply'}
+            = _('Reply')
   {{/if}}
