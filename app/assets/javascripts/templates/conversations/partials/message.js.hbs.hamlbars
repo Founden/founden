@@ -1,4 +1,4 @@
-%div{:bind => {:class => ':message isUnread:unread isFocused:focused'}}
+%div{:bind => {:class => ':message isUnread:unread isFocused:focused identifier'}}
   %img.message-user-image{:bind => {:src => 'user.avatarUrl'}}
   .message-wrap
     .message-content

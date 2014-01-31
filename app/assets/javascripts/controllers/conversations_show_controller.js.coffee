@@ -10,10 +10,12 @@ Founden.ConversationsShowController = Ember.Controller.extend
       messages.filterProperty('isUnread', true).get('length')
   ).property('content.messages.@each.isUnread')
 
-  scrollToLastMessage: ( ->
+  scrollToMessage: (message) ->
     Ember.run.schedule 'afterRender', @, ->
-      $.scrollTo('max')
-  ).observes('content.messages')
+      if message
+        $.scrollTo('.' + message.get('identifier'), 1000, {offset: -50})
+      else
+        $.scrollTo('max')
 
   toggleNavbarOnReply: ( ->
     active = !!@get('replyToMessage')
@@ -27,7 +29,6 @@ Founden.ConversationsShowController = Ember.Controller.extend
     if previousMessage == message
       @set('replyToMessage', null)
     else
-      @set('replyToMessage', message)
       message.set('isFocused', true)
       @set('replyToMessage', message)
 
@@ -50,12 +51,14 @@ Founden.ConversationsShowController = Ember.Controller.extend
           attachment.save().then ->
             message.get('attachments').pushObject(attachment)
 
+      @scrollToMessage(message)
+
     messages.pushObject(message)
 
-  addMessage: (content, attachments) ->
-    @saveMessage(content, attachments)
-
   actions:
+
+    addMessage: (content, attachments) ->
+      @saveMessage(content, attachments)
 
     saveReply: ->
       conversation = @get('content')
@@ -71,6 +74,7 @@ Founden.ConversationsShowController = Ember.Controller.extend
       message.save().then =>
         @set('replyContent', null)
         parentMessage.get('replies').pushObject(message)
+        @scrollToMessage(message)
 
     addMember: (user) ->
       participants = @get('content.participants')
