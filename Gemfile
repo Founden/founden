@@ -47,6 +47,7 @@ group :assets do
   gem 'hamlbars'
   gem 'momentjs-rails'
   gem 'mapbox-rails'
+  gem 'jquery-scrollto-rails'
 end
 
 group :development, :test do
