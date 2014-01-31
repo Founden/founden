@@ -12,4 +12,4 @@ Founden.LocationMapComponent = Ember.Component.extend
   centerMap: ( ->
     coordinates = [@get('latitude'), @get('longitude')]
     @get('mapbox').setView(coordinates, @get('zoom'))
-  ).observes('latitude', 'longitude')
+  ).observes('latitude', 'longitude', 'mapbox')
