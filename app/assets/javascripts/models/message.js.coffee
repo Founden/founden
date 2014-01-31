@@ -16,3 +16,7 @@ Founden.Message = DS.Model.extend Founden.TimeAgoMixin,
   # is loaded from `store.pushPayload`
   didLoadFromPayload: ->
     @reload()
+
+  identifier: (->
+    'message-' + @get('id')
+  ).property('id')
