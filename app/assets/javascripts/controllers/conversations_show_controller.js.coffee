@@ -52,25 +52,25 @@ Founden.ConversationsShowController = Ember.Controller.extend
 
     messages.pushObject(message)
 
-  saveReply: ->
-    conversation = @get('content')
-    parentMessage = @get('replyToMessage')
-    user = @get('currentUser')
-
-    message = @store.createRecord 'message',
-      content: @get('replyContent')
-      conversation: conversation
-      parentMessage: parentMessage
-      user: user
-
-    message.save().then =>
-      @set('replyContent', null)
-      parentMessage.get('replies').pushObject(message)
-
   actions:
 
-    addMessage: (content, attachments) ->
-      @saveMessage(content, attachments)
+    saveReply: ->
+      conversation = @get('content')
+      parentMessage = @get('replyToMessage')
+      user = @get('currentUser')
+
+      message = @store.createRecord 'message',
+        content: @get('replyContent')
+        conversation: conversation
+        parentMessage: parentMessage
+        user: user
+
+      message.save().then =>
+        @set('replyContent', null)
+        parentMessage.get('replies').pushObject(message)
+
+      addMessage: (content, attachments) ->
+        @saveMessage(content, attachments)
 
     addMember: (user) ->
       participants = @get('content.participants')
