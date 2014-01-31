@@ -91,6 +91,11 @@
       background-color: $green;
       color: rgba($black, 0.4);
     }
+
+    em {
+      font-size: em(12);
+      font-style: normal;
+    }
   }
 }
 

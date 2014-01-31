@@ -12,6 +12,10 @@
       %span{:_action => 'addToSummary this', :bind => {:class => ':icon :icon-star summaryId:pinned'}}
       {{#unless parentMessage}}
       %span{:_action => 'activateReplyOn this', :bind => {:class => ':icon :icon-reply isFocused:pinned'}}
+        {{#if message.replies}}
+        %em
+          {{message.replies.length}}
+        {{/if}}
       {{/unless}}
   {{#if isFocused}}
   .message-replies
