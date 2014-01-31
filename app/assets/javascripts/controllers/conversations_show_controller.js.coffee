@@ -52,6 +52,9 @@ Founden.ConversationsShowController = Ember.Controller.extend
 
     messages.pushObject(message)
 
+  addMessage: (content, attachments) ->
+    @saveMessage(content, attachments)
+
   actions:
 
     saveReply: ->
@@ -68,9 +71,6 @@ Founden.ConversationsShowController = Ember.Controller.extend
       message.save().then =>
         @set('replyContent', null)
         parentMessage.get('replies').pushObject(message)
-
-      addMessage: (content, attachments) ->
-        @saveMessage(content, attachments)
 
     addMember: (user) ->
       participants = @get('content.participants')
