@@ -4,9 +4,11 @@
     %h1.conversation-title
       {{content.title}} ({{unreadCount}})
 
+    {{#if content.summary}}
     {{#link-to 'summaries.show' content.summary class='conversation-summary-btn'}}
     %span.icon.icon-star
     {{/link-to}}
+    {{/if}}
 
     %ul.conversation-participants
       {{#each participant in content.participants}}

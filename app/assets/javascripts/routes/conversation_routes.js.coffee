@@ -12,7 +12,12 @@ Founden.ConversationsShowRoute = Ember.Route.extend
 
     addToSummary: (message) ->
       message.set('summaryId', !message.get('summaryId'))
-      message.save()
+      if summary = message.get('conversation.summary')
+        message.save().then ->
+          summary.reload()
+      else
+        message.save().then ->
+          message.get('conversation').reload()
 
     activateReplyOn: (message) ->
       @controller.focusOnMessage(message)
