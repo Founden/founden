@@ -1,4 +1,7 @@
 Founden.Conversation = DS.Model.extend Founden.TimeAgoMixin,
+  latestOffset: 1
+  offsetLimit: 5
+
   title: DS.attr('string')
   createdAt: DS.attr('date', readOnly: true, defaultValue: new Date)
   isUnread: DS.attr('boolean', readOnly: true)

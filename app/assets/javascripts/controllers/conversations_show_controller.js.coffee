@@ -3,8 +3,6 @@ Founden.ConversationsShowController = Ember.Controller.extend
   replyContent: null
   messageForm: null
   isReplying: false
-  latestOffset: 1
-  offsetLimit: 5
 
   unreadCount: ( ->
     messages = @get('content.messages')
@@ -19,10 +17,10 @@ Founden.ConversationsShowController = Ember.Controller.extend
   latestMessages: ( ->
     parentMessages = @get('parentMessages')
     end = parentMessages.get('length')
-    start = end - @get('latestOffset')
+    start = end - @get('content.latestOffset')
     start = 0 if start < 0
     parentMessages.slice(start, end)
-  ).property('parentMessages', 'latestOffset')
+  ).property('parentMessages', 'content.latestOffset')
 
   parentMessagesLeft: ( ->
     if @get('latestMessages.length') == @get('parentMessages.length')
@@ -79,7 +77,7 @@ Founden.ConversationsShowController = Ember.Controller.extend
 
   actions:
     incrementMessagesOffset: ->
-      @incrementProperty('latestOffset', @get('offsetLimit'))
+      @incrementProperty('content.latestOffset', @get('content.offsetLimit'))
 
     addMessage: (content, attachments) ->
       @saveMessage(content, attachments)
