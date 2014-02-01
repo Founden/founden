@@ -10,10 +10,10 @@ Founden.ConversationsShowController = Ember.Controller.extend
       messages.filterProperty('isUnread', true).get('length')
   ).property('content.messages.@each.isUnread')
 
-  scrollToMessage: (message) ->
-    Ember.run.schedule 'afterRender', @, ->
+  scrollToMessage: (message, offset) ->
+    Ember.run.scheduleOnce 'afterRender', @, ->
       if message
-        $.scrollTo('.' + message.get('identifier'), 1000, {offset: -50})
+        $.scrollTo('.' + message.get('identifier'), 1000, {offset: offset || 50})
       else
         $.scrollTo('max')
 
@@ -44,12 +44,13 @@ Founden.ConversationsShowController = Ember.Controller.extend
 
     message.save().then =>
       if attachments
-        attachments.forEach (attachment) ->
+        attachments.forEach (attachment) =>
           attachment.set('message', message)
           attachment.set('conversation', conversation)
           attachment.set('user', user)
-          attachment.save().then ->
+          attachment.save().then =>
             message.get('attachments').pushObject(attachment)
+            @scrollToMessage(message, 700)
 
       @scrollToMessage(message)
 
@@ -74,7 +75,7 @@ Founden.ConversationsShowController = Ember.Controller.extend
       message.save().then =>
         @set('replyContent', null)
         parentMessage.get('replies').pushObject(message)
-        @scrollToMessage(message)
+        @scrollToMessage(message, -50)
 
     addMember: (user) ->
       participants = @get('content.participants')
