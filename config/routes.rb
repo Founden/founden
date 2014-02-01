@@ -21,7 +21,9 @@ Founden::Application.routes.draw do
       resources(:memberships, :only => [:index, :show, :create, :destroy])
       resources(:invitations, :only => [:index, :create, :update, :show])
       resources(:summaries, :only => [:index, :show])
-      resources(:updates, :only => [:index])
+
+      get 'socket' => 'misc#websocket'
+      get 'md5' => 'misc#md5'
     end
   end
 

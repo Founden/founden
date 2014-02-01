@@ -1,10 +1,10 @@
-# API (v1) notifications controller class
-class Api::V1::UpdatesController < Api::V1::ApplicationController
+# API (v1) misc controller class
+class Api::V1::MiscController < Api::V1::ApplicationController
   # Websockets support
   include Tubesock::Hijack
 
   # Streams available activities
-  def index
+  def websocket
     hijack do |tubesock|
       # Listen on its own thread
       socket_thread = Thread.new do
@@ -23,5 +23,17 @@ class Api::V1::UpdatesController < Api::V1::ApplicationController
         socket_thread.kill
       end
     end
+  end
+
+  # Creates an MD5 hash out of a string
+  def md5
+    render :json => { :hash => Digest::MD5.hexdigest(md5_query.to_s) }
+  end
+
+  private
+
+  # Allowed parameters for MD5 hashing request
+  def md5_query
+    params.require(:query)
   end
 end

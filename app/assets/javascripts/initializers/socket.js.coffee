@@ -1,5 +1,5 @@
 Founden.initializer
-  name: 'updates'
+  name: 'socket'
   initialize: (container, application)->
     return if (/127.0.0.1/).test(window.location.href) and
       !(/use_websockets/).test(window.location.href)
@@ -9,7 +9,7 @@ Founden.initializer
     store = container.lookup('store:main')
 
     endpoint = 'ws://%@%@'.fmt(
-      window.location.host, adapter.buildURL('updates'))
+      window.location.host, adapter.buildURL('', 'socket'))
 
     # Register the container namespace
     socket = new WebSocket(endpoint)
