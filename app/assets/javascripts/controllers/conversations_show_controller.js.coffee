@@ -106,3 +106,9 @@ Founden.ConversationsShowController = Ember.Controller.extend
           conversation: @get('content')
         membership.save().then ->
           participants.pushObject(user)
+
+    unFocus: ->
+      previousMessage = @get('replyToMessage')
+      if previousMessage
+        previousMessage.set('isFocused', false) if previousMessage
+        @set('replyToMessage', null)

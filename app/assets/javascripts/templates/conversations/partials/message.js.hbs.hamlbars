@@ -1,7 +1,7 @@
 %div{:bind => {:class => ':message isUnread:unread isFocused:focused identifier'}}
   %img.message-user-image{:bind => {:src => 'user.avatarUrl'}}
   .message-wrap
-    .message-content
+    .message-content{:_action => 'unFocus'}
       {{{content}}}
       .message-meta
         {{user.name}}
