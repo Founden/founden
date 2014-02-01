@@ -7,9 +7,9 @@ defaults: &defaults
   contact_email: Founden <support@founden.com>
   image:
     sizes:
-      thumb: 100x100#
-      small: 300x300>
-      medium: 600x600>
+      :thumb: 100x100#
+      :small: 300x300>
+      :medium: 600x600>
   s3_protocol: 'https'
   s3_bucket: 'assets.founden.com'
   promo_codes:
