@@ -3,12 +3,33 @@ Founden.ConversationsShowController = Ember.Controller.extend
   replyContent: null
   messageForm: null
   isReplying: false
+  latestOffset: 1
+  offsetLimit: 5
 
   unreadCount: ( ->
     messages = @get('content.messages')
     if messages
       messages.filterProperty('isUnread', true).get('length')
   ).property('content.messages.@each.isUnread')
+
+  parentMessages: ( ->
+    @get('content.messages').filterProperty('parentMessage', null)
+  ).property('content.messages.[]')
+
+  latestMessages: ( ->
+    parentMessages = @get('parentMessages')
+    end = parentMessages.get('length')
+    start = end - @get('latestOffset')
+    start = 0 if start < 0
+    parentMessages.slice(start, end)
+  ).property('parentMessages', 'latestOffset')
+
+  parentMessagesLeft: ( ->
+    if @get('latestMessages.length') == @get('parentMessages.length')
+      false
+    else
+      true
+  ).property('latestMessages.length', 'parentMessages.length')
 
   scrollToMessage: (message, offset) ->
     Ember.run.scheduleOnce 'afterRender', @, ->
@@ -57,6 +78,8 @@ Founden.ConversationsShowController = Ember.Controller.extend
     messages.pushObject(message)
 
   actions:
+    incrementMessagesOffset: ->
+      @incrementProperty('latestOffset', @get('offsetLimit'))
 
     addMessage: (content, attachments) ->
       @saveMessage(content, attachments)

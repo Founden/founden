@@ -56,6 +56,15 @@
   height: 30px;
 }
 
+.message-our-image {
+  @extend .message-user-image;
+  background: $green;
+  font-size: em(20);
+  text-align: center;
+  color: $white;
+  font-weight: bold;
+}
+
 .message-content {
   font-size: em(14);
   line-height: 20px;

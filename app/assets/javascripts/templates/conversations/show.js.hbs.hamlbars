@@ -15,7 +15,11 @@
       {{/each}}
 
   .messages
-    {{#each message in content.messages}}
+    {{#if parentMessagesLeft}}
+    {{partial 'conversations/partials/load_messages_control'}}
+    {{/if}}
+
+    {{#each message in latestMessages}}
     {{#unless message.parentMessage}}
     {{#with message}}
     {{partial 'conversations/partials/message'}}

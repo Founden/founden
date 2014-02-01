@@ -1,0 +1,9 @@
+%div{:bind => {:class => ':message :loader'}}
+  .message-our-image
+    F
+
+  .message-wrap
+    .message-content
+      %a{:_action => 'incrementMessagesOffset', :href => '#'}
+        = _('Click to load previous messages...')
+        ({{latestMessages.length}}/{{parentMessages.length}})
