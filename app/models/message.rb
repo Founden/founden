@@ -27,9 +27,7 @@ class Message < ActiveRecord::Base
   before_validation do
     self.content = Sanitize.clean(self.content)
   end
-  # Use around since we need to process mentions before saving
-  # and enqueue email jobs after saving the entry
-  around_create :materialize_mentions
+  before_create :materialize_mentions
 
   private
 
@@ -44,25 +42,17 @@ class Message < ActiveRecord::Base
 
   # Replaces participant names with ampersate and their IDs.
   def materialize_mentions
-    yield and return true unless self.conversation
+    return unless self.conversation
 
-    # Process mentions
-    mentions = []
     members = self.conversation.participants.pluck(*%i{id first_name last_name})
     members.each do |user|
       name = user[1..2].join(' ')
       if self.content.include?(name)
         token = '@id:%d@' % user[0]
         content.sub!(name, token)
-        mentions << user[0]
+        notify_mention(user[0])
       end
     end
-
-    yield
-
-    # Process email jobs to anyone mentioned
-    mentions.each { |mention_user_id| notify_mention(mention_user_id) }
-    return true
   end
 
   # Sends a notification email to mentioned user
