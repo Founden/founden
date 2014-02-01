@@ -30,19 +30,22 @@ describe Message do
     context '#materialize_mentions' do
       let(:conversation) { Fabricate(:conversation) }
       let(:participant) { conversation.participants.first }
+      let(:user) { Fabricate(:user) }
       let(:content) do
         Faker::Lorem.paragraph + participant.full_name + Faker::Lorem.paragraph
       end
       subject(:message) do
-        Fabricate.build(
-          :message, :content => content, :conversation => conversation)
+        Fabricate.build(:message, :content => content,
+                        :conversation => conversation, :user => user)
       end
 
       before do
         message.should_receive(
           :notify_mention).with(participant.id).and_call_original
         QC.should_receive(:enqueue).with(
-          'UserMailer.deliver', :mention, kind_of(Numeric), participant.id)
+          'UserMailer.deliver', :mention,
+          kind_of(Numeric), participant.id, user.id)
+
         message.save
       end
 
@@ -53,7 +56,8 @@ describe Message do
     context '#notify_mention' do
       before do
         QC.should_receive(:enqueue).with(
-          'UserMailer.deliver', :mention, message.id, message.user.id)
+          'UserMailer.deliver', :mention,
+          message.conversation.id, message.user.id, message.user.id)
       end
 
       it { message.send(:notify_mention, message.user.id).should be_nil }

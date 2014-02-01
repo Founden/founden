@@ -57,6 +57,7 @@ class Message < ActiveRecord::Base
 
   # Sends a notification email to mentioned user
   def notify_mention(user_id)
-    QC.enqueue('UserMailer.deliver', :mention, self.id, user_id)
+    QC.enqueue('UserMailer.deliver',
+               :mention, self.conversation.id, user_id, self.user.id)
   end
 end

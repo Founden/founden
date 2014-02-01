@@ -28,11 +28,11 @@ describe UserMailer do
     let(:message) { Fabricate(:message, :user => user) }
 
     before do
-      UserMailer.deliver(:mention, message.id, participant.id)
+      UserMailer.deliver(:mention, message.id, participant.id, user.id)
     end
 
     it_should_behave_like 'an email from us'
-    its('body.encoded') { should include(message.user.full_name) }
+    its('body.encoded') { should include(user.full_name) }
     its('body.encoded') { should include(message.conversation.title) }
     its('body.encoded') { should include(participant.full_name) }
     its('body.encoded') { should include(

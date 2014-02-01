@@ -8,11 +8,12 @@ class UserMailer < ApplicationMailer
   end
 
   # Sends a conversation mention
-  def mention(message_id, user_id)
-    @message = Message.find(message_id)
+  def mention(conversation_id, user_id, author_id)
+    @conversation = Conversation.find(conversation_id)
     @user = User.find(user_id)
+    @author = User.find(author_id)
     mail(:to => @user.email, :subject => _('%s mentioned you in %s on %s.') % [
-      @message.user.full_name, @message.conversation.title,
-      Founden::Config.app_name])
+      @author.full_name, @conversation.title, Founden::Config.app_name
+    ])
   end
 end
