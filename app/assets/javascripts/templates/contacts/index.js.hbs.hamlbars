@@ -1,10 +1,20 @@
 .wrapper
   .bucket
     .bucket-title
-      Contacts
+      = _('People you added')
     %ul.contacts
-      {{#each contact in currentUser.contacts}}
-      {{#with contact}}
-      {{partial 'contacts/partials/contact'}}
+      {{#each friendship in currentUser.createdFriendships}}
+      {{#with friendship}}
+      {{partial 'contacts/partials/created'}}
+      {{/with}}
+      {{/each}}
+
+  .bucket
+    .bucket-title
+      = _('People who added you')
+    %ul.contacts
+      {{#each friendship in currentUser.friendships}}
+      {{#with friendship}}
+      {{partial 'contacts/partials/accepted'}}
       {{/with}}
       {{/each}}
