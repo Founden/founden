@@ -3,4 +3,4 @@
   {{title}}
 {{/if}}
 .attachment-location
-  {{location-map latitude=latitude longitude=longitude}}
+  {{location-map latitude=latitude longitude=longitude mapboxTheme=mapboxTheme}}
