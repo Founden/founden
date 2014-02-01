@@ -8,7 +8,7 @@ class UpdateSerializer < ActiveModel::Serializer
 
   has_one :user, :embed_key => :slug
   has_one :conversation, :embed_key => :slug
-  has_one :parent_message, :embed_key => :slug
+  has_one :parent_message, :embed_key => :slug, :serializer => MessageSerializer
   has_one :summary, :embed_key => :slug
   has_many :replies, :embed_key => :slug
   # See below...
