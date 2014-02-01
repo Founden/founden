@@ -8,4 +8,5 @@ class Upload < Attachment
 
   # Validations
   validates_attachment_presence :attachment
+  do_not_validate_attachment_file_type :attachment
 end
