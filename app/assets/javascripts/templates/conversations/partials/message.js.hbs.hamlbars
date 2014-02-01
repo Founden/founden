@@ -27,7 +27,7 @@
       {{/each}}
       %form.message-reply-form{:_action => 'saveReply on="submit"'}
         %img.message-user-image{:bind => {:src => 'controller.currentUser.avatarUrl'}}
-        {{textarea valueBinding='controller.replyContent' class='message-reply-input' placeholder='Click here to reply.'}}
+        {{textarea valueBinding='controller.replyContent' name='reply' class='message-reply-input' placeholder='Click here to reply.'}}
         .message-reply-actions
           %button.button.btn-secondary{:_action => 'saveReply'}
             = _('Reply')

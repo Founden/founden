@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Conversation', :js, :slow do
+feature 'Conversation', :js, :slowa do
 
   given(:user) { User.first }
   given(:conversation) { Fabricate(:conversation, :user => user) }
@@ -44,6 +44,37 @@ feature 'Conversation', :js, :slow do
 
     scenario 'message details are included' do
       expect(page).to have_content(message.content)
+    end
+
+    context 'when there are replies' do
+      given(:replies) do
+        2.times do
+          Fabricate(:message, :parent_message => message,
+                    :conversation => message.conversation, :user => user)
+        end
+        message.replies
+      end
+      given(:anchor) { '/conversations/%s' % replies.first.conversation.slug }
+
+      scenario 'the counter number is shown' do
+        counter = page.find('.message-%s .icon-reply em' % message.slug)
+
+        expect(counter.text).to eq('2')
+      end
+    end
+
+    context 'and handles replies' do
+      given(:reply) { Faker::Lorem.sentence }
+
+      scenario 'by filling in the reply form' do
+        page.find('.message-%s .icon-reply' % message.slug).click
+        fill_in('reply', :with => reply)
+        page.find(
+          '.message-%s .message-reply-actions button' % message.slug).click
+        wait_for_ajax
+
+        expect(page).to have_content(reply)
+      end
     end
 
     context 'also in real-time', :pending => 'Trigger somehow message update' do
