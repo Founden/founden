@@ -28,7 +28,8 @@ describe UserMailer do
     let(:message) { Fabricate(:message, :user => user) }
 
     before do
-      UserMailer.deliver(:mention, message.id, participant.id, user.id)
+      UserMailer.deliver(
+        :mention, message.conversation.id, participant.id, user.id)
     end
 
     it_should_behave_like 'an email from us'

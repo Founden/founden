@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Conversation', :js, :slowa do
+feature 'Conversation', :js, :slow do
 
   given(:user) { User.first }
   given(:conversation) { Fabricate(:conversation, :user => user) }
