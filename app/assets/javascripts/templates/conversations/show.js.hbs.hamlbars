@@ -27,4 +27,4 @@
     {{/unless}}
     {{/each}}
 
-  {{message-form user=currentUser messageForm=messageForm isActive=isReplying}}
+  {{message-form user=currentUser conversation=content messageForm=messageForm isActive=isReplying}}

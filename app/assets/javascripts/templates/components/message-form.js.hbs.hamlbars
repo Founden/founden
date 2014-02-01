@@ -1,7 +1,7 @@
 .message-form-wrap
   %img.message-form-user-image{:bind => {:src => 'view.user.avatarUrl'}}
   {{attachments-support keyPressEvent=view.keyPressEvent selectedAttachmentType=view.selectedAttachmentType}}
-  {{mentions-support keyPressEvent=view.keyPressEvent results=view.user.contacts}}
+  {{mentions-support keyPressEvent=view.keyPressEvent user=view.user conversation=view.conversation}}
   {{caret-cursor isVisible=view.showCaret}}
   {{view view.messageView placeholder='Click here to reply (use @ to mention or + to attach media).' name='message'}}
   .message-form-actions

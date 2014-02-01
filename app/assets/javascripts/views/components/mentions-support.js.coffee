@@ -6,7 +6,7 @@ Founden.MentionsSupportComponent = Ember.Component.extend Founden.TextAreaCaretM
   selectedIndex: 0
 
   textarea: null
-  results: null
+  mentionOptions: null
 
   # Overwrites KeyboardEventsMixin hook
   onAtKeyPress: (textarea) ->
@@ -44,10 +44,25 @@ Founden.MentionsSupportComponent = Ember.Component.extend Founden.TextAreaCaretM
     click: ->
       @get('parentView').appendMention(@get('mention'))
 
+  mentionList: ( ->
+    mentions = []
+    @get('user.contacts').then (contacts) =>
+      contacts.setEach('isContact', true)
+      mentions.pushObjects(contacts.toArray())
+
+    @get('conversation.participants').then (participants) =>
+      participants.setEach('isParticipant', true)
+      mentions.pushObjects(participants.toArray())
+      mentions.removeObject(@get('user'))
+
+    mentions
+  ).property('user.contacts', 'conversation.participants')
+
   searchChanged: ( ->
     search = @get('search')
-    results = @get('results')
     content = []
+    results = @get('mentionList').uniq()
+
     if search and results and results.get('length') > 0
       @set('selectedIndex', 0)
       searchRegexp = new RegExp(search, 'i')
@@ -57,7 +72,7 @@ Founden.MentionsSupportComponent = Ember.Component.extend Founden.TextAreaCaretM
       @set('selectedIndex', -1)
 
     @set('content', content)
-  ).observes('search', 'results')
+  ).observes('search', 'mentionList')
 
   caretChanged: ( ->
     @$().css

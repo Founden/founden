@@ -5,6 +5,13 @@
   {{#view view.mentionView mention=mention}}
   %img{:bind => {:src => 'mention.avatarUrl', :alt => 'mention.name'}}
   {{mention.name}}
+  {{#if mention.isParticipant}}
+  %span
+    = _('Participant')
+  {{else}}
+  %span
+    = _('Contact')
+  {{/if}}
   {{/view}}
 
   {{/each}}

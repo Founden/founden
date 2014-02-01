@@ -42,6 +42,11 @@
     &.active, &:hover {
       background-color: $black;
     }
+
+    span {
+      float: right;
+      color: rgba($white, 0.25);
+    }
   }
 
   img {
