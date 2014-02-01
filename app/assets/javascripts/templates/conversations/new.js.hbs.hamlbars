@@ -1,6 +1,6 @@
 %div{:bind => {:class => ':conversation isReplying'}}
 
   .conversation-header
-    {{input type='text' valueBinding='content.title' placeholder='Type conversation subject...' class='conversation-title' name='title'}}
+    {{input type='text' valueBinding='content.title' placeholder='Type conversation subject...' class='conversation-title' name='title' enter='create'}}
     .conversation-create-btn{:_action => 'create'}
       %span.icon.icon-plus
