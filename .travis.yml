@@ -3,3 +3,6 @@ rvm:
   - 2.1.0
 addons:
   postgresql: "9.3"
+env: RAILS_ENV=test
+script:
+  - bundle exec rake db:migrate spec
