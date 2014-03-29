@@ -1,5 +1,7 @@
 # Founden
 
+[![Build Status](https://travis-ci.org/Founden/founden.svg?branch=master)](https://travis-ci.org/Founden/founden)
+
 Founden is an experimental online communication and collaboration application.
 
 Email, Chat (HipChat, Slack) and Google Wave served as the inspiration for us
