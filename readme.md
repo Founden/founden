@@ -6,7 +6,7 @@ Email, Chat (HipChat, Slack) and Google Wave served as the inspiration for us
 in building a modern and efficient technology while addressing [current
 email/messaging problems](http://en.wikipedia.org/wiki/E-mail#Problems).
 
-<iframe width="640" height="360" src="//www.youtube.com/embed/Jykw-WKsq4g" frameborder="0" allowfullscreen></iframe>
+![Founden v4](https://s3.amazonaws.com/screenshots.angel.co/d4/280048/ddff3a1d18b55b27c2cb36be44f0705d-original.png)
 
 Founden was closed after ~4 months and after failing to raise investments for
 further development.
