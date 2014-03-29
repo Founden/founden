@@ -1,6 +1,6 @@
 Founden.Timestamp = Founden.Attachment.extend
   isTimestamp: true
-  timestamp: DS.attr('date')
+  timestamp: DS.attr('string')
 
   rawValue: null
 
