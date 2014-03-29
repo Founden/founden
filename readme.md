@@ -12,6 +12,7 @@ Founden was closed after ~4 months and after failing to raise investments for
 further development.
 
 [Read the full story](http://ampersate.com/the-last-7-months-of-our-venture).
+[A little outdated static demo](http://proto.doersapp.com.s3.amazonaws.com/index.html).
 
 ## Installation
 
