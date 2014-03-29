@@ -3,6 +3,8 @@ rvm:
   - 2.1.0
 addons:
   postgresql: "9.3"
-env: RAILS_ENV=test
+before_script:
+  - cp config/database.yml.config config/database.yml
+  - psql -c 'create database founden_test;' -U postgres
 script:
-  - bundle exec rake db:migrate spec
+  - RAILS_ENV=test bundle exec rake db:migrate spec
